@@ -17,6 +17,9 @@ import {
 
 import axios from "axios";
 
+// Vite environment variable with localhost fallback
+const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
   import.meta.url,
@@ -207,7 +210,7 @@ const PDFReader = ({ fileUrl, bookName, book }) => {
       console.log("📝 Saving note:", newNote);
 
       const response = await axios.put(
-        "http://localhost:5000/api/users/createnotes",
+        `${API_BASE}/api/users/createnotes`,
         newNote,
         {
           headers: {
@@ -391,7 +394,7 @@ const PDFReader = ({ fileUrl, bookName, book }) => {
       // -------------------------------------------------------
 
       const response = await axios.put(
-        "http://localhost:5000/api/users/recent-books",
+        `${API_BASE}/api/users/recent-books`,
         payload,
         {
           headers: {

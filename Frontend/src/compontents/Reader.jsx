@@ -5,6 +5,9 @@ import axios from "axios";
 import PDFReader from "./PDFReader";
 import EPUBReader from "./EPUBReader";
 
+// Vite environment variable with localhost fallback
+const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+
 const Reader = () => {
   const { bookId } = useParams();
   const navigate = useNavigate();
@@ -26,7 +29,7 @@ const Reader = () => {
         console.log("📖 Requesting readable book:", bookId);
 
         const response = await axios.get(
-          `http://localhost:5000/api/book/${bookId}/read`
+          `${API_BASE}/api/book/${bookId}/read`
         );
 
         console.log("✅ Book reading data received:", response.data);
@@ -146,7 +149,7 @@ const Reader = () => {
   //
 
   const readerFileUrl =
-    `http://localhost:5000/api/book/${book.identifier}/file`;
+    `${API_BASE}/api/book/${book.identifier}/file`;
 
 
   return (
