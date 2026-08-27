@@ -4,6 +4,9 @@ import { IoChevronBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+// Vite environment variable with localhost fallback
+const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+
 const Notes = ({ note }) => {
   const navigate = useNavigate();
 
@@ -14,7 +17,7 @@ const Notes = ({ note }) => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:5000/api/users/getnotes",
+          `${API_BASE}/api/users/getnotes`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

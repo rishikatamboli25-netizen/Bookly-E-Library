@@ -10,6 +10,9 @@ import axios from "axios";
 import HomeHero from "../compontents/HomeHero";
 import { useNavigate } from "react-router-dom";
 
+// Vite environment variable with localhost fallback
+const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+
 const Home = () => {
   const [loginOpen, setLoginOpen] = useState(true);
   const [bookData, setBookData] = useState([]);
@@ -46,7 +49,7 @@ const Home = () => {
 
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/book/getBooks"
+        `${API_BASE}/api/book/getBooks`
       );
 
       console.warn("📚 [BOOKS] API RESPONSE:", response);
@@ -91,7 +94,7 @@ const Home = () => {
         console.warn("🌐 [PROGRESS] Sending request...");
 
         const response = await axios.get(
-          "http://localhost:5000/api/users/get-user-progress",
+          `${API_BASE}/api/users/get-user-progress`,
           {
             headers: {
               Authorization: `Bearer ${storedToken}`,

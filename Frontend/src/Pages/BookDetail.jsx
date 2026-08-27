@@ -9,6 +9,9 @@ import { FaStar } from "react-icons/fa";
 import { HiOutlineCheckCircle } from "react-icons/hi2";
 import axios from "axios";
 
+// Vite environment variable with localhost fallback
+const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+
 function BookDetail() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -24,7 +27,7 @@ function BookDetail() {
     const findBook = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/book/${bookId}`
+          `${API_BASE}/api/book/${bookId}`
         );
         setBook(response.data);
       } catch (error) {
@@ -49,7 +52,7 @@ function BookDetail() {
         }
 
         const response = await axios.get(
-          "http://localhost:5000/api/users/checkReadBooks",
+          `${API_BASE}/api/users/checkReadBooks`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -82,7 +85,7 @@ function BookDetail() {
       }
 
       await axios.put(
-        "http://localhost:5000/api/users/mark-as-read",
+        `${API_BASE}/api/users/mark-as-read`,
         {
           bookId: book?._id,
         },
@@ -116,7 +119,7 @@ function BookDetail() {
       }
 
       const response = await axios.put(
-        "http://localhost:5000/api/users/recent-books",
+        `${API_BASE}/api/users/recent-books`,
         {
           bookId: book._id,
         },

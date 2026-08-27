@@ -7,6 +7,9 @@ import Boutton_one from "../compontents/Button_one";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+// Vite environment variable with localhost fallback
+const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+
 const Collection = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -73,7 +76,7 @@ const Collection = () => {
   const getCollections = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/users/collections",
+        `${API_BASE}/api/users/collections`,
         authConfig,
       );
 
@@ -104,7 +107,7 @@ const Collection = () => {
     const getBook = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/book/${bookId}`,
+          `${API_BASE}/api/book/${bookId}`,
         );
 
         setBookToAdd(response.data);
@@ -140,7 +143,7 @@ const Collection = () => {
       setCreatingCollection(true);
 
       const response = await axios.post(
-        "http://localhost:5000/api/users/collections",
+        `${API_BASE}/api/users/collections`,
         {
           name: newCollectionName.trim(),
         },
@@ -196,7 +199,7 @@ const Collection = () => {
       setSavingBook(true);
 
       const response = await axios.put(
-        `http://localhost:5000/api/users/collections/${selectedCollection._id}/books`,
+        `${API_BASE}/api/users/collections/${selectedCollection._id}/books`,
         {
           bookId: bookToAdd._id,
         },

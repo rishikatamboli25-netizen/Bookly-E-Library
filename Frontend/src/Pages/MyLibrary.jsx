@@ -5,9 +5,13 @@ import { IoChevronBack } from "react-icons/io5";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+// Vite environment variable with localhost fallback
+const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+
 const MyLibrary = () => {
   const [recentBooks, setRecentBooks] = useState([]);
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     const getRecentBooks = async () => {
@@ -17,7 +21,7 @@ const MyLibrary = () => {
         if (!token) return;
 
         const response = await axios.get(
-          "http://localhost:5000/api/users/get-recent-books",
+          `${API_BASE}/api/users/get-recent-books`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

@@ -4,6 +4,9 @@ import { LuArrowRight } from "react-icons/lu";
 import axios from "axios";
 import "../App.css";
 
+// Vite environment variable with localhost fallback
+const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+
 const Discover = () => {
   const [books, setBooks] = useState([]);
 
@@ -20,7 +23,7 @@ const Discover = () => {
   const getBook = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/book/getBooks"
+        `${API_BASE}/api/book/getBooks`
       );
 
       setBooks(response.data);

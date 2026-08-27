@@ -5,6 +5,9 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+// Vite environment variable with localhost fallback
+const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+
 const NoteDetail = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -85,7 +88,7 @@ const NoteDetail = () => {
       const token = localStorage.getItem("token");
 
       const response = await axios.put(
-        `http://localhost:5000/api/users/updatenote/${note._id}`,
+        `${API_BASE}/api/users/updatenote/${note._id}`,
         {
           text: editedText,
           page: editedPage,
@@ -139,7 +142,7 @@ const NoteDetail = () => {
       const token = localStorage.getItem("token");
 
       const response = await axios.delete(
-        `http://localhost:5000/api/users/deletenote/${note._id}`,
+        `${API_BASE}/api/users/deletenote/${note._id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

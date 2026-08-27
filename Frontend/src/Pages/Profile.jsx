@@ -4,6 +4,9 @@ import { LuPencil, LuCheck, LuX } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+// Vite environment variable with localhost fallback
+const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+
 const Profile = () => {
   const navigate = useNavigate();
 
@@ -50,7 +53,7 @@ const Profile = () => {
         console.log("Fetching user profile...");
 
         const response = await axios.get(
-          "http://localhost:5000/api/users/profile",
+          `${API_BASE}/api/users/profile`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -126,7 +129,7 @@ const Profile = () => {
       console.log("Updating username:", tempName);
 
       const response = await axios.put(
-        "http://localhost:5000/api/users/profile",
+        `${API_BASE}/api/users/profile`,
         {
           username: tempName.trim(),
           goal: yearlyGoal,
@@ -224,7 +227,7 @@ const Profile = () => {
       console.log("Updating yearly goal:", numericGoal);
 
       const response = await axios.put(
-        "http://localhost:5000/api/users/profile",
+        `${API_BASE}/api/users/profile`,
         {
           username: name,
           goal: numericGoal,
