@@ -3,6 +3,9 @@ import { LuSearch, LuX } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+// Vite environment variable with localhost fallback
+const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+
 const Navbar = () => {
   const navigate = useNavigate();
 
@@ -29,7 +32,7 @@ const Navbar = () => {
         setLoading(true);
 
         const response = await axios.get(
-          "http://localhost:5000/api/book/getBooks",
+          `${API_BASE}/api/book/getBooks`,
           {
             params: {
               search: trimmedQuery,
@@ -125,24 +128,24 @@ const Navbar = () => {
 
 
             {/* Input */}
-<input
-  type="text"
-  value={search}
-  onChange={(e) => setSearch(e.target.value)}
-  placeholder="Search books, authors, categories..."
-  autoComplete="off"
-  className="
-    h-[5vh]
-    min-w-0
-    flex-1
-    appearance-none
-    bg-transparent
-    text-sm
-    text-text-primary
-    outline-none
-    placeholder:text-text-secondary
-  "
-/>
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search books, authors, categories..."
+              autoComplete="off"
+              className="
+                h-[5vh]
+                min-w-0
+                flex-1
+                appearance-none
+                bg-transparent
+                text-sm
+                text-text-primary
+                outline-none
+                placeholder:text-text-secondary
+              "
+            />
 
 
             {/* Single Clear Button */}

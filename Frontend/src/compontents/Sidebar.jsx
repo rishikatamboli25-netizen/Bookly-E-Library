@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/Logo/Logo.png";
@@ -46,7 +47,7 @@ const Sidebar = () => {
     },
   ];
 
-  /*
+  /* 
   ============================================================
   ACTIVE TAB
   ============================================================
@@ -84,11 +85,17 @@ const Sidebar = () => {
   return (
     <>
       <div
-        className={`relative h-screen pt-6 pl-7 pb-5 flex flex-col overflow-hidden
+        className={`relative h-screen pt-6 pb-5 flex flex-col overflow-hidden
           bg-gradient-to-b from-brand-light/75 via-white to-white
           border-r border-border-light
-          transition-[width] duration-300
-          ${isOpen ? "w-[20vw]" : "w-[6vw]"}`}
+          transition-[width,padding] duration-300
+
+          ${
+            isOpen
+              ? "w-[20vw] pl-7 pr-4"
+              : "w-[6vw] px-2"
+          }
+        `}
       >
 
         {/* =====================================================
@@ -143,9 +150,16 @@ const Sidebar = () => {
 
         <div className="relative z-10 mt-7 h-full flex-1">
           <ul
-            className="h-full w-full p-2 flex flex-col gap-3
+            className={`h-full w-full
+              flex flex-col gap-3
               font-medium text-text-secondary
-              text-[clamp(14px,2vw,16px)]"
+              text-[clamp(14px,2vw,16px)]
+              ${
+                isOpen
+                  ? "p-2"
+                  : "p-0 items-center"
+              }
+            `}
           >
             {navItems.map(
               ({ label, icon: Icon, path }) => {
@@ -156,14 +170,14 @@ const Sidebar = () => {
                     key={label}
                     to={path}
                     className={`group relative flex items-center gap-3
-                      py-2.5 px-4 rounded-full
+                      py-2.5 rounded-full
                       backdrop-blur-xl
                       transition-all duration-300
 
                       ${
-                        !isOpen
-                          ? "justify-center px-2.5"
-                          : ""
+                        isOpen
+                          ? "px-4 w-full"
+                          : "px-2.5 w-fit justify-center"
                       }
 
                       ${
@@ -194,9 +208,9 @@ const Sidebar = () => {
                     />
 
                     {isOpen && (
-                      <li className="list-none tracking-wide">
+                      <span className="tracking-wide">
                         {label}
-                      </li>
+                      </span>
                     )}
                   </Link>
                 );
@@ -209,11 +223,14 @@ const Sidebar = () => {
             PROFILE
         ====================================================== */}
 
-        {isOpen && (
-          <Link
-            to="/Profile"
-            className="relative z-10"
-          >
+        <Link
+          to="/Profile"
+          className={`relative z-10 flex ${
+            isOpen ? "justify-start" : "justify-center"
+          }`}
+        >
+          {isOpen ? (
+            /* OPEN STATE */
             <div
               className="flex items-center gap-2 w-fit
                 rounded-full pl-1.5 pr-4 py-1.5
@@ -224,7 +241,7 @@ const Sidebar = () => {
                 transition-all duration-300"
             >
               <div
-                className="w-[3vw] h-[6vh]
+                className="w-10 h-10
                   rounded-full bg-brand-light
                   border border-white
                   flex items-center justify-center"
@@ -251,11 +268,29 @@ const Sidebar = () => {
                 </p>
               </div>
             </div>
-          </Link>
-        )}
+          ) : (
+            /* CLOSED STATE */
+            <div
+              className="flex items-center justify-center
+                w-10 h-10
+                rounded-full
+                bg-white/60 backdrop-blur-xl
+                border border-white/80
+                shadow-[0_1px_0_rgba(255,255,255,0.9)_inset,0_6px_16px_rgba(124,58,237,0.12)]
+                hover:bg-white/80 hover:-translate-y-0.5
+                transition-all duration-300"
+            >
+              <LuUser
+                size={20}
+                className="text-brand"
+              />
+            </div>
+          )}
+        </Link>
       </div>
     </>
   );
 };
 
 export default Sidebar;
+
