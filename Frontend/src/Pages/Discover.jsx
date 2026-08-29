@@ -72,33 +72,32 @@ const Discover = () => {
           POPULAR BOOKS
       ===================================================== */}
 
-      <section className="px-20 pt-24">
+      <section className="px-4 sm:px-8 md:px-12 lg:px-20 pt-4 sm:pt-10 md:pt-24 max-w-[1600px] mx-auto">
 
-        <div className="flex justify-between">
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
 
-          <div className="text-[clamp(10px,5vw,20px)] font-semibold text-text-primary">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-text-primary">
             Popular Books
-          </div>
+          </h2>
 
           <button
             onClick={handlePopularBooksScroll}
-            className="flex items-center gap-2 text-text-secondary cursor-pointer"
+            className="flex items-center gap-2 text-sm sm:text-base text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
           >
             Scroll
-            <LuArrowRight />
+            <LuArrowRight className="text-base" />
           </button>
 
         </div>
 
         <div
           ref={popularBooksRef}
-          className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth"
+          className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide scroll-smooth py-2"
         >
           {books?.map((book, index) => (
-            <Cardtwo
-              key={index}
-              book={book}
-            />
+            <div key={index} className="shrink-0">
+              <Cardtwo book={book} />
+            </div>
           ))}
         </div>
 
@@ -109,33 +108,33 @@ const Discover = () => {
           NEW RELEASES
       ===================================================== */}
 
-      <section className="px-20 pt-9">
+      {/* Increased top padding/spacing on mobile (pt-16 sm:pt-10 md:pt-16) to push the 2nd container down */}
+      <section className="px-4 sm:px-8 md:px-12 lg:px-20 pt-16 sm:pt-10 md:pt-16 mb-20 max-w-[1600px] mx-auto">
 
-        <div className="flex justify-between">
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
 
-          <div className="text-[clamp(10px,5vw,20px)] font-semibold text-text-primary">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-text-primary">
             New Releases
-          </div>
+          </h2>
 
           <button
             onClick={handleNewReleasesScroll}
-            className="flex items-center gap-2 text-text-secondary cursor-pointer"
+            className="flex items-center gap-2 text-sm sm:text-base text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
           >
             Scroll
-            <LuArrowRight />
+            <LuArrowRight className="text-base" />
           </button>
 
         </div>
 
         <div
           ref={newReleasesRef}
-          className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth"
+          className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide scroll-smooth py-2"
         >
           {books?.map((book, index) => (
-            <Cardtwo
-              key={index}
-              book={book}
-            />
+            <div key={index} className="shrink-0">
+              <Cardtwo book={book} />
+            </div>
           ))}
         </div>
 

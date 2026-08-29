@@ -3,7 +3,6 @@ import { IoChevronBack } from "react-icons/io5";
 import { BiPlus } from "react-icons/bi";
 import { FiSearch } from "react-icons/fi";
 import { LuMoveVertical, LuArrowRight } from "react-icons/lu";
-import Boutton_one from "../compontents/Button_one";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -17,36 +16,25 @@ const Collection = () => {
   // --------------------------------
   // ADD BOOK MODE
   // --------------------------------
-
   const isAddBookMode = location.state?.mode === "add-book";
   const bookId = location.state?.bookId;
 
   // --------------------------------
   // STATES
   // --------------------------------
-
   const [search, setSearch] = useState("");
-
   const [collections, setCollections] = useState([]);
-
   const [bookToAdd, setBookToAdd] = useState(null);
-
   const [selectedCollection, setSelectedCollection] = useState(null);
-
   const [showCreateCollection, setShowCreateCollection] = useState(false);
-
   const [newCollectionName, setNewCollectionName] = useState("");
-
   const [loading, setLoading] = useState(true);
-
   const [creatingCollection, setCreatingCollection] = useState(false);
-
   const [savingBook, setSavingBook] = useState(false);
 
   // --------------------------------
   // GET USER TOKEN
   // --------------------------------
-
   const token = localStorage.getItem("token");
 
   const authConfig = {
@@ -58,7 +46,6 @@ const Collection = () => {
   // --------------------------------
   // BOOK COVER HELPER
   // --------------------------------
-
   const getBookCover = (book) => {
     if (!book) return "";
 
@@ -72,19 +59,18 @@ const Collection = () => {
   // --------------------------------
   // GET USER COLLECTIONS
   // --------------------------------
-
   const getCollections = async () => {
     try {
       const response = await axios.get(
         `${API_BASE}/api/users/collections`,
-        authConfig,
+        authConfig
       );
 
       setCollections(response.data.collections || []);
     } catch (error) {
       console.error(
         "Error fetching collections:",
-        error.response?.data || error.message,
+        error.response?.data || error.message
       );
     } finally {
       setLoading(false);
@@ -98,7 +84,6 @@ const Collection = () => {
   // --------------------------------
   // GET BOOK TO ADD
   // --------------------------------
-
   useEffect(() => {
     if (!isAddBookMode || !bookId) {
       return;
@@ -107,14 +92,14 @@ const Collection = () => {
     const getBook = async () => {
       try {
         const response = await axios.get(
-          `${API_BASE}/api/book/${bookId}`,
+          `${API_BASE}/api/book/${bookId}`
         );
 
         setBookToAdd(response.data);
       } catch (error) {
         console.error(
           "Error fetching book:",
-          error.response?.data || error.message,
+          error.response?.data || error.message
         );
       }
     };
@@ -125,15 +110,13 @@ const Collection = () => {
   // --------------------------------
   // FILTER COLLECTIONS
   // --------------------------------
-
   const filteredCollections = collections.filter((collection) =>
-    collection.name.toLowerCase().includes(search.toLowerCase()),
+    collection.name.toLowerCase().includes(search.toLowerCase())
   );
 
   // --------------------------------
   // CREATE NEW COLLECTION
   // --------------------------------
-
   const handleCreateCollection = async () => {
     if (!newCollectionName.trim()) {
       return;
@@ -147,7 +130,7 @@ const Collection = () => {
         {
           name: newCollectionName.trim(),
         },
-        authConfig,
+        authConfig
       );
 
       const newCollection = response.data.collection;
@@ -161,15 +144,14 @@ const Collection = () => {
       // Clear input
       setNewCollectionName("");
 
-      // If we are adding a book,
-      // automatically open the newly created collection
+      // If we are adding a book, automatically open the newly created collection
       if (isAddBookMode) {
         setSelectedCollection(newCollection);
       }
     } catch (error) {
       console.error(
         "Error creating collection:",
-        error.response?.data || error.message,
+        error.response?.data || error.message
       );
 
       alert(error.response?.data?.message || "Failed to create collection");
@@ -181,7 +163,6 @@ const Collection = () => {
   // --------------------------------
   // SELECT EXISTING COLLECTION
   // --------------------------------
-
   const handleSelectCollection = (collection) => {
     setSelectedCollection(collection);
   };
@@ -189,7 +170,6 @@ const Collection = () => {
   // --------------------------------
   // SAVE BOOK TO SELECTED COLLECTION
   // --------------------------------
-
   const handleSaveBook = async () => {
     if (!selectedCollection || !bookToAdd) {
       return;
@@ -203,7 +183,7 @@ const Collection = () => {
         {
           bookId: bookToAdd._id,
         },
-        authConfig,
+        authConfig
       );
 
       // Get updated collection from backend
@@ -217,8 +197,8 @@ const Collection = () => {
         prev.map((collection) =>
           collection._id === updatedCollection._id
             ? updatedCollection
-            : collection,
-        ),
+            : collection
+        )
       );
 
       // Book successfully saved
@@ -231,53 +211,112 @@ const Collection = () => {
     } catch (error) {
       console.error(
         "Error adding book to collection:",
-        error.response?.data || error.message,
+        error.response?.data || error.message
       );
 
       alert(
-        error.response?.data?.message || "Failed to add book to collection",
+        error.response?.data?.message || "Failed to add book to collection"
       );
     } finally {
       setSavingBook(false);
     }
   };
 
-  // --------------------------------
-  // ADD BOOK MODE
-  // SELECT / CREATE COLLECTION
-  // --------------------------------
+  // Reusable Create Collection Modal
+  const renderCreateModal = () => {
+    if (!showCreateCollection) return null;
 
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4 py-6">
+        <div className="w-full max-w-md max-h-[90vh] overflow-y-auto rounded-2xl border border-border-light bg-background-card p-5 sm:p-6 shadow-xl">
+          {/* Modal Header */}
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg sm:text-xl font-semibold text-text-primary">
+              Create New Collection
+            </h2>
+
+            <button
+              onClick={() => {
+                setShowCreateCollection(false);
+                setNewCollectionName("");
+              }}
+              className="text-2xl text-text-secondary hover:text-text-primary"
+            >
+              ×
+            </button>
+          </div>
+
+          {/* Input */}
+          <input
+            type="text"
+            placeholder="Enter collection name"
+            value={newCollectionName}
+            onChange={(e) => setNewCollectionName(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleCreateCollection();
+              }
+            }}
+            autoFocus
+            className="mt-6 w-full rounded-lg border border-border-light bg-white px-4 py-3 text-sm text-text-primary outline-none focus:border-[#7C3AED]"
+          />
+
+          {/* Buttons */}
+          <div className="mt-6 flex flex-col sm:flex-row sm:justify-end gap-3">
+            <button
+              onClick={() => {
+                setShowCreateCollection(false);
+                setNewCollectionName("");
+              }}
+              className="w-full sm:w-auto rounded-lg border border-border-light px-5 py-2.5 text-sm font-medium text-text-primary hover:bg-gray-50"
+            >
+              Cancel
+            </button>
+
+            <button
+              onClick={handleCreateCollection}
+              disabled={creatingCollection || !newCollectionName.trim()}
+              className="w-full sm:w-auto rounded-lg bg-[#7C3AED] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#6D28D9] disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {creatingCollection ? "Creating..." : "Create Collection"}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // --------------------------------
+  // ADD BOOK MODE - SELECT / CREATE COLLECTION
+  // --------------------------------
   if (isAddBookMode && !selectedCollection) {
     return (
       <>
-        <section className="min-h-screen px-7 py-7">
+        <section className="min-h-screen px-4 sm:px-7 py-5 sm:py-7">
           {/* Header */}
-
-          <div className="flex items-center gap-2 text-[clamp(16px,2vw,24px)] font-semibold text-text-primary">
+          <div className="flex items-center gap-2 text-lg sm:text-2xl font-semibold text-text-primary">
             <IoChevronBack
               className="cursor-pointer"
               onClick={() => navigate(-1)}
             />
-
             <span>Add to Collection</span>
           </div>
 
           {/* Book Information */}
-
           {bookToAdd && (
-            <div className="mt-10 flex items-center gap-5 rounded-xl border border-border-light bg-background-card p-5">
+            <div className="mt-6 sm:mt-10 flex items-center gap-4 sm:gap-5 rounded-xl border border-border-light bg-background-card p-4 sm:p-5">
               <img
                 src={getBookCover(bookToAdd)}
                 alt={bookToAdd.title}
-                className="h-24 w-16 rounded-md object-cover"
+                className="h-20 w-14 sm:h-24 sm:w-16 rounded-md object-cover shrink-0"
               />
 
-              <div>
-                <h2 className="text-lg font-semibold text-text-primary">
+              <div className="min-w-0 flex-1">
+                <h2 className="truncate text-base sm:text-lg font-semibold text-text-primary">
                   {bookToAdd.title}
                 </h2>
 
-                <p className="mt-1 text-sm text-text-secondary">
+                <p className="mt-1 truncate text-xs sm:text-sm text-text-secondary">
                   {bookToAdd.author}
                 </p>
               </div>
@@ -285,20 +324,18 @@ const Collection = () => {
           )}
 
           {/* Heading */}
-
-          <div className="mt-10">
-            <h2 className="text-xl font-semibold text-text-primary">
+          <div className="mt-8 sm:mt-10">
+            <h2 className="text-lg sm:text-xl font-semibold text-text-primary">
               Choose a collection
             </h2>
 
-            <p className="mt-2 text-sm text-text-secondary">
+            <p className="mt-1 text-xs sm:text-sm text-text-secondary">
               Select where you want to save this book.
             </p>
           </div>
 
-          {/* Collections */}
-
-          <div className="mt-7 grid grid-cols-1 gap-5 md:grid-cols-2">
+          {/* Collections Grid */}
+          <div className="mt-6 sm:mt-7 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
             {loading ? (
               <p className="text-sm text-text-secondary">
                 Loading collections...
@@ -308,105 +345,42 @@ const Collection = () => {
                 <div
                   key={collection._id}
                   onClick={() => handleSelectCollection(collection)}
-                  className="cursor-pointer rounded-xl border border-border-light bg-background-card p-5 transition-all hover:-translate-y-1 hover:shadow-lg"
+                  className="cursor-pointer rounded-xl border border-border-light bg-background-card p-4 sm:p-5 transition-all hover:-translate-y-1 hover:shadow-lg"
                 >
                   <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="font-semibold text-text-primary">
+                    <div className="min-w-0 flex-1 pr-2">
+                      <h3 className="truncate font-semibold text-text-primary">
                         {collection.name}
                       </h3>
 
-                      <p className="mt-1 text-sm text-text-secondary">
+                      <p className="mt-1 text-xs sm:text-sm text-text-secondary">
                         {collection.books.length}{" "}
                         {collection.books.length === 1 ? "Book" : "Books"}
                       </p>
                     </div>
 
-                    <LuArrowRight className="text-text-secondary" size={20} />
+                    <LuArrowRight className="text-text-secondary shrink-0" size={20} />
                   </div>
                 </div>
               ))
             ) : (
-              <p className="text-sm text-text-secondary">
+              <p className="text-sm text-text-secondary col-span-full">
                 You don't have any collections yet.
               </p>
             )}
           </div>
 
-          {/* Create New Collection */}
-
+          {/* Create New Collection Button */}
           <button
             onClick={() => setShowCreateCollection(true)}
-            className="mt-8 flex items-center gap-2 rounded-lg border border-border-light px-5 py-3 text-sm font-medium text-text-primary transition hover:bg-brand-light"
+            className="mt-6 sm:mt-8 flex w-full sm:w-auto items-center justify-center gap-2 rounded-lg border border-border-light px-5 py-3 text-sm font-medium text-text-primary transition hover:bg-brand-light"
           >
             <BiPlus size={20} />
             Create New Collection
           </button>
         </section>
 
-        {/* CREATE COLLECTION MODAL */}
-
-        {showCreateCollection && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-5">
-            <div className="w-full max-w-md rounded-2xl border border-border-light bg-background-card p-6 shadow-xl">
-              {/* Modal Header */}
-
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-text-primary">
-                  Create New Collection
-                </h2>
-
-                <button
-                  onClick={() => {
-                    setShowCreateCollection(false);
-                    setNewCollectionName("");
-                  }}
-                  className="text-xl text-text-secondary"
-                >
-                  ×
-                </button>
-              </div>
-
-              {/* Input */}
-
-              <input
-                type="text"
-                placeholder="Enter collection name"
-                value={newCollectionName}
-                onChange={(e) => setNewCollectionName(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    handleCreateCollection();
-                  }
-                }}
-                autoFocus
-                className="mt-6 w-full rounded-lg border border-border-light bg-white px-4 py-3 text-sm text-text-primary outline-none focus:border-[#7C3AED]"
-              />
-
-              {/* Buttons */}
-
-              <div className="mt-6 flex justify-end gap-3">
-                <button
-                  onClick={() => {
-                    setShowCreateCollection(false);
-                    setNewCollectionName("");
-                  }}
-                  className="rounded-lg border border-border-light px-5 py-2.5 text-sm font-medium text-text-primary"
-                >
-                  Cancel
-                </button>
-
-                <button
-                  onClick={handleCreateCollection}
-                  disabled={creatingCollection || !newCollectionName.trim()}
-                  className="rounded-lg bg-[#7C3AED] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#6D28D9] disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  {creatingCollection ? "Creating..." : "Create Collection"}
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+        {renderCreateModal()}
       </>
     );
   }
@@ -414,40 +388,35 @@ const Collection = () => {
   // --------------------------------
   // COLLECTION DETAIL VIEW
   // --------------------------------
-
   if (selectedCollection) {
     return (
-      <section className="relative min-h-screen px-7 py-7 pb-32">
+      <section className="relative min-h-screen px-4 sm:px-7 py-5 sm:py-7 pb-36 sm:pb-32">
         {/* Header */}
-
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-3">
           <div
             onClick={() => setSelectedCollection(null)}
-            className="flex cursor-pointer items-center gap-2 text-[clamp(16px,2vw,24px)] font-semibold text-text-primary"
+            className="flex cursor-pointer items-center gap-2 text-lg sm:text-2xl font-semibold text-text-primary truncate"
           >
-            <IoChevronBack />
-
-            <span>{selectedCollection.name}</span>
+            <IoChevronBack className="shrink-0" />
+            <span className="truncate">{selectedCollection.name}</span>
           </div>
 
-          <span className="text-sm text-text-secondary">
+          <span className="shrink-0 text-xs sm:text-sm text-text-secondary">
             {selectedCollection.books.length}{" "}
             {selectedCollection.books.length === 1 ? "Book" : "Books"}
           </span>
         </div>
 
         {/* Books List */}
-
-        <div className="mt-10 flex flex-col gap-4">
+        <div className="mt-6 sm:mt-10 flex flex-col gap-4">
           {selectedCollection.books.length > 0 ? (
             selectedCollection.books.map((book) => (
               <div
                 key={book._id}
-                className="flex items-center gap-5 rounded-xl border border-border-light bg-white p-4 transition-all duration-300 hover:shadow-md"
+                className="flex items-center gap-3 sm:gap-5 rounded-xl border border-border-light bg-white p-3 sm:p-4 transition-all duration-300 hover:shadow-md"
               >
                 {/* Book Cover */}
-
-                <div className="h-24 w-16 shrink-0 overflow-hidden rounded-md">
+                <div className="h-20 w-14 sm:h-24 sm:w-16 shrink-0 overflow-hidden rounded-md">
                   <img
                     src={getBookCover(book)}
                     alt={book.title}
@@ -456,20 +425,18 @@ const Collection = () => {
                 </div>
 
                 {/* Book Information */}
-
                 <div className="min-w-0 flex-1">
-                  <h3 className="truncate text-base font-semibold text-text-primary">
+                  <h3 className="truncate text-sm sm:text-base font-semibold text-text-primary">
                     {book.title}
                   </h3>
 
-                  <p className="mt-1 truncate text-sm text-text-secondary">
+                  <p className="mt-1 truncate text-xs sm:text-sm text-text-secondary">
                     {book.author}
                   </p>
                 </div>
 
                 {/* Read Button */}
-
-                <button className="flex shrink-0 items-center gap-2 rounded-lg bg-[#7C3AED] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#6D28D9]">
+                <button className="flex shrink-0 items-center gap-1.5 sm:gap-2 rounded-lg bg-[#7C3AED] px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium text-white transition hover:bg-[#6D28D9]">
                   Read
                   <LuArrowRight size={16} />
                 </button>
@@ -485,40 +452,37 @@ const Collection = () => {
         {/* -------------------------------- */}
         {/* ADD BOOK SAVE STRIP */}
         {/* -------------------------------- */}
-
         {isAddBookMode && bookToAdd && (
-          <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-border-light bg-background-card px-7 py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
-            <div className="mx-auto flex max-w-5xl items-center justify-between gap-5">
+          <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-border-light bg-background-card px-4 sm:px-7 py-3 sm:py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+            <div className="mx-auto flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-5 max-w-5xl">
               {/* Book Preview */}
-
-              <div className="flex min-w-0 items-center gap-4">
+              <div className="flex min-w-0 items-center gap-3 sm:gap-4">
                 <img
                   src={getBookCover(bookToAdd)}
                   alt={bookToAdd.title}
-                  className="h-14 w-10 shrink-0 rounded-md object-cover"
+                  className="h-12 w-9 sm:h-14 sm:w-10 shrink-0 rounded-md object-cover"
                 />
 
-                <div className="min-w-0">
-                  <p className="text-xs text-text-secondary">
+                <div className="min-w-0 flex-1">
+                  <p className="text-[11px] sm:text-xs text-text-secondary">
                     Save this book to
                   </p>
 
-                  <h3 className="truncate text-sm font-semibold text-text-primary">
+                  <h3 className="truncate text-xs sm:text-sm font-semibold text-text-primary">
                     {selectedCollection.name}
                   </h3>
 
-                  <p className="truncate text-xs text-text-secondary">
+                  <p className="truncate text-[11px] sm:text-xs text-text-secondary">
                     {bookToAdd.title}
                   </p>
                 </div>
               </div>
 
               {/* Save Button */}
-
               <button
                 onClick={handleSaveBook}
                 disabled={savingBook}
-                className="shrink-0 rounded-lg bg-[#7C3AED] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#6D28D9] disabled:cursor-not-allowed disabled:opacity-50"
+                className="w-full sm:w-auto shrink-0 rounded-lg bg-[#7C3AED] px-6 py-2.5 sm:py-3 text-sm font-semibold text-white transition hover:bg-[#6D28D9] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {savingBook ? "Saving..." : "Save Here"}
               </button>
@@ -530,36 +494,32 @@ const Collection = () => {
   }
 
   // --------------------------------
-  // COLLECTION OVERVIEW
+  // MAIN COLLECTION OVERVIEW
   // --------------------------------
-
   return (
-    <section className="min-h-screen px-7 py-7">
+    <section className="min-h-screen px-4 sm:px-7 py-5 sm:py-7">
       {/* Header */}
-
-      <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-2 text-[clamp(16px,2vw,24px)] font-semibold text-text-primary">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2 text-lg sm:text-2xl font-semibold text-text-primary">
           <IoChevronBack
-            className="cursor-pointer"
+            className="cursor-pointer shrink-0"
             onClick={() => navigate(-1)}
           />
-
           <span>Collection</span>
         </div>
 
         <button
           onClick={() => setShowCreateCollection(true)}
-          className="flex items-center gap-2 rounded-lg bg-[#7C3AED] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#6D28D9]"
+          className="flex shrink-0 items-center justify-center gap-1.5 sm:gap-2 rounded-lg bg-[#7C3AED] px-3.5 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium text-white transition hover:bg-[#6D28D9]"
         >
-          <BiPlus size={20} />
-          New Collection
+          <BiPlus className="text-base sm:text-xl" />
+          <span>New Collection</span>
         </button>
       </div>
 
-      {/* Search */}
-
-      <div className="mt-8 flex w-full max-w-md items-center gap-3 rounded-lg border border-border-light bg-white px-4 py-3">
-        <FiSearch className="text-text-secondary" />
+      {/* Search Input */}
+      <div className="mt-6 sm:mt-8 flex w-full max-w-md items-center gap-3 rounded-lg border border-border-light bg-white px-4 py-3">
+        <FiSearch className="text-text-secondary shrink-0" />
 
         <input
           type="text"
@@ -571,23 +531,21 @@ const Collection = () => {
       </div>
 
       {/* Collection Grid */}
-
-      <div className="mt-10">
+      <div className="mt-8 sm:mt-10">
         {loading ? (
           <div className="flex min-h-[300px] items-center justify-center text-text-secondary">
             Loading collections...
           </div>
         ) : filteredCollections.length > 0 ? (
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {filteredCollections.map((collection) => (
               <div
                 key={collection._id}
                 onClick={() => setSelectedCollection(collection)}
-                className="group cursor-pointer overflow-hidden rounded-xl border border-border-light bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                className="group cursor-pointer overflow-hidden rounded-xl border border-border-light bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col justify-between"
               >
                 {/* Book Preview */}
-
-                <div className="relative flex h-52 items-end justify-center overflow-hidden bg-[#F3F4F6] px-5 pt-5">
+                <div className="relative flex h-44 sm:h-52 items-end justify-center overflow-hidden bg-[#F3F4F6] px-4 pt-4">
                   {collection.books.length > 0 ? (
                     <div className="flex h-full items-end justify-center">
                       {collection.books.slice(0, 4).map((book, index) => (
@@ -595,9 +553,9 @@ const Collection = () => {
                           key={book._id}
                           src={getBookCover(book)}
                           alt={book.title}
-                          className="h-40 w-24 rounded-md object-cover shadow-md transition-transform duration-300 group-hover:-translate-y-2"
+                          className="h-32 w-20 sm:h-40 sm:w-24 rounded-md object-cover shadow-md transition-transform duration-300 group-hover:-translate-y-2"
                           style={{
-                            marginLeft: index === 0 ? "0px" : "-28px",
+                            marginLeft: index === 0 ? "0px" : "-24px",
                             zIndex: index,
                           }}
                         />
@@ -611,14 +569,13 @@ const Collection = () => {
                 </div>
 
                 {/* Collection Info */}
-
-                <div className="flex items-start justify-between p-5">
-                  <div>
-                    <h3 className="text-base font-semibold text-text-primary">
+                <div className="flex items-start justify-between p-4 sm:p-5">
+                  <div className="min-w-0 flex-1 pr-2">
+                    <h3 className="truncate text-base font-semibold text-text-primary">
                       {collection.name}
                     </h3>
 
-                    <p className="mt-1 text-sm text-text-secondary">
+                    <p className="mt-1 text-xs sm:text-sm text-text-secondary">
                       {collection.books.length}{" "}
                       {collection.books.length === 1 ? "Book" : "Books"}
                     </p>
@@ -635,7 +592,7 @@ const Collection = () => {
             ))}
           </div>
         ) : (
-          <div className="flex min-h-[300px] flex-col items-center justify-center text-center">
+          <div className="flex min-h-[300px] flex-col items-center justify-center text-center p-4">
             <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#F3F4F6]">
               <BiPlus
                 size={28}
@@ -644,76 +601,18 @@ const Collection = () => {
               />
             </div>
 
-            <h3 className="text-lg font-semibold text-text-primary">
+            <h3 className="text-base sm:text-lg font-semibold text-text-primary">
               No collections found
             </h3>
 
-            <p className="mt-2 text-sm text-text-secondary">
+            <p className="mt-2 text-xs sm:text-sm text-text-secondary">
               Try searching for another collection.
             </p>
           </div>
         )}
       </div>
 
-      {/* -------------------------------- */}
-      {/* CREATE COLLECTION MODAL */}
-      {/* -------------------------------- */}
-
-      {showCreateCollection && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-5">
-          <div className="w-full max-w-md rounded-2xl border border-border-light bg-background-card p-6 shadow-xl">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-text-primary">
-                Create New Collection
-              </h2>
-
-              <button
-                onClick={() => {
-                  setShowCreateCollection(false);
-                  setNewCollectionName("");
-                }}
-                className="text-xl text-text-secondary"
-              >
-                ×
-              </button>
-            </div>
-
-            <input
-              type="text"
-              placeholder="Enter collection name"
-              value={newCollectionName}
-              onChange={(e) => setNewCollectionName(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleCreateCollection();
-                }
-              }}
-              autoFocus
-              className="mt-6 w-full rounded-lg border border-border-light bg-white px-4 py-3 text-sm text-text-primary outline-none focus:border-[#7C3AED]"
-            />
-
-            <div className="mt-6 flex justify-end gap-3">
-              <button
-                onClick={() => {
-                  setShowCreateCollection(false);
-                  setNewCollectionName("");
-                }}
-                className="rounded-lg border border-border-light px-5 py-2.5 text-sm font-medium text-text-primary"
-              >
-                Cancel
-              </button>
-
-              <button
-                onClick={handleCreateCollection}
-                disabled={creatingCollection || !newCollectionName.trim()}
-                className="rounded-lg bg-[#7C3AED] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#6D28D9] disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {creatingCollection ? "Creating..." : "Create Collection"}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {renderCreateModal()}
     </section>
   );
 };

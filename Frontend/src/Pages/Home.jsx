@@ -48,9 +48,7 @@ const Home = () => {
     console.warn("📚 [BOOKS] getBook() started");
 
     try {
-      const response = await axios.get(
-        `${API_BASE}/api/book/getBooks`
-      );
+      const response = await axios.get(`${API_BASE}/api/book/getBooks`);
 
       console.warn("📚 [BOOKS] API RESPONSE:", response);
       console.warn("📚 [BOOKS] BOOK DATA:", response.data);
@@ -65,7 +63,6 @@ const Home = () => {
 
   useEffect(() => {
     console.warn("📚 [BOOKS] useEffect running");
-
     getBook();
   }, []);
 
@@ -287,74 +284,72 @@ const Home = () => {
 
   return (
     <>
-      <section className="px-20 pt-24">
+      {/* Top padding is now pt-4 on mobile and scales to md:pt-24 on medium/large screens */}
+      <section className="px-4 sm:px-8 md:px-12 lg:px-20 pt-4 sm:pt-10 md:pt-24 max-w-[1600px] mx-auto">
         {!token || !user ? (
           loginOpen && <Login login={setLoginOpen} />
         ) : null}
 
-        <div className="text-[clamp(20px,4vw,35px)] font-sans text-text-primary font-semibold">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-sans text-text-primary font-semibold tracking-tight">
           Good morning, {user?.username}
-        </div>
+        </h1>
 
-        <div className="text-[clamp(9px,5vw,18px)] py-1 text-text-secondary pb-10">
+        <p className="text-sm sm:text-base md:text-lg pt-1 text-text-secondary pb-6 md:pb-10">
           Let's pick up where you left off.
-        </div>
+        </p>
 
         {userProgress?.recentReadBooks?.length === 0 && (
           <HomeHero />
         )}
 
         {userProgress?.recentReadBooks?.length > 0 && (
-          <div className="grid grid-cols-[2fr_1fr] gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
 
             {/* CONTINUE READING */}
+            <div className="lg:col-span-2 relative overflow-hidden border border-border-light rounded-2xl p-5 sm:p-8 bg-background-card flex flex-col justify-between shadow-sm min-h-[360px]">
 
-            <div className="relative overflow-hidden border border-border-light h-[50vh] rounded-2xl px-8 bg-background-card">
-
-              <div className="relative z-10 text-[clamp(10px,5vw,20px)] font-semibold text-text-primary py-5">
-                Continue Reading
-              </div>
-
-              <div className="relative z-10 flex gap-10 h-[60%] pb-5">
-
-                <div className="rounded-xl overflow-hidden border border-border-light shrink-0">
-                  <img
-                    src={`https://archive.org/services/img/${userProgress?.recentReadBooks?.[0]?.book?.identifier}`}
-                    alt=""
-                    className="h-full object-cover"
-                  />
+              <div className="relative z-10 w-full">
+                <div className="text-lg sm:text-xl font-semibold text-text-primary pb-4 sm:pb-6">
+                  Continue Reading
                 </div>
 
-                <div className="grid grid-rows-2 gap-4 w-full">
+                <div className="flex flex-col sm:flex-row gap-5 sm:gap-8 items-center sm:items-start">
 
-                  <div className="relative rounded-xl border border-white/60 bg-white/40 backdrop-blur-xl px-4 py-3 shadow-[0_1px_0_rgba(255,255,255,0.8)_inset,0_6px_16px_rgba(124,58,237,0.08)]">
+                  <div className="w-28 sm:w-36 aspect-[2/3] rounded-xl overflow-hidden border border-border-light shrink-0 shadow-md">
+                    <img
+                      src={`https://archive.org/services/img/${userProgress?.recentReadBooks?.[0]?.book?.identifier}`}
+                      alt={userProgress?.recentReadBooks?.[0]?.book?.title || "Book Cover"}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
 
-                    <span className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/80" />
+                  <div className="flex flex-col gap-3.5 w-full">
 
-                    <div className="font-semibold text-text-primary text-[clamp(12px,2vw,15px)] truncate">
-                      {userProgress?.recentReadBooks?.[0]?.book?.title}
+                    <div className="relative rounded-xl border border-white/60 bg-white/40 backdrop-blur-xl px-4 py-3 shadow-[0_1px_0_rgba(255,255,255,0.8)_inset,0_6px_16px_rgba(124,58,237,0.08)]">
+                      <span className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/80" />
+
+                      <div className="font-semibold text-text-primary text-base sm:text-lg truncate">
+                        {userProgress?.recentReadBooks?.[0]?.book?.title}
+                      </div>
+
+                      <div className="text-text-secondary text-xs sm:text-sm mt-0.5 truncate">
+                        {userProgress?.recentReadBooks?.[0]?.book?.author}
+                      </div>
                     </div>
 
-                    <div className="text-text-secondary text-[clamp(11px,1.6vw,13px)] mt-1">
-                      {userProgress?.recentReadBooks?.[0]?.book?.author}
+                    <div className="relative rounded-xl border border-white/60 bg-white/40 backdrop-blur-xl px-4 py-3 shadow-[0_1px_0_rgba(255,255,255,0.8)_inset,0_6px_16px_rgba(124,58,237,0.08)]">
+                      <span className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/80" />
+
+                      <div className="font-semibold text-brand text-base sm:text-lg">
+                        {recentReadPercent}%
+                      </div>
+
+                      <div className="text-text-secondary text-xs sm:text-sm mt-0.5">
+                        {`${userProgress?.recentReadBooks?.[0]?.pagesRead || 0} out of ${userProgress?.recentReadBooks?.[0]?.totalPages || 0} pages`}
+                      </div>
                     </div>
 
                   </div>
-
-                  <div className="relative rounded-xl border border-white/60 bg-white/40 backdrop-blur-xl px-4 py-3 shadow-[0_1px_0_rgba(255,255,255,0.8)_inset,0_6px_16px_rgba(124,58,237,0.08)]">
-
-                    <span className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/80" />
-
-                    <div className="font-semibold text-brand text-[clamp(14px,2vw,16px)]">
-                      {recentReadPercent}%
-                    </div>
-
-                    <div className="text-text-secondary text-[clamp(11px,1.6vw,13px)] mt-1">
-                      {`${userProgress?.recentReadBooks?.[0]?.pagesRead} out of ${userProgress?.recentReadBooks?.[0]?.totalPages}`}
-                    </div>
-
-                  </div>
-
                 </div>
               </div>
 
@@ -364,45 +359,47 @@ const Home = () => {
                     `/reader/${userProgress?.recentReadBooks?.[0]?.book?.identifier}`
                   )
                 }
-                className="relative z-10 group flex items-center justify-center w-[40vw] py-2.5 rounded-full text-brand font-semibold overflow-hidden bg-brand/15 border border-white/50 backdrop-blur-xl transition-all duration-300 hover:bg-brand/25 hover:-translate-y-0.5 hover:shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_10px_24px_rgba(124,58,237,0.25)] active:translate-y-0"
+                className="relative z-10 group flex items-center justify-center w-full sm:w-auto sm:self-start px-6 py-3 mt-6 rounded-full text-brand font-semibold overflow-hidden bg-brand/15 border border-white/50 backdrop-blur-xl transition-all duration-300 hover:bg-brand/25 hover:-translate-y-0.5 hover:shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_10px_24px_rgba(124,58,237,0.25)] active:translate-y-0 cursor-pointer"
               >
                 <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-white/70" />
-
                 Continue Reading
               </button>
 
             </div>
 
             {/* YOUR PROGRESS */}
+            <div className="relative overflow-hidden border border-border-light rounded-2xl p-5 sm:p-8 bg-background-card flex flex-col justify-between shadow-sm min-h-[360px]">
 
-            <div className="relative overflow-hidden border border-border-light h-[50vh] rounded-2xl bg-background-card">
+              <div className="relative z-10 w-full">
+                <div className="text-lg sm:text-xl text-text-primary font-semibold">
+                  Your Progress
+                </div>
 
-              <div className="relative z-10 py-5 px-8 text-[clamp(10px,5vw,20px)] text-text-primary font-semibold">
+                <div className="grid grid-cols-2 gap-3 my-4 sm:my-6">
 
-                Your Progress
-
-                <div className="grid grid-cols-2 gap-3 h-[15vh] pt-5">
-
-                  <span className="relative rounded-xl border border-gray-200 bg-white/40 backdrop-blur-xl flex items-center justify-center text-brand font-bold shadow-[0_1px_0_rgba(255,255,255,0.4)_inset,0_6px_16px_rgba(124,58,237,0.04)]">
-
+                  <div className="relative rounded-xl border border-gray-200 bg-white/40 backdrop-blur-xl py-3 px-2 flex flex-col items-center justify-center shadow-[0_1px_0_rgba(255,255,255,0.4)_inset,0_6px_16px_rgba(124,58,237,0.04)]">
                     <span className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/80" />
+                    <span className="text-brand font-bold text-lg sm:text-2xl">
+                      {userProgress?.totalReadBooks ?? 0}
+                    </span>
+                    <span className="text-[11px] sm:text-xs font-normal text-text-secondary mt-0.5">
+                      Books Read
+                    </span>
+                  </div>
 
-                    {userProgress?.totalReadBooks ?? 0}
-
-                  </span>
-
-                  <span className="relative rounded-xl border border-gray-200 bg-white/40 backdrop-blur-xl flex items-center justify-center text-brand font-bold shadow-[0_1px_0_rgba(255,255,255,0.4)_inset,0_6px_16px_rgba(124,58,237,0.04)]">
-
+                  <div className="relative rounded-xl border border-gray-200 bg-white/40 backdrop-blur-xl py-3 px-2 flex flex-col items-center justify-center shadow-[0_1px_0_rgba(255,255,255,0.4)_inset,0_6px_16px_rgba(124,58,237,0.04)]">
                     <span className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/80" />
-
-                    {userGoal ?? 0}
-
-                  </span>
+                    <span className="text-brand font-bold text-lg sm:text-2xl">
+                      {userGoal ?? 0}
+                    </span>
+                    <span className="text-[11px] sm:text-xs font-normal text-text-secondary mt-0.5">
+                      Yearly Goal
+                    </span>
+                  </div>
 
                 </div>
 
-                <div className="w-[8vw] mx-auto py-5">
-
+                <div className="w-24 h-24 sm:w-28 sm:h-28 mx-auto my-4">
                   <CircularProgressbar
                     value={goalPercentage}
                     text={`${goalPercentage}%`}
@@ -412,14 +409,13 @@ const Home = () => {
                       textColor: "#0F172A",
                     })}
                   />
-
                 </div>
-
-                <p className="text-[clamp(14px,2vw,16px)] text-center font-thin text-text-secondary">
-                  Read today, grow every day.
-                </p>
-
               </div>
+
+              <p className="text-xs sm:text-sm text-center font-normal text-text-secondary mt-2">
+                Read today, grow every day.
+              </p>
+
             </div>
 
           </div>
@@ -427,37 +423,31 @@ const Home = () => {
       </section>
 
       {/* TOP PICKS */}
+      <section className="px-4 sm:px-8 md:px-12 lg:px-20 mt-12 md:mt-16 mb-16 max-w-[1600px] mx-auto">
 
-      <section className="px-20 mt-16 mb-16">
-
-        <div className="flex justify-between">
-
-          <div className="text-[clamp(10px,5vw,20px)] font-semibold text-text-primary">
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
+          <div className="text-lg sm:text-xl md:text-2xl font-semibold text-text-primary">
             Top Picks For You
           </div>
 
           <button
             onClick={handleViewAll}
-            className="flex items-center gap-2 text-text-secondary cursor-pointer"
+            className="flex items-center gap-2 text-sm sm:text-base text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
           >
             Scroll
-            <LuArrowRight />
+            <LuArrowRight className="text-base" />
           </button>
-
         </div>
 
         <div
           ref={topPicksRef}
-          className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth"
+          className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide scroll-smooth py-2"
         >
-
           {bookData?.slice(0, 14).map((item, index) => (
-            <Cardone
-              key={index}
-              book={item}
-            />
+            <div key={index} className="shrink-0">
+              <Cardone book={item} />
+            </div>
           ))}
-
         </div>
 
       </section>

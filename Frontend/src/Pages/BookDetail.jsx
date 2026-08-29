@@ -157,7 +157,7 @@ function BookDetail() {
   // =========================
   if (!book) {
     return (
-      <div className="h-screen w-full flex items-center justify-center">
+      <div className="h-64 w-full flex items-center justify-center">
         Loading...
       </div>
     );
@@ -173,7 +173,7 @@ function BookDetail() {
   // UI
   // =========================
   return (
-    <main className="min-h-[90vh] flex flex-col justify-start bg-background-main px-6 md:px-12 lg:px-20 pt-24 pb-12">
+    <div className="w-full px-6 md:px-12 lg:px-20 py-6 md:py-8">
       <div className="w-full max-w-6xl mx-auto">
         
         {/* Back Button */}
@@ -242,7 +242,7 @@ function BookDetail() {
                 "Discover this fascinating book and explore its ideas, stories, and insights. Start reading and immerse yourself in a world of knowledge and imagination."}
             </p>
 
-            {/* Action Buttons (Scaled down padding/text) */}
+            {/* Action Buttons */}
             <div className="flex flex-wrap gap-3">
               <button
                 onClick={handleReadNow}
@@ -316,7 +316,7 @@ function BookDetail() {
         </section>
         
       </div>
-    </main>
+    </div>
   );
 }
 

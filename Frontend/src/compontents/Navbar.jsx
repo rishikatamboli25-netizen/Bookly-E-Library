@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { LuSearch, LuX } from "react-icons/lu";
+import { LuSearch, LuX, LuMenu } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-// Vite environment variable with localhost fallback
-const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+const API_BASE =
+  import.meta.env.VITE_BASE_URL || "http://localhost:5000";
 
-const Navbar = () => {
+const Navbar = ({ openSidebar }) => {
   const navigate = useNavigate();
 
   const [search, setSearch] = useState("");
@@ -14,14 +14,13 @@ const Navbar = () => {
   const [loading, setLoading] = useState(false);
 
   /* =========================================================
-     SEARCH BOOKS
+      SEARCH BOOKS
   ========================================================= */
 
   useEffect(() => {
-    const trimmedQuery = search.trim();
+    const query = search.trim();
 
-    // Clear results when search is empty
-    if (!trimmedQuery) {
+    if (!query) {
       setBooks([]);
       setLoading(false);
       return;
@@ -35,14 +34,14 @@ const Navbar = () => {
           `${API_BASE}/api/book/getBooks`,
           {
             params: {
-              search: trimmedQuery,
+              search: query,
             },
           }
         );
 
         setBooks(response.data);
       } catch (error) {
-        console.error("Error searching books:", error);
+        console.error(error);
         setBooks([]);
       } finally {
         setLoading(false);
@@ -52,9 +51,8 @@ const Navbar = () => {
     return () => clearTimeout(timer);
   }, [search]);
 
-
   /* =========================================================
-     CLEAR SEARCH
+      CLEAR SEARCH
   ========================================================= */
 
   const clearSearch = () => {
@@ -62,46 +60,78 @@ const Navbar = () => {
     setBooks([]);
   };
 
-
   /* =========================================================
-     OPEN BOOK
+      OPEN BOOK
   ========================================================= */
 
   const handleBookClick = (book) => {
     clearSearch();
-
     navigate(`/book/${book.identifier}`);
   };
-
 
   return (
     <nav
       className="
-        absolute
-        inset-x-0
+        fixed
         top-0
-        z-40
-        h-[10vh]
-        bg-brand/10
-        backdrop-blur-lg
+        left-0
+        right-0
+        z-30
+        h-20
+        border-b
+        border-border-light
+        bg-background/80
+        backdrop-blur-xl
       "
     >
-      <div className="flex h-full items-center justify-center px-20">
+      <div
+        className="
+          flex
+          h-full
+          items-center
+          gap-4
+          px-4
+          sm:px-6
+          lg:px-8
+        "
+      >
+        {/* Mobile Menu */}
 
-        {/* =====================================================
-            SEARCH WRAPPER
-        ===================================================== */}
+        <button
+          onClick={openSidebar}
+          className="
+            flex
+            h-10
+            w-10
+            items-center
+            justify-center
+            rounded-lg
+            hover:bg-brand-light
+            md:hidden
+          "
+        >
+          <LuMenu size={22} />
+        </button>
 
-        <div className="relative w-[55%]">
+        {/* Search */}
 
-          {/* ===================================================
-              SEARCH BAR
-          =================================================== */}
+        <div
+          className="
+            relative
+            mx-auto
+            w-full
+            max-w-full
+            sm:max-w-xl
+            lg:max-w-2xl
+            xl:max-w-3xl
+          "
+        >
+          {/* Search Bar */}
 
           <div
             className="
               flex
-              h-[5vh]
+              h-12
               w-full
               items-center
               gap-3
@@ -109,25 +139,19 @@ const Navbar = () => {
               border
               border-border-light
               bg-background-card
-              px-5
+              px-4
               shadow-md
               transition-all
               duration-300
-
               focus-within:border-brand/40
-              focus-within:shadow-[0_4px_20px_rgba(124,58,237,0.12)]
+              focus-within:shadow-lg
             "
           >
-
-            {/* Search Icon */}
-
             <LuSearch
               size={20}
               className="shrink-0 text-text-secondary"
             />
 
-
-            {/* Input */}
             <input
               type="text"
               value={search}
@@ -135,51 +159,38 @@ const Navbar = () => {
               placeholder="Search books, authors, categories..."
               autoComplete="off"
               className="
-                h-[5vh]
+                h-full
                 min-w-0
                 flex-1
-                appearance-none
                 bg-transparent
                 text-sm
-                text-text-primary
                 outline-none
                 placeholder:text-text-secondary
               "
             />
 
-
-            {/* Single Clear Button */}
-
             {search.length > 0 && (
               <button
-                type="button"
                 onClick={clearSearch}
-                aria-label="Clear search"
                 className="
                   flex
-                  h-7
-                  w-7
-                  shrink-0
+                  h-8
+                  w-8
                   items-center
                   justify-center
                   rounded-full
                   text-text-secondary
-                  transition-all
-                  duration-200
+                  transition
                   hover:bg-brand-light
                   hover:text-brand
                 "
               >
-                <LuX size={17} />
+                <LuX size={18} />
               </button>
             )}
-
           </div>
 
-
-          {/* ===================================================
-              SEARCH RESULTS
-          =================================================== */}
+          {/* Results */}
 
           {search.trim() && (
             <div
@@ -187,79 +198,53 @@ const Navbar = () => {
                 absolute
                 left-0
                 right-0
-                top-[calc(100%+10px)]
-                z-50
-                max-h-[60vh]
+                mt-3
+                max-h-96
                 overflow-y-auto
                 rounded-xl
                 border
                 border-border-light
                 bg-background-card
-                shadow-[0_12px_40px_rgba(0,0,0,0.12)]
+                shadow-xl
+                z-50
               "
             >
-
-              {/* Loading */}
-
               {loading && (
                 <div className="flex items-center gap-3 px-5 py-4">
-
                   <LuSearch
-                    size={17}
+                    size={18}
                     className="animate-pulse text-brand"
                   />
 
                   <span className="text-sm text-text-secondary">
                     Searching...
                   </span>
-
                 </div>
               )}
 
-
-              {/* No Results */}
-
               {!loading && books.length === 0 && (
-                <div className="px-5 py-7 text-center">
-
-                  <div
-                    className="
-                      mx-auto
-                      mb-2
-                      flex
-                      h-10
-                      w-10
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-brand-light
-                    "
-                  >
+                <div className="px-6 py-8 text-center">
+                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-brand-light">
                     <LuSearch
                       size={18}
                       className="text-brand"
                     />
                   </div>
 
-                  <p className="text-sm font-medium text-text-primary">
+                  <p className="text-sm font-medium">
                     No books found
                   </p>
 
                   <p className="mt-1 text-xs text-text-secondary">
-                    Try searching by title, author or category.
+                    Try searching with another keyword.
                   </p>
-
                 </div>
               )}
-
-
-              {/* Results */}
 
               {!loading &&
                 books.map((book) => (
                   <button
                     key={book._id}
-                    type="button"
                     onClick={() => handleBookClick(book)}
                     className="
                       flex
@@ -268,91 +253,59 @@ const Navbar = () => {
                       gap-4
                       border-b
                       border-border-light
-                      px-5
+                      px-4
                       py-3
                       text-left
-                      transition-all
-                      duration-200
-                      last:border-b-0
+                      transition
                       hover:bg-brand-light/40
+                      last:border-b-0
                     "
                   >
-
-                    {/* Book Cover */}
-
                     <img
                       src={`https://archive.org/services/img/${book.identifier}`}
                       alt={book.title}
                       className="
                         h-16
                         w-11
-                        shrink-0
+                        flex-shrink-0
                         rounded-md
-                        bg-gray-100
                         object-cover
-                        shadow-sm
+                        shadow
                       "
                     />
 
-
-                    {/* Book Information */}
-
                     <div className="min-w-0 flex-1">
-
-                      <p
-                        className="
-                          truncate
-                          text-sm
-                          font-semibold
-                          text-text-primary
-                        "
-                      >
+                      <p className="truncate text-sm font-semibold">
                         {book.title}
                       </p>
 
-
-                      <p
-                        className="
-                          mt-1
-                          truncate
-                          text-xs
-                          text-text-secondary
-                        "
-                      >
+                      <p className="mt-1 truncate text-xs text-text-secondary">
                         {book.author || "Unknown author"}
                       </p>
 
-
-                      <div className="mt-1 flex items-center gap-2">
-
-                        {book.category && (
-                          <span
-                            className="
-                              rounded-full
-                              bg-brand-light
-                              px-2
-                              py-0.5
-                              text-[10px]
-                              font-medium
-                              text-brand
-                            "
-                          >
-                            {book.category}
-                          </span>
-                        )}
-
-                      </div>
-
+                      {book.category && (
+                        <span
+                          className="
+                            mt-2
+                            inline-block
+                            rounded-full
+                            bg-brand-light
+                            px-2
+                            py-1
+                            text-[10px]
+                            font-medium
+                            text-brand
+                          "
+                        >
+                          {book.category}
+                        </span>
+                      )}
                     </div>
-
                   </button>
                 ))}
-
             </div>
           )}
-
         </div>
-
       </div>
     </nav>
   );

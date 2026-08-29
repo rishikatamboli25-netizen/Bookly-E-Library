@@ -1,6 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import React, { useEffect, useState } from "react";
 import { IoChevronBack } from "react-icons/io5";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +9,6 @@ const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
 const MyLibrary = () => {
   const [recentBooks, setRecentBooks] = useState([]);
   const navigate = useNavigate();
-  
 
   useEffect(() => {
     const getRecentBooks = async () => {
@@ -26,9 +23,9 @@ const MyLibrary = () => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          },
+          }
         );
-        
+
         const books = response.data.recentBooks;
         setRecentBooks(books);
       } catch (error) {
@@ -40,106 +37,120 @@ const MyLibrary = () => {
 
   return (
     <>
-      <section className="w-[70vw] justify-self-center py-7">
+      <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8">
         {/* Header / Back Button */}
-        <div 
+        <div
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-[clamp(16px,2vw,24px)] font-semibold text-text-primary mb-6 cursor-pointer w-fit hover:opacity-80 transition"
+          className="flex items-center gap-2 text-lg sm:text-xl md:text-2xl font-semibold text-text-primary mb-6 cursor-pointer w-fit hover:opacity-80 transition"
         >
-          <IoChevronBack />
+          <IoChevronBack className="text-xl sm:text-2xl" />
           <span>Continue Reading</span>
         </div>
 
-        {recentBooks?.map((item, index) => {
-          // ==========================================
-          // DYNAMIC PROGRESS CALCULATION
-          // ==========================================
-          const pagesRead = item?.pagesRead || 0;
-          const totalPages = item?.totalPages || item?.book?.totalPages || 1; // Fallback to 1 to prevent division by zero
-          
-          const rawPercent = (pagesRead / totalPages) * 100;
-          const progressPercent = pagesRead > 0 
-            ? Math.min(100, Math.max(1, Math.floor(rawPercent))) 
-            : 0;
+        <div className="flex flex-col gap-4 sm:gap-6">
+          {recentBooks?.map((item, index) => {
+            // dynamic progress calculation
+            const pagesRead = item?.pagesRead || 0;
+            const totalPages = item?.totalPages || item?.book?.totalPages || 1;
 
-          return (
-            <div
-              key={index}
-              className="group grid grid-cols-[1.3fr_4fr_2.5fr_3fr] gap-3 items-center mt-8 justify-between overflow-hidden rounded-2xl p-5
-              border border-white/60 bg-white/50 backdrop-blur-xl
-              shadow-[0_1px_0_rgba(255,255,255,0.8)_inset,0_8px_20px_rgba(124,58,237,0.08)]
-              transition-all duration-300
-              hover:bg-white/70 hover:border-white/80
-              hover:shadow-[0_1px_0_rgba(255,255,255,0.9)_inset,0_14px_28px_rgba(124,58,237,0.14)] cursor-pointer"
-              onClick={() => navigate(`/reader/${item?.book?.identifier}`)}
-            >
-              {/* top sheen */}
-              <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-white/80" />
+            const rawPercent = (pagesRead / totalPages) * 100;
+            const progressPercent = pagesRead > 0
+              ? Math.min(100, Math.max(1, Math.floor(rawPercent)))
+              : 0;
 
-              {/* Left Section (Cover) */}
-              <div>
-                <img
-                  className="h-[22vh] rounded-lg border border-white/50 object-cover"
-                  src={`https://archive.org/services/img/${item?.book?.identifier}`}
-                  alt={item?.book?.title || "Book Cover"}
-                />
-              </div>
+            return (
+              <div
+                key={index}
+                className="group relative flex flex-col md:grid md:grid-cols-[auto_2fr_1.5fr_auto] gap-4 items-start md:items-center overflow-hidden rounded-2xl p-4 sm:p-5
+                border border-white/60 bg-white/50 backdrop-blur-xl
+                shadow-[0_1px_0_rgba(255,255,255,0.8)_inset,0_8px_20px_rgba(124,58,237,0.08)]
+                transition-all duration-300
+                hover:bg-white/70 hover:border-white/80
+                hover:shadow-[0_1px_0_rgba(255,255,255,0.9)_inset,0_14px_28px_rgba(124,58,237,0.14)] cursor-pointer"
+                onClick={() => navigate(`/reader/${item?.book?.identifier}`)}
+              >
+                {/* top glass sheen */}
+                <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-white/80 z-10" />
 
-              {/* Title & Author */}
-              <div className="flex flex-col gap-4">
-                <div className="flex flex-col gap-1">
-                  <div className="text-text-primary font-semibold text-[1.2rem] line-clamp-2">
-                    {item?.book?.title}
+                {/* Mobile Section: Cover + Book Info side-by-side */}
+                <div className="flex gap-4 items-center w-full md:w-auto">
+                  {/* Fixed aspect ratio prevents cover distortion */}
+                  <div className="w-20 sm:w-24 md:w-28 aspect-[2/3] shrink-0 rounded-lg border border-white/50 overflow-hidden shadow-sm bg-gray-100">
+                    <img
+                      className="w-full h-full object-cover"
+                      src={`https://archive.org/services/img/${item?.book?.identifier}`}
+                      alt={item?.book?.title || "Book Cover"}
+                    />
                   </div>
-                  <p className="text-text-secondary text-[1rem]">
+
+                  {/* Mobile-Only Info */}
+                  <div className="flex flex-col flex-1 min-w-0 md:hidden gap-1">
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="text-text-primary font-semibold text-base line-clamp-2 leading-tight">
+                        {item?.book?.title}
+                      </h3>
+                      <span className="text-[10px] text-brand bg-brand-light/50 border border-white/50 backdrop-blur-md rounded-full px-2.5 py-0.5 uppercase tracking-wider font-semibold shrink-0">
+                        {progressPercent === 100 ? "Finished" : "Reading"}
+                      </span>
+                    </div>
+                    <p className="text-text-secondary text-xs truncate">
+                      {item?.book?.author}
+                    </p>
+                    <div className="flex items-center gap-1 text-xs text-brand pt-1">
+                      ⭐ <span>{item?.book?.rating || "N/A"}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Desktop/Tablet Info */}
+                <div className="hidden md:flex flex-col justify-center gap-1 min-w-0">
+                  <h3 className="text-text-primary font-semibold text-base lg:text-lg line-clamp-2 leading-tight">
+                    {item?.book?.title}
+                  </h3>
+                  <p className="text-text-secondary text-sm truncate">
                     {item?.book?.author}
                   </p>
-                </div>
-                <div className="flex items-center gap-1 text-[0.95rem] text-brand pt-3">
-                  ⭐<span>{item?.book?.rating || "N/A"}</span>
-                </div>
-              </div>
-
-              {/* Middle Section (Progress Bar) */}
-              <div className="">
-                <p className="text-text-secondary text-[0.8rem] leading-0">
-                  Progress
-                  <span className="text-[0.8rem] ml-1">{progressPercent}%</span>
-                </p>
-
-                <div className="flex items-center gap-3 text-text-primary font-semibold mt-1 mb-1">
-                  <div className="bg-white/60 border border-gray-200 w-full h-[1vh] rounded-full backdrop-blur-md overflow-hidden">
-                    {/* Dynamic Width applied here via inline style */}
-                    <div 
-                      className="bg-gradient-to-r from-brand to-brand-hover h-full rounded-full transition-all duration-500" 
-                      style={{ width: `${progressPercent}%` }}
-                    ></div>
+                  <div className="flex items-center gap-1 text-sm text-brand pt-1">
+                    ⭐ <span>{item?.book?.rating || "N/A"}</span>
                   </div>
                 </div>
 
-                <div>
-                  <span className="text-text-secondary text-[0.8rem] leading-0">
+                {/* Progress Bar (Spans full width on mobile below header) */}
+                <div className="w-full flex flex-col justify-center gap-1.5 pt-2 md:pt-0 border-t border-white/40 md:border-none">
+                  <div className="flex justify-between items-center text-xs sm:text-sm text-text-secondary">
+                    <span>Progress</span>
+                    <span className="font-semibold text-text-primary">{progressPercent}%</span>
+                  </div>
+
+                  <div className="bg-white/60 border border-gray-200/80 w-full h-2 rounded-full backdrop-blur-md overflow-hidden">
+                    <div
+                      className="bg-gradient-to-r from-brand to-brand-hover h-full rounded-full transition-all duration-500"
+                      style={{ width: `${progressPercent}%` }}
+                    />
+                  </div>
+
+                  <div className="text-xs text-text-secondary">
                     Page {pagesRead} of {totalPages}
+                  </div>
+                </div>
+
+                {/* Desktop Status Badge */}
+                <div className="hidden md:flex items-center justify-end shrink-0">
+                  <span className="text-xs text-brand bg-brand-light/50 border border-white/50 backdrop-blur-md rounded-full px-4 py-1 uppercase tracking-wider font-semibold">
+                    {progressPercent === 100 ? "Finished" : "Reading"}
                   </span>
                 </div>
               </div>
+            );
+          })}
 
-              {/* Right Section (Status Tag) */}
-              <div className="h-full relative">
-                <div className="w-fit absolute right-6 text-[0.8rem] text-brand bg-brand-light/50 border border-white/50 backdrop-blur-md rounded-full px-4 py-1 uppercase tracking-wider font-semibold">
-                  {progressPercent === 100 ? "Finished" : "Reading"}
-                </div>
-              </div>
+          {/* Empty State Fallback */}
+          {recentBooks?.length === 0 && (
+            <div className="mt-12 text-center text-text-secondary">
+              <p>You haven't started reading any books yet.</p>
             </div>
-          );
-        })}
-
-        {/* Empty State Fallback */}
-        {recentBooks?.length === 0 && (
-          <div className="mt-12 text-center text-text-secondary">
-            <p>You haven't started reading any books yet.</p>
-          </div>
-        )}
+          )}
+        </div>
       </section>
     </>
   );
