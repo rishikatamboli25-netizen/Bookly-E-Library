@@ -124,7 +124,7 @@ const Notes = () => {
   // MAIN VIEW
   // --------------------------------
   return (
-    <section className="min-h-screen px-4 sm:px-7 py-5 sm:py-7">
+    <section className="min-h-screen px-4  py-5 sm:py-7">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div
