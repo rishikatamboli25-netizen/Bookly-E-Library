@@ -125,7 +125,7 @@ const Notes = () => {
   // --------------------------------
   return (
     <section className="min-h-screen px-4  py-5 sm:py-7">
-      <div className="max-w-4xl">
+      <div className="px-4 max-w-4xl">
         {/* Header */}
         <div
           onClick={() => navigate(-1)}
@@ -141,7 +141,7 @@ const Notes = () => {
             <div
               key={item._id || index}
               onClick={() => handleClick(item)}
-              className="group flex flex-col w-full sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-border-light bg-background-card p-4 transition-all duration-300 hover:shadow-md cursor-pointer"
+              className="group flex flex-col w-[75vw]  sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-border-light bg-background-card p-4 transition-all duration-300 hover:shadow-md cursor-pointer"
             >
               {/* Left Side: Book Cover & Details */}
               <div className="flex items-center gap-3 sm:gap-5 min-w-0 flex-1">

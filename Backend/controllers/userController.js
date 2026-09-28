@@ -455,9 +455,11 @@ export const addBookToCollection = async (req, res) => {
 
 export const createNote = async (req, res) => {
   try {
+    console.log("Request :", req.body)
     const { book, page, text, date } = req.body;
 
     console.log(book);
+
 
     // Check required fields
     if (!book || !page || !text) {

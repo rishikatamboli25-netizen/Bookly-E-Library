@@ -128,16 +128,23 @@ const PDFReader = ({ fileUrl, bookName, book }) => {
   const handleSaveNote = async () => {
     if (!noteText.trim()) return;
 
+      console.log(book.ObjectId)
+      console.log(currentPage)
+      console.log(noteText)
+
     try {
       const token = localStorage.getItem("token");
       if (!token || !book?.ObjectId) return;
 
       const newNote = {
-        bookId: book.ObjectId,
+        book: book,
         page: currentPage,
         text: noteText,
         date: new Date(),
       };
+
+    
+      
 
       await axios.put(`${API_BASE}/api/users/createnotes`, newNote, {
         headers: { Authorization: `Bearer ${token}` },
