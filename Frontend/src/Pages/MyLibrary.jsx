@@ -37,7 +37,7 @@ const MyLibrary = () => {
 
   return (
     <>
-      <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8">
+      <section className="w-full max-w-9xl mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8">
         {/* Header / Back Button */}
         <div
           onClick={() => navigate(-1)}

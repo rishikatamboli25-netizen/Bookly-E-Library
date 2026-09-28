@@ -74,8 +74,8 @@ const Notes = () => {
   // --------------------------------
   if (notes.length === 0) {
     return (
-      <section className="min-h-screen px-4 sm:px-7 py-5 sm:py-7">
-        <div className="mx-auto max-w-4xl">
+      <section className="min-h-screen px-4 sm:px-7   py-5 sm:py-7">
+        <div className="mx-4 max-w-4xl">
           {/* Top Header Back Button */}
           <div
             onClick={() => navigate(-1)}
@@ -86,7 +86,7 @@ const Notes = () => {
           </div>
 
           {/* Empty State Card */}
-          <div className="flex min-h-[60vh] w-full items-center justify-center py-8">
+          <div className="flex min-h-[60vh] w-full items-center justify-center py-8 ">
             <div className="flex w-full max-w-sm flex-col items-center justify-center rounded-2xl bg-gray-100 p-6 sm:p-8 text-center shadow-sm">
               <h2 className="text-xl sm:text-2xl font-semibold text-brand">
                 No Notes Found

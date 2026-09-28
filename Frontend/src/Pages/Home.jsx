@@ -285,7 +285,7 @@ const Home = () => {
   return (
     <>
       {/* Top padding is now pt-4 on mobile and scales to md:pt-24 on medium/large screens */}
-      <section className="px-4 sm:px-8 md:px-12 lg:px-20 pt-4 sm:pt-10 md:pt-24 max-w-[1600px] mx-auto">
+      <section className="px-4 sm:px-8 md:px-12 lg:px-20 pt-4 sm:pt-10 md:pt-8 max-w-[1600px] mx-auto">
         {!token || !user ? (
           loginOpen && <Login login={setLoginOpen} />
         ) : null}

@@ -72,7 +72,7 @@ const Discover = () => {
           POPULAR BOOKS
       ===================================================== */}
 
-      <section className="px-4 sm:px-8 md:px-12 lg:px-20 pt-4 sm:pt-10 md:pt-24 max-w-[1600px] mx-auto">
+      <section className="px-4 sm:px-8 md:px-12 lg:px-20 pt-4 sm:pt-10 md:pt-8 max-w-[1600px] mx-auto">
 
         <div className="flex items-center justify-between mb-4 sm:mb-6">
 
