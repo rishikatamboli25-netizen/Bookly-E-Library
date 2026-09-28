@@ -125,7 +125,7 @@ const Notes = () => {
   // --------------------------------
   return (
     <section className="min-h-screen px-4  py-5 sm:py-7">
-      <div className="mx-auto max-w-4xl">
+      <div className="max-w-4xl">
         {/* Header */}
         <div
           onClick={() => navigate(-1)}
