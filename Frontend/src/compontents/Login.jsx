@@ -1,97 +1,180 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
-// Vite environment variable with localhost fallback
-const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+const API_BASE =
+  import.meta.env.VITE_BASE_URL || "http://localhost:5000";
 
 const Login = ({ login }) => {
   const {
     register,
     handleSubmit,
-    setError,
     watch,
+    setError,
     clearErrors,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm();
+
+  // email -> decide whether login or registration
+  // login -> existing user password
+  // register -> new user username + password
+  const [step, setStep] = useState("email");
 
   const [showGoalPopup, setShowGoalPopup] = useState(false);
   const [yearlyGoal, setYearlyGoal] = useState(12);
 
   const email = watch("email");
 
-  // Check if email already exists
-  useEffect(() => {
-    if (!email) {
-      clearErrors("email");
-      return;
-    }
-
-    console.log("Change Detected, Checking Email");
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(email)) return;
-
-    const timer = setTimeout(async () => {
-      try {
-        const response = await axios.post(
-          `${API_BASE}/api/auth/check-email`,
-          { email }
-        );
-
-        if (response.data.exists) {
-          setError("email", {
-            type: "manual",
-            message: "Email already registered",
-          });
-        } else {
-          clearErrors("email");
-        }
-      } catch (error) {
-        console.error("Email check error:", error);
-      }
-    }, 500);
-
-    return () => clearTimeout(timer);
-
-  }, [email, setError, clearErrors]);
-
-  // Register User
-  const onSubmit = async (data) => {
+  // =========================
+  // CHECK EMAIL
+  // =========================
+  const handleEmailContinue = async (data) => {
     try {
+      clearErrors("root");
+
+      const normalizedEmail = data.email.trim().toLowerCase();
+
       const response = await axios.post(
-        `${API_BASE}/api/auth/register`,
-        data
+        `${API_BASE}/api/auth/check-email`,
+        {
+          email: normalizedEmail,
+        }
       );
 
-      console.log(response.data);
+      if (response.data.exists) {
+        setStep("login");
+      } else {
+        setStep("register");
+      }
+    } catch (error) {
+      console.error("Email check error:", error);
 
-      // Save authentication data
+      setError("root", {
+        type: "server",
+        message:
+          error.response?.data?.message ||
+          "Unable to check email. Please try again.",
+      });
+    }
+  };
+
+  // =========================
+  // REGISTER
+  // =========================
+  const handleRegister = async (data) => {
+    try {
+      clearErrors("root");
+
+      const response = await axios.post(
+        `${API_BASE}/api/auth/register`,
+        {
+          username: data.username,
+          email: data.email.trim().toLowerCase(),
+          password: data.password,
+        }
+      );
+
       localStorage.setItem("token", response.data.token);
+
       localStorage.setItem(
         "user",
         JSON.stringify(response.data.user)
       );
 
-      // Show yearly goal popup
+      // Registration complete
       setShowGoalPopup(true);
-    } catch (err) {
-      console.error("There is Some Error:", err);
+    } catch (error) {
+      console.error("Registration error:", error);
+
+      setError("root", {
+        type: "server",
+        message:
+          error.response?.data?.message ||
+          "Registration failed. Please try again.",
+      });
     }
   };
 
-  // Skip Yearly Goal
+  // =========================
+  // LOGIN
+  // =========================
+  const handleLogin = async (data) => {
+    try {
+      clearErrors("root");
+
+      const response = await axios.post(
+        `${API_BASE}/api/auth/login`,
+        {
+          email: data.email.trim().toLowerCase(),
+          password: data.password,
+        }
+      );
+
+      localStorage.setItem("token", response.data.token);
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify(response.data.user)
+      );
+
+      // Login complete
+      login(false);
+    } catch (error) {
+      console.error("Login error:", error);
+
+      setError("root", {
+        type: "server",
+        message:
+          error.response?.data?.message ||
+          "Login failed. Please try again.",
+      });
+    }
+  };
+
+  // =========================
+  // STEP SUBMIT
+  // =========================
+  const onSubmit = async (data) => {
+    if (step === "email") {
+      await handleEmailContinue(data);
+      return;
+    }
+
+    if (step === "login") {
+      await handleLogin(data);
+      return;
+    }
+
+    if (step === "register") {
+      await handleRegister(data);
+    }
+  };
+
+  // =========================
+  // BACK TO EMAIL
+  // =========================
+  const handleBack = () => {
+    clearErrors();
+    setStep("email");
+
+    reset({
+      email,
+    });
+  };
+
+  // =========================
+  // SKIP YEARLY GOAL
+  // =========================
   const handleSkipGoal = () => {
     setShowGoalPopup(false);
-
-    // Close login/register popup
     login(false);
   };
 
+  // =========================
+  // SET YEARLY GOAL
+  // =========================
   const handleSetGoal = async () => {
-    console.log("Setting your goal...");
-
     try {
       const token = localStorage.getItem("token");
 
@@ -112,20 +195,13 @@ const Login = ({ login }) => {
         }
       );
 
-      console.log("Goal updated:", response.data);
-
-      // Update localStorage with updated user
       localStorage.setItem(
         "user",
         JSON.stringify(response.data.user)
       );
 
-      console.log("Request successful");
-
       setShowGoalPopup(false);
-
       login(false);
-
     } catch (error) {
       console.error(
         "Error updating goal:",
@@ -136,101 +212,270 @@ const Login = ({ login }) => {
 
   return (
     <>
-      {/* Registration Modal */} 
-      <div className="absolute inset-0 z-40 h-screen w-full backdrop-blur-sm"> 
-        <div className="absolute left-1/2 top-1/2 h-fit w-[30vw] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-brand px-4 pb-4 text-text-white shadow-[0_20px_40px_rgba(0,0,0,0.8)] shadow-white"> 
-          <div className="justify-self-center p-4 text-[1.5rem] font-semibold">
-            Let's get you registered 
-          </div>
+      {/* =========================
+          AUTH MODAL
+      ========================= */}
+      {!showGoalPopup && (
+        <div className="fixed inset-0 z-40 flex min-h-screen w-full items-center justify-center bg-black/20 px-4 backdrop-blur-sm">
+          <div className="w-full max-w-md rounded-2xl bg-brand p-5 sm:p-7 text-text-white shadow-[0_20px_40px_rgba(0,0,0,0.8)]">
+            {/* Header */}
+            <div className="mb-6 text-center">
+              <h2 className="text-xl sm:text-2xl font-semibold">
+                {step === "email" && "Welcome to Bookly"}
+                {step === "login" && "Welcome back"}
+                {step === "register" && "Create your account"}
+              </h2>
 
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex flex-col gap-3">
-              {/* Email */}
-              <div className="mt-3">
-                <label htmlFor="email">Email</label>
+              <p className="mt-2 text-xs sm:text-sm text-white/70">
+                {step === "email" &&
+                  "Enter your email to continue"}
 
-                <input
-                  id="email"
-                  className="w-full rounded-lg p-2 py-3 text-black outline-brand focus:outline-2"
-                  type="text"
-                  placeholder="Enter your mail"
-                  {...register("email", {
-                    required: {
-                      value: true,
-                      message: "Email is required",
-                    },
+                {step === "login" &&
+                  "Enter your password to access your library"}
 
-                    pattern: {
-                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: "Please enter a valid email address",
-                    },
-                  })}
-                />
-
-                {errors.email && (
-                  <div className="text-sm font-thin text-red-400">
-                    {errors.email.message}
-                  </div>
-                )}
-              </div>
-
-              {/* Username */}
-              <div>
-                <label htmlFor="username">Name</label>
-
-                <input
-                  id="username"
-                  className="w-full rounded-lg p-2 py-3 text-black outline-brand focus:outline-2"
-                  type="text"
-                  placeholder="Enter your name"
-                  {...register("username", {
-                    required: {
-                      value: true,
-                      message: "username is required",
-                    },
-
-                    minLength: {
-                      value: 3,
-                      message: "Username must be at least 3 characters",
-                    },
-
-                    maxLength: {
-                      value: 20,
-                      message: "Username must be less than 20 characters",
-                    },
-
-                    pattern: {
-                      value: /^[a-zA-Z0-9_]+$/,
-                      message:
-                        "Username can only contain letters, numbers and underscore",
-                    },
-                  })}
-                />
-
-                {errors.username && (
-                  <div className="text-sm font-thin text-red-400">
-                    {errors.username.message}
-                  </div>
-                )}
-              </div>
-
-              {/* Submit */}
-              <button
-                disabled={isSubmitting}
-                type="submit"
-                className="mt-3 flex h-[6vh] w-full items-center justify-center rounded-lg bg-white font-semibold text-brand"
-              >
-                {isSubmitting ? "Loading" : "Submit"}
-              </button>
+                {step === "register" &&
+                  "Complete your registration to get started"}
+              </p>
             </div>
-          </form>
-        </div>
-      </div>
 
-      {/* Yearly Goal Popup */}
+            {/* =========================
+                FORM
+            ========================= */}
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="flex flex-col gap-4">
+
+                {/* EMAIL */}
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="mb-1.5 block text-sm"
+                  >
+                    Email
+                  </label>
+
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    autoComplete="email"
+                    disabled={step !== "email"}
+                    className="w-full rounded-xl bg-white p-3 text-sm text-black outline-none disabled:cursor-not-allowed disabled:opacity-70"
+                    {...register("email", {
+                      required: {
+                        value: true,
+                        message: "Email is required",
+                      },
+                      pattern: {
+                        value:
+                          /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                        message:
+                          "Please enter a valid email address",
+                      },
+                    })}
+                  />
+
+                  {errors.email && (
+                    <p className="mt-1 text-xs text-red-300">
+                      {errors.email.message}
+                    </p>
+                  )}
+                </div>
+
+                {/* LOGIN PASSWORD */}
+                {step === "login" && (
+                  <div>
+                    <label
+                      htmlFor="password"
+                      className="mb-1.5 block text-sm"
+                    >
+                      Password
+                    </label>
+
+                    <input
+                      id="password"
+                      type="password"
+                      placeholder="Enter your password"
+                      autoComplete="current-password"
+                      className="w-full rounded-xl bg-white p-3 text-sm text-black outline-none"
+                      {...register("password", {
+                        required: {
+                          value: true,
+                          message: "Password is required",
+                        },
+                      })}
+                    />
+
+                    {errors.password && (
+                      <p className="mt-1 text-xs text-red-300">
+                        {errors.password.message}
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {/* REGISTER USERNAME */}
+                {step === "register" && (
+                  <>
+                    <div>
+                      <label
+                        htmlFor="username"
+                        className="mb-1.5 block text-sm"
+                      >
+                        Name
+                      </label>
+
+                      <input
+                        id="username"
+                        type="text"
+                        placeholder="Enter your name"
+                        autoComplete="name"
+                        className="w-full rounded-xl bg-white p-3 text-sm text-black outline-none"
+                        {...register("username", {
+                          required: {
+                            value: true,
+                            message: "Username is required",
+                          },
+                          minLength: {
+                            value: 3,
+                            message:
+                              "Username must be at least 3 characters",
+                          },
+                          maxLength: {
+                            value: 20,
+                            message:
+                              "Username must be less than 20 characters",
+                          },
+                          pattern: {
+                            value: /^[a-zA-Z0-9_]+$/,
+                            message:
+                              "Username can only contain letters, numbers and underscore",
+                          },
+                        })}
+                      />
+
+                      {errors.username && (
+                        <p className="mt-1 text-xs text-red-300">
+                          {errors.username.message}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="password"
+                        className="mb-1.5 block text-sm"
+                      >
+                        Password
+                      </label>
+
+                      <input
+                        id="password"
+                        type="password"
+                        placeholder="Create a password"
+                        autoComplete="new-password"
+                        className="w-full rounded-xl bg-white p-3 text-sm text-black outline-none"
+                        {...register("password", {
+                          required: {
+                            value: true,
+                            message: "Password is required",
+                          },
+                          minLength: {
+                            value: 8,
+                            message:
+                              "Password must be at least 8 characters",
+                          },
+                        })}
+                      />
+
+                      {errors.password && (
+                        <p className="mt-1 text-xs text-red-300">
+                          {errors.password.message}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="confirmPassword"
+                        className="mb-1.5 block text-sm"
+                      >
+                        Confirm Password
+                      </label>
+
+                      <input
+                        id="confirmPassword"
+                        type="password"
+                        placeholder="Confirm your password"
+                        autoComplete="new-password"
+                        className="w-full rounded-xl bg-white p-3 text-sm text-black outline-none"
+                        {...register("confirmPassword", {
+                          required: {
+                            value: true,
+                            message:
+                              "Please confirm your password",
+                          },
+                          validate: (value) =>
+                            value === watch("password") ||
+                            "Passwords do not match",
+                        })}
+                      />
+
+                      {errors.confirmPassword && (
+                        <p className="mt-1 text-xs text-red-300">
+                          {errors.confirmPassword.message}
+                        </p>
+                      )}
+                    </div>
+                  </>
+                )}
+
+                {/* SERVER ERROR */}
+                {errors.root && (
+                  <div className="rounded-lg bg-red-500/10 px-3 py-2 text-center text-xs text-red-300">
+                    {errors.root.message}
+                  </div>
+                )}
+
+                {/* =========================
+                    ACTIONS
+                ========================= */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="mt-1 h-12 w-full rounded-xl bg-white font-semibold text-brand transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {isSubmitting
+                    ? "Please wait..."
+                    : step === "email"
+                    ? "Continue"
+                    : step === "login"
+                    ? "Login"
+                    : "Create Account"}
+                </button>
+
+                {/* BACK */}
+                {step !== "email" && (
+                  <button
+                    type="button"
+                    onClick={handleBack}
+                    className="text-xs text-white/70 transition-colors hover:text-white"
+                  >
+                    ← Use a different email
+                  </button>
+                )}
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* =========================
+          YEARLY GOAL POPUP
+      ========================= */}
       {showGoalPopup && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-5 backdrop-blur-sm">
-          <div className="w-full max-w-sm rounded-2xl border border-border-light bg-background-card p-7 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4 backdrop-blur-sm">
+          <div className="w-full max-w-sm rounded-2xl border border-border-light bg-background-card p-6 sm:p-7 shadow-2xl">
+
             {/* Heading */}
             <div className="text-center">
               <h2 className="text-xl font-semibold text-text-primary">
@@ -250,7 +495,7 @@ const Login = ({ login }) => {
               {/* Bottom Fade */}
               <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-8 bg-gradient-to-t from-background-card to-transparent" />
 
-              {/* Scrollable Numbers */}
+              {/* Numbers */}
               <div
                 className="h-full snap-y snap-mandatory overflow-y-auto scroll-smooth"
                 style={{
@@ -273,32 +518,32 @@ const Login = ({ login }) => {
                   setYearlyGoal(selectedNumber);
                 }}
               >
-                {/* Top Spacer */}
                 <div className="h-5 shrink-0" />
 
-                {Array.from({ length: 50 }, (_, index) => index + 1).map(
-                  (number) => (
-                    <div
-                      key={number}
-                      className={`flex h-10 snap-center items-center justify-center text-lg font-semibold transition-all ${
-                        yearlyGoal === number
-                          ? "scale-110 text-text-primary"
-                          : "text-text-secondary/40"
-                      }`}
-                    >
-                      {number}
-                    </div>
-                  )
-                )}
+                {Array.from(
+                  { length: 50 },
+                  (_, index) => index + 1
+                ).map((number) => (
+                  <div
+                    key={number}
+                    className={`flex h-10 snap-center items-center justify-center text-lg font-semibold transition-all ${
+                      yearlyGoal === number
+                        ? "scale-110 text-text-primary"
+                        : "text-text-secondary/40"
+                    }`}
+                  >
+                    {number}
+                  </div>
+                ))}
 
-                {/* Bottom Spacer */}
                 <div className="h-5 shrink-0" />
               </div>
             </div>
 
             {/* Selected Goal */}
             <p className="mt-3 text-center text-xs text-text-secondary">
-              {yearlyGoal} {yearlyGoal === 1 ? "book" : "books"} per year
+              {yearlyGoal}{" "}
+              {yearlyGoal === 1 ? "book" : "books"} per year
             </p>
 
             {/* Actions */}
