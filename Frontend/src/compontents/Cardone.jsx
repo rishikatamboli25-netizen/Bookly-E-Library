@@ -24,9 +24,12 @@ const Cardone = ({ book }) => {
       <span className="pointer-events-none absolute inset-x-4 top-0 h-px bg-white/80 z-10" />
 
       <div
-        className="h-[60%] border-b border-white/50 bg-gray-50 bg-contain bg-no-repeat bg-center transition-transform duration-300 group-hover:scale-[1.02]"
-        style={{ backgroundImage: `url(${coverUrl})` }}
-      />
+        className="h-[60%] relative  border-b border-white/50 bg-gray-50 bg-contain bg-no-repeat bg-center transition-transform duration-300 group-hover:scale-[1.02]"
+      >
+        <img loading="lazy" src={`${coverUrl}`} className="absolute h-[100%] left-1/2 -translate-x-1/2 top-0 object-cover" />
+         </div>
+
+      
 
       <div className="flex flex-col flex-1 p-2.5 sm:p-3.5 justify-between">
         <div className="text-xs sm:text-sm md:text-base font-medium text-text-primary line-clamp-2 leading-tight">
