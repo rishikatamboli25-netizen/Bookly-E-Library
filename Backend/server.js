@@ -3,6 +3,7 @@ import cors from "cors";
 import authRoutes from "./Routes/authRoutes.js";
 import bookRoutes from "./Routes/bookRoutes.js";
 import userRoutes from "./Routes/userRoutes.js";
+import imageRoutes from "./Routes/imageRoutes.js";
 import mongoose from "mongoose";
 import "dotenv/config";
 
@@ -10,7 +11,9 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // CORS configuration using FRONTEND_URL with localhost fallback
-const allowedOrigins = process.env.FRONTEND_URLS.split(",");
+const allowedOrigins = (
+  process.env.FRONTEND_URLS || "http://localhost:5173"
+).split(",");
 
 app.use(
   cors({
@@ -30,7 +33,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/book", bookRoutes);
 app.use("/api/users", userRoutes);
-
+app.use("/api/images", imageRoutes);
 app.get("/api", (req, res) => {
   res.send("Hello Rishika");
 });

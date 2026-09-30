@@ -2,7 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const Cardone = ({ book }) => {
-  const coverUrl = `https://archive.org/services/img/${book.identifier}`;
+  const BASE_URL = import.meta.env.VITE_BASE_URL
+  const coverUrl = `${BASE_URL}/api/images/cover/${book.identifier}`;
 
   const navigate = useNavigate();
   const handleClick = () => {
