@@ -10,8 +10,8 @@ import axios from "axios";
 import HomeHero from "../compontents/HomeHero";
 import { useNavigate } from "react-router-dom";
 
-// Vite environment variable with localhost fallback
-const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+const API_BASE =
+  import.meta.env.VITE_BASE_URL || "http://localhost:5000";
 
 const Home = () => {
   const [loginOpen, setLoginOpen] = useState(true);
@@ -25,7 +25,6 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  // Ref for Top Picks horizontal scroll container
   const topPicksRef = useRef(null);
 
   const token = localStorage.getItem("token");
@@ -35,63 +34,98 @@ const Home = () => {
   try {
     user = JSON.parse(localStorage.getItem("user"));
   } catch (error) {
-    console.error("❌ Error parsing user from localStorage:", error);
+    console.error(
+      "❌ Error parsing user from localStorage:",
+      error
+    );
   }
 
-  /*
-  ============================================================
-  BOOKS
-  ============================================================
-  */
+  // ============================================================
+  // BOOKS
+  // ============================================================
 
   const getBook = async () => {
     console.warn("📚 [BOOKS] getBook() started");
 
     try {
-      const response = await axios.get(`${API_BASE}/api/book/getBooks`);
+      const response = await axios.get(
+        `${API_BASE}/api/book/getBooks`
+      );
 
-      console.warn("📚 [BOOKS] API RESPONSE:", response);
-      console.warn("📚 [BOOKS] BOOK DATA:", response.data);
+      console.warn(
+        "📚 [BOOKS] API RESPONSE:",
+        response
+      );
+
+      console.warn(
+        "📚 [BOOKS] BOOK DATA:",
+        response.data
+      );
 
       setBookData(response.data);
-      console.log("Books Recieved")
 
-      console.warn("📚 [BOOKS] setBookData completed");
+      console.log("Books Recieved");
+
+      console.warn(
+        "📚 [BOOKS] setBookData completed"
+      );
     } catch (err) {
-      console.error("❌ [BOOKS] Error fetching books:", err);
+      console.error(
+        "❌ [BOOKS] Error fetching books:",
+        err
+      );
     }
   };
 
-  
-
   useEffect(() => {
-    console.warn("📚 [BOOKS] useEffect running");
+    console.warn(
+      "📚 [BOOKS] useEffect running"
+    );
+
     getBook();
   }, []);
 
-  /*
-  ============================================================
-  USER PROGRESS
-  ============================================================
-  */
+  // ============================================================
+  // USER PROGRESS
+  // ============================================================
 
   useEffect(() => {
-    console.warn("🔥🔥🔥 [PROGRESS] USE EFFECT STARTED 🔥🔥🔥");
+    console.warn(
+      "🔥🔥🔥 [PROGRESS] USE EFFECT STARTED 🔥🔥🔥"
+    );
 
     const getUserProgress = async () => {
-      console.warn("🚀 [PROGRESS] getUserProgress() STARTED");
+      console.warn(
+        "🚀 [PROGRESS] getUserProgress() STARTED"
+      );
 
-      const storedToken = localStorage.getItem("token");
+      const storedToken =
+        localStorage.getItem("token");
 
-      console.warn("🔑 [PROGRESS] Token exists:", !!storedToken);
+      console.warn(
+        "🔑 [PROGRESS] Token exists:",
+        !!storedToken
+      );
 
       if (!storedToken) {
-        console.error("❌ [PROGRESS] No token found!");
+        console.warn(
+          "⚠️ [PROGRESS] No token found"
+        );
+
+        setUserProgress({
+          recentReadBooks: [],
+          totalReadBooks: 0,
+        });
+
+        setUserGoal(0);
+
         return;
       }
 
       try {
-        console.warn("🌐 [PROGRESS] Sending request...");
+        console.warn(
+          "🌐 [PROGRESS] Sending request..."
+        );
 
         const response = await axios.get(
           `${API_BASE}/api/users/get-user-progress`,
@@ -99,47 +133,131 @@ const Home = () => {
             headers: {
               Authorization: `Bearer ${storedToken}`,
             },
+
+            validateStatus: (status) =>
+              status >= 200 && status < 400,
           }
         );
 
-        console.warn("✅✅✅ [PROGRESS] AXIOS REQUEST SUCCESS ✅✅✅");
-        console.warn("📦 [PROGRESS] FULL RESPONSE:", response);
-        console.warn("📦 [PROGRESS] RESPONSE DATA:", response.data);
-
         console.warn(
-          "📚 [PROGRESS] recentReadBooks:",
-          response.data?.progress?.recentReadBooks
+          "✅✅✅ [PROGRESS] AXIOS REQUEST SUCCESS ✅✅✅"
         );
 
-        console.warn("🎯 [PROGRESS] goal:", response.data?.goal);
+        console.warn(
+          "📡 [PROGRESS] STATUS:",
+          response.status
+        );
 
-        setUserProgress(response.data.progress);
-        setUserGoal(response.data.goal);
+        console.warn(
+          "📦 [PROGRESS] RESPONSE DATA:",
+          response.data
+        );
 
-        console.warn("💾 [PROGRESS] State setters called");
+        // ========================================================
+        // NORMAL RESPONSE
+        // ========================================================
+
+        if (
+          response.data &&
+          response.data.progress
+        ) {
+          const progress =
+            response.data.progress || {};
+
+          const recentReadBooks =
+            Array.isArray(
+              progress.recentReadBooks
+            )
+              ? progress.recentReadBooks
+              : [];
+
+          const totalReadBooks =
+            progress.totalReadBooks ?? 0;
+
+          setUserProgress({
+            ...progress,
+            recentReadBooks,
+            totalReadBooks,
+          });
+
+          setUserGoal(
+            response.data.goal ?? 0
+          );
+
+          console.warn(
+            "📚 [PROGRESS] recentReadBooks:",
+            recentReadBooks
+          );
+
+          console.warn(
+            "🎯 [PROGRESS] goal:",
+            response.data.goal
+          );
+
+          return;
+        }
+
+        // ========================================================
+        // EMPTY / 304 RESPONSE
+        // ========================================================
+
+        console.warn(
+          "⚠️ [PROGRESS] Empty cached response detected"
+        );
+
+        setUserProgress({
+          recentReadBooks: [],
+          totalReadBooks: 0,
+        });
+
+        setUserGoal(0);
       } catch (err) {
-        console.error("❌❌❌ [PROGRESS] REQUEST FAILED ❌❌❌");
-        console.error("Error:", err);
-        console.error("Response:", err?.response);
-        console.error("Response data:", err?.response?.data);
+        console.error(
+          "❌❌❌ [PROGRESS] REQUEST FAILED ❌❌❌"
+        );
+
+        console.error(
+          "Error:",
+          err
+        );
+
+        console.error(
+          "Response:",
+          err?.response
+        );
+
+        console.error(
+          "Response data:",
+          err?.response?.data
+        );
+
+        setUserProgress({
+          recentReadBooks: [],
+          totalReadBooks: 0,
+        });
+
+        setUserGoal(0);
       }
     };
 
     getUserProgress();
 
     return () => {
-      console.warn("🧹 [PROGRESS] useEffect cleanup");
+      console.warn(
+        "🧹 [PROGRESS] useEffect cleanup"
+      );
     };
   }, []);
 
-  /*
-  ============================================================
-  LOG USER PROGRESS WHEN STATE CHANGES
-  ============================================================
-  */
+  // ============================================================
+  // LOG USER PROGRESS
+  // ============================================================
 
   useEffect(() => {
-    console.warn("🔄 [STATE] userProgress changed:", userProgress);
+    console.warn(
+      "🔄 [STATE] userProgress changed:",
+      userProgress
+    );
 
     console.warn(
       "📖 [STATE] recentReadBooks:",
@@ -152,89 +270,114 @@ const Home = () => {
     );
   }, [userProgress]);
 
-  /*
-  ============================================================
-  LOG USER GOAL
-  ============================================================
-  */
+  // ============================================================
+  // LOG USER GOAL
+  // ============================================================
 
   useEffect(() => {
-    console.warn("🎯 [STATE] userGoal changed:", userGoal);
+    console.warn(
+      "🎯 [STATE] userGoal changed:",
+      userGoal
+    );
   }, [userGoal]);
 
-  /*
-  ============================================================
-  CALCULATE PROGRESS
-  ============================================================
-  */
+  // ============================================================
+  // CALCULATE PROGRESS
+  // ============================================================
 
   useEffect(() => {
-    console.warn("🧮 [CALCULATION] Progress calculation started");
+    console.warn(
+      "🧮 [CALCULATION] Progress calculation started"
+    );
 
-    const recentBooks = userProgress?.recentReadBooks;
+    const recentBooks =
+      userProgress?.recentReadBooks;
 
-    /*
-    ------------------------------------------------------------
-    Continue Reading Percentage
-    ------------------------------------------------------------
-    */
+    // ==========================================================
+    // CONTINUE READING PERCENTAGE
+    // ==========================================================
 
-    if (recentBooks && recentBooks.length > 0) {
-      const firstBook = recentBooks[0];
+    if (
+      recentBooks &&
+      recentBooks.length > 0
+    ) {
+      const firstBook =
+        recentBooks[0];
 
-      console.warn("📖 [CALCULATION] First book:", firstBook);
+      console.warn(
+        "📖 [CALCULATION] First book:",
+        firstBook
+      );
 
-      if (firstBook.pagesRead === 0 || !firstBook.totalPages) {
+      if (
+        firstBook.pagesRead === 0 ||
+        !firstBook.totalPages
+      ) {
         console.warn(
           "📊 [CALCULATION] No pages / total pages → 0%"
         );
 
         setRecentReadPercent(0);
       } else {
-        const bookPercentage = Math.floor(
-          (firstBook.pagesRead / firstBook.totalPages) * 100
-        );
+        const bookPercentage =
+          Math.floor(
+            (firstBook.pagesRead /
+              firstBook.totalPages) *
+              100
+          );
 
-        const finalPercentage = Math.min(bookPercentage, 100);
+        const finalPercentage =
+          Math.min(
+            bookPercentage,
+            100
+          );
 
         console.warn(
           "📊 [CALCULATION] Recent read percentage:",
           finalPercentage
         );
 
-        setRecentReadPercent(finalPercentage);
+        setRecentReadPercent(
+          finalPercentage
+        );
       }
     } else {
-      console.warn("📖 [CALCULATION] No recent books");
+      console.warn(
+        "📖 [CALCULATION] No recent books"
+      );
 
       setRecentReadPercent(0);
     }
 
-    /*
-    ------------------------------------------------------------
-    Goal Percentage
-    ------------------------------------------------------------
-    */
+    // ==========================================================
+    // GOAL PERCENTAGE
+    // ==========================================================
 
     if (
       userProgress?.totalReadBooks != null &&
       userGoal > 0
     ) {
-      const calculatedGoalPercentage = Math.floor(
-        (userProgress.totalReadBooks / userGoal) * 100
-      );
+      const calculatedGoalPercentage =
+        Math.floor(
+          (userProgress.totalReadBooks /
+            userGoal) *
+            100
+        );
 
-      const finalGoalPercentage = Math.min(
-        calculatedGoalPercentage,
-        100
-      );
+      const finalGoalPercentage =
+        Math.min(
+          calculatedGoalPercentage,
+          100
+        );
 
       console.warn(
         "🎯 [CALCULATION] Goal percentage:",
         finalGoalPercentage
       );
 
-      setGoalPercentage(finalGoalPercentage);
+      setGoalPercentage(
+        finalGoalPercentage
+      );
     } else {
       console.warn(
         "🎯 [CALCULATION] Cannot calculate goal percentage"
@@ -244,11 +387,9 @@ const Home = () => {
     }
   }, [userProgress, userGoal]);
 
-  /*
-  ============================================================
-  LOG CALCULATED VALUES
-  ============================================================
-  */
+  // ============================================================
+  // LOG CALCULATED VALUES
+  // ============================================================
 
   useEffect(() => {
     console.warn(
@@ -264,11 +405,9 @@ const Home = () => {
     );
   }, [goalPercentage]);
 
-  /*
-  ============================================================
-  TOP PICKS SCROLL
-  ============================================================
-  */
+  // ============================================================
+  // TOP PICKS SCROLL
+  // ============================================================
 
   const handleViewAll = () => {
     if (topPicksRef.current) {
@@ -279,81 +418,105 @@ const Home = () => {
     }
   };
 
-  /*
-  ============================================================
-  RENDER
-  ============================================================
-  */
+  // ============================================================
+  // RENDER
+  // ============================================================
 
   return (
     <>
-      {/* Top padding is now pt-4 on mobile and scales to md:pt-24 on medium/large screens */}
-      <section className="px-4 sm:px-8 md:px-12 lg:px-20 pt-4 sm:pt-10 md:pt-8 max-w-[1600px] mx-auto">
+      <section className="mx-auto max-w-[1600px] px-4 pt-4 sm:px-8 sm:pt-10 md:px-12 md:pt-8 lg:px-20">
         {!token || !user ? (
-          loginOpen && <Login login={setLoginOpen} />
+          loginOpen && (
+            <Login login={setLoginOpen} />
+          )
         ) : null}
 
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-sans text-text-primary font-semibold tracking-tight">
+        <h1 className="font-sans text-2xl font-semibold tracking-tight text-text-primary sm:text-3xl md:text-4xl">
           Good morning, {user?.username}
         </h1>
 
-        <p className="text-sm sm:text-base md:text-lg pt-1 text-text-secondary pb-6 md:pb-10">
+        <p className="pb-6 pt-1 text-sm text-text-secondary sm:text-base md:pb-10 md:text-lg">
           Let's pick up where you left off.
         </p>
 
-        {userProgress?.recentReadBooks?.length === 0 && (
-          <HomeHero />
-        )}
+        {/* ======================================================
+            HOME HERO
+        ====================================================== */}
 
-        {userProgress?.recentReadBooks?.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+        {userProgress?.recentReadBooks?.length ===
+          0 && <HomeHero />}
+
+        {/* ======================================================
+            USER PROGRESS
+        ====================================================== */}
+
+        {userProgress?.recentReadBooks?.length >
+          0 && (
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
 
             {/* CONTINUE READING */}
-            <div className="lg:col-span-2 relative overflow-hidden border border-border-light rounded-2xl p-5 sm:p-8 bg-background-card flex flex-col justify-between shadow-sm min-h-[360px]">
+
+            <div className="relative flex min-h-[360px] flex-col justify-between overflow-hidden rounded-2xl border border-border-light bg-background-card p-5 shadow-sm sm:p-8 lg:col-span-2">
 
               <div className="relative z-10 w-full">
-                <div className="text-lg sm:text-xl font-semibold text-text-primary pb-4 sm:pb-6">
+
+                <div className="pb-4 text-lg font-semibold text-text-primary sm:pb-6 sm:text-xl">
                   Continue Reading
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-5 sm:gap-8 items-center sm:items-start">
+                <div className="flex flex-col items-center gap-5 sm:flex-row sm:items-start sm:gap-8">
 
-                  <div className="w-28 sm:w-36 aspect-[2/3] rounded-xl overflow-hidden border border-border-light shrink-0 shadow-md">
+                  <div className="aspect-[2/3] w-28 shrink-0 overflow-hidden rounded-xl border border-border-light shadow-md sm:w-36">
                     <img
                       src={`https://archive.org/services/img/${userProgress?.recentReadBooks?.[0]?.book?.identifier}`}
-                      alt={userProgress?.recentReadBooks?.[0]?.book?.title || "Book Cover"}
-                      className="w-full h-full object-cover"
+                      alt={
+                        userProgress?.recentReadBooks?.[0]?.book?.title ||
+                        "Book Cover"
+                      }
+                      className="h-full w-full object-cover"
                     />
                   </div>
 
-                  <div className="flex flex-col gap-3.5 w-full">
+                  <div className="flex w-full flex-col gap-3.5">
 
-                    <div className="relative rounded-xl border border-white/60 bg-white/40 backdrop-blur-xl px-4 py-3 shadow-[0_1px_0_rgba(255,255,255,0.8)_inset,0_6px_16px_rgba(124,58,237,0.08)]">
+                    <div className="relative rounded-xl border border-white/60 bg-white/40 px-4 py-3 shadow-[0_1px_0_rgba(255,255,255,0.8)_inset,0_6px_16px_rgba(124,58,237,0.08)] backdrop-blur-xl">
+
                       <span className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/80" />
 
-                      <div className="font-semibold text-text-primary text-base sm:text-lg truncate">
-                        {userProgress?.recentReadBooks?.[0]?.book?.title}
+                      <div className="truncate text-base font-semibold text-text-primary sm:text-lg">
+                        {
+                          userProgress?.recentReadBooks?.[0]?.book?.title
+                        }
                       </div>
 
-                      <div className="text-text-secondary text-xs sm:text-sm mt-0.5 truncate">
-                        {userProgress?.recentReadBooks?.[0]?.book?.author}
+                      <div className="mt-0.5 truncate text-xs text-text-secondary sm:text-sm">
+                        {
+                          userProgress?.recentReadBooks?.[0]?.book?.author
+                        }
                       </div>
+
                     </div>
 
-                    <div className="relative rounded-xl border border-white/60 bg-white/40 backdrop-blur-xl px-4 py-3 shadow-[0_1px_0_rgba(255,255,255,0.8)_inset,0_6px_16px_rgba(124,58,237,0.08)]">
+                    <div className="relative rounded-xl border border-white/60 bg-white/40 px-4 py-3 shadow-[0_1px_0_rgba(255,255,255,0.8)_inset,0_6px_16px_rgba(124,58,237,0.08)] backdrop-blur-xl">
+
                       <span className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/80" />
 
-                      <div className="font-semibold text-brand text-base sm:text-lg">
+                      <div className="text-base font-semibold text-brand sm:text-lg">
                         {recentReadPercent}%
                       </div>
 
-                      <div className="text-text-secondary text-xs sm:text-sm mt-0.5">
-                        {`${userProgress?.recentReadBooks?.[0]?.pagesRead || 0} out of ${userProgress?.recentReadBooks?.[0]?.totalPages || 0} pages`}
+                      <div className="mt-0.5 text-xs text-text-secondary sm:text-sm">
+                        {`${userProgress?.recentReadBooks?.[0]?.pagesRead || 0} out of ${
+                          userProgress?.recentReadBooks?.[0]?.totalPages || 0
+                        } pages`}
                       </div>
+
                     </div>
 
                   </div>
+
                 </div>
+
               </div>
 
               <button
@@ -362,7 +525,7 @@ const Home = () => {
                     `/reader/${userProgress?.recentReadBooks?.[0]?.book?.identifier}`
                   )
                 }
-                className="relative z-10 group flex items-center justify-center w-full sm:w-auto sm:self-start px-6 py-3 mt-6 rounded-full text-brand font-semibold overflow-hidden bg-brand/15 border border-white/50 backdrop-blur-xl transition-all duration-300 hover:bg-brand/25 hover:-translate-y-0.5 hover:shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_10px_24px_rgba(124,58,237,0.25)] active:translate-y-0 cursor-pointer"
+                className="group relative z-10 mt-6 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full border border-white/50 bg-brand/15 px-6 py-3 font-semibold text-brand backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand/25 hover:shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_10px_24px_rgba(124,58,237,0.25)] active:translate-y-0 sm:w-auto sm:self-start"
               >
                 <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-white/70" />
                 Continue Reading
@@ -371,38 +534,48 @@ const Home = () => {
             </div>
 
             {/* YOUR PROGRESS */}
-            <div className="relative overflow-hidden border border-border-light rounded-2xl p-5 sm:p-8 bg-background-card flex flex-col justify-between shadow-sm min-h-[360px]">
+
+            <div className="relative flex min-h-[360px] flex-col justify-between overflow-hidden rounded-2xl border border-border-light bg-background-card p-5 shadow-sm sm:p-8">
 
               <div className="relative z-10 w-full">
-                <div className="text-lg sm:text-xl text-text-primary font-semibold">
+
+                <div className="text-lg font-semibold text-text-primary sm:text-xl">
                   Your Progress
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 my-4 sm:my-6">
+                <div className="my-4 grid grid-cols-2 gap-3 sm:my-6">
 
-                  <div className="relative rounded-xl border border-gray-200 bg-white/40 backdrop-blur-xl py-3 px-2 flex flex-col items-center justify-center shadow-[0_1px_0_rgba(255,255,255,0.4)_inset,0_6px_16px_rgba(124,58,237,0.04)]">
+                  <div className="relative flex flex-col items-center justify-center rounded-xl border border-gray-200 bg-white/40 px-2 py-3 shadow-[0_1px_0_rgba(255,255,255,0.4)_inset,0_6px_16px_rgba(124,58,237,0.04)] backdrop-blur-xl">
+
                     <span className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/80" />
-                    <span className="text-brand font-bold text-lg sm:text-2xl">
+
+                    <span className="text-lg font-bold text-brand sm:text-2xl">
                       {userProgress?.totalReadBooks ?? 0}
                     </span>
-                    <span className="text-[11px] sm:text-xs font-normal text-text-secondary mt-0.5">
+
+                    <span className="mt-0.5 text-[11px] font-normal text-text-secondary sm:text-xs">
                       Books Read
                     </span>
+
                   </div>
 
-                  <div className="relative rounded-xl border border-gray-200 bg-white/40 backdrop-blur-xl py-3 px-2 flex flex-col items-center justify-center shadow-[0_1px_0_rgba(255,255,255,0.4)_inset,0_6px_16px_rgba(124,58,237,0.04)]">
+                  <div className="relative flex flex-col items-center justify-center rounded-xl border border-gray-200 bg-white/40 px-2 py-3 shadow-[0_1px_0_rgba(255,255,255,0.4)_inset,0_6px_16px_rgba(124,58,237,0.04)] backdrop-blur-xl">
+
                     <span className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/80" />
-                    <span className="text-brand font-bold text-lg sm:text-2xl">
+
+                    <span className="text-lg font-bold text-brand sm:text-2xl">
                       {userGoal ?? 0}
                     </span>
-                    <span className="text-[11px] sm:text-xs font-normal text-text-secondary mt-0.5">
+
+                    <span className="mt-0.5 text-[11px] font-normal text-text-secondary sm:text-xs">
                       Yearly Goal
                     </span>
+
                   </div>
 
                 </div>
 
-                <div className="w-24 h-24 sm:w-28 sm:h-28 mx-auto my-4">
+                <div className="mx-auto my-4 h-24 w-24 sm:h-28 sm:w-28">
                   <CircularProgressbar
                     value={goalPercentage}
                     text={`${goalPercentage}%`}
@@ -413,9 +586,10 @@ const Home = () => {
                     })}
                   />
                 </div>
+
               </div>
 
-              <p className="text-xs sm:text-sm text-center font-normal text-text-secondary mt-2">
+              <p className="mt-2 text-center text-xs font-normal text-text-secondary sm:text-sm">
                 Read today, grow every day.
               </p>
 
@@ -425,32 +599,42 @@ const Home = () => {
         )}
       </section>
 
-      {/* TOP PICKS */}
-      <section className="px-4 sm:px-8 md:px-12 lg:px-20 mt-12 md:mt-16 mb-16 max-w-[1600px] mx-auto">
+      {/* ========================================================
+          TOP PICKS
+      ======================================================== */}
 
-        <div className="flex items-center justify-between mb-4 sm:mb-6">
-          <div className="text-lg sm:text-xl md:text-2xl font-semibold text-text-primary">
+      <section className="mx-auto mb-16 mt-12 max-w-[1600px] px-4 sm:px-8 md:mt-16 md:px-12 lg:px-20">
+
+        <div className="mb-4 flex items-center justify-between sm:mb-6">
+
+          <div className="text-lg font-semibold text-text-primary sm:text-xl md:text-2xl">
             Top Picks For You
           </div>
 
           <button
             onClick={handleViewAll}
-            className="flex items-center gap-2 text-sm sm:text-base text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
+            className="flex cursor-pointer items-center gap-2 text-sm text-text-secondary transition-colors hover:text-text-primary sm:text-base"
           >
             Scroll
             <LuArrowRight className="text-base" />
           </button>
+
         </div>
 
         <div
           ref={topPicksRef}
-          className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide scroll-smooth py-2"
+          className="scrollbar-hide flex gap-4 overflow-x-auto scroll-smooth py-2 sm:gap-6"
         >
-          {bookData?.slice(0, 14).map((item, index) => (
-            <div key={index} className="shrink-0">
-              <Cardone book={item} />
-            </div>
-          ))}
+          {bookData?.slice(0, 14).map(
+            (item, index) => (
+              <div
+                key={index}
+                className="shrink-0"
+              >
+                <Cardone book={item} />
+              </div>
+            )
+          )}
         </div>
 
       </section>
