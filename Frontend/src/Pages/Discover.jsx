@@ -1,14 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import Cardtwo from "../compontents/Cardtwo";
+import CardtwoSkeleton from "../compontents/Loading/CardtwoSkeleton";
 import { LuArrowRight } from "react-icons/lu";
 import axios from "axios";
 import "../App.css";
 
 // Vite environment variable with localhost fallback
-const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+const API_BASE =
+  import.meta.env.VITE_BASE_URL || "http://localhost:5000";
 
 const Discover = () => {
   const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // Refs for both horizontal book sections
   const popularBooksRef = useRef(null);
@@ -28,7 +31,12 @@ const Discover = () => {
 
       setBooks(response.data);
     } catch (error) {
-      console.error("error fetching books : ", error);
+      console.error(
+        "error fetching books : ",
+        error
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -72,17 +80,17 @@ const Discover = () => {
           POPULAR BOOKS
       ===================================================== */}
 
-      <section className="px-4 sm:px-8 md:px-12 lg:px-20 pt-4 sm:pt-10 md:pt-8 max-w-[1600px] mx-auto">
+      <section className="mx-auto max-w-[1600px] px-4 pt-4 sm:px-8 sm:pt-10 md:px-12 md:pt-8 lg:px-20">
 
-        <div className="flex items-center justify-between mb-4 sm:mb-6">
+        <div className="mb-4 flex items-center justify-between sm:mb-6">
 
-          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-text-primary">
+          <h2 className="text-lg font-semibold text-text-primary sm:text-xl md:text-2xl">
             Popular Books
           </h2>
 
           <button
             onClick={handlePopularBooksScroll}
-            className="flex items-center gap-2 text-sm sm:text-base text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
+            className="flex cursor-pointer items-center gap-2 text-sm text-text-secondary transition-colors hover:text-text-primary sm:text-base"
           >
             Scroll
             <LuArrowRight className="text-base" />
@@ -92,34 +100,46 @@ const Discover = () => {
 
         <div
           ref={popularBooksRef}
-          className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide scroll-smooth py-2"
+          className="scrollbar-hide flex gap-4 overflow-x-auto scroll-smooth py-2 sm:gap-6"
         >
-          {books?.map((book, index) => (
-            <div key={index} className="shrink-0">
-              <Cardtwo book={book} />
-            </div>
-          ))}
+          {loading
+            ? Array.from({ length: 6 }).map(
+                (_, index) => (
+                  <div
+                    key={index}
+                    className="shrink-0"
+                  >
+                    <CardtwoSkeleton />
+                  </div>
+                )
+              )
+            : books?.map((book, index) => (
+                <div
+                  key={index}
+                  className="shrink-0"
+                >
+                  <Cardtwo book={book} />
+                </div>
+              ))}
         </div>
 
       </section>
-
 
       {/* =====================================================
           NEW RELEASES
       ===================================================== */}
 
-      {/* Increased top padding/spacing on mobile (pt-16 sm:pt-10 md:pt-16) to push the 2nd container down */}
-      <section className="px-4 sm:px-8 md:px-12 lg:px-20 pt-16 sm:pt-10 md:pt-16 mb-20 max-w-[1600px] mx-auto">
+      <section className="mx-auto mb-20 max-w-[1600px] px-4 pt-16 sm:px-8 sm:pt-10 md:px-12 md:pt-16 lg:px-20">
 
-        <div className="flex items-center justify-between mb-4 sm:mb-6">
+        <div className="mb-4 flex items-center justify-between sm:mb-6">
 
-          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-text-primary">
+          <h2 className="text-lg font-semibold text-text-primary sm:text-xl md:text-2xl">
             New Releases
           </h2>
 
           <button
             onClick={handleNewReleasesScroll}
-            className="flex items-center gap-2 text-sm sm:text-base text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
+            className="flex cursor-pointer items-center gap-2 text-sm text-text-secondary transition-colors hover:text-text-primary sm:text-base"
           >
             Scroll
             <LuArrowRight className="text-base" />
@@ -129,13 +149,27 @@ const Discover = () => {
 
         <div
           ref={newReleasesRef}
-          className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide scroll-smooth py-2"
+          className="scrollbar-hide flex gap-4 overflow-x-auto scroll-smooth py-2 sm:gap-6"
         >
-          {books?.map((book, index) => (
-            <div key={index} className="shrink-0">
-              <Cardtwo book={book} />
-            </div>
-          ))}
+          {loading
+            ? Array.from({ length: 6 }).map(
+                (_, index) => (
+                  <div
+                    key={index}
+                    className="shrink-0"
+                  >
+                    <CardtwoSkeleton />
+                  </div>
+                )
+              )
+            : books?.map((book, index) => (
+                <div
+                  key={index}
+                  className="shrink-0"
+                >
+                  <Cardtwo book={book} />
+                </div>
+              ))}
         </div>
 
       </section>

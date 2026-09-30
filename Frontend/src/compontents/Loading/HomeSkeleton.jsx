@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Cardone from "../compontents/Cardone";
-import CardoneSkeleton from "../compontents/Loading/CardoneSkeleton";
+import CardoneSkeleton from "../compontents/CardoneSkeleton";
 import {
   buildStyles,
   CircularProgressbar,
@@ -9,7 +9,7 @@ import { LuArrowRight } from "react-icons/lu";
 import Login from "../compontents/Login";
 import axios from "axios";
 import HomeHero from "../compontents/HomeHero";
-import HomeHeroSkeleton from "../compontents/Loading/HomeHeroSkeleton";
+import HomeHeroSkeleton from "../compontents/HomeHeroSkeleton";
 import { useNavigate } from "react-router-dom";
 
 const API_BASE =
@@ -455,7 +455,8 @@ const Home = () => {
 
         {progressLoading ? (
           <HomeHeroSkeleton />
-        ) : userProgress?.recentReadBooks?.length === 0 ? (
+        ) : userProgress?.recentReadBooks?.length ===
+          0 ? (
           <HomeHero />
         ) : (
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
@@ -618,13 +619,15 @@ const Home = () => {
             Top Picks For You
           </div>
 
-          <button
-            onClick={handleViewAll}
-            className="flex cursor-pointer items-center gap-2 text-sm text-text-secondary transition-colors hover:text-text-primary sm:text-base"
-          >
-            Scroll
-            <LuArrowRight className="text-base" />
-          </button>
+          {!bookLoading && (
+            <button
+              onClick={handleViewAll}
+              className="flex cursor-pointer items-center gap-2 text-sm text-text-secondary transition-colors hover:text-text-primary sm:text-base"
+            >
+              Scroll
+              <LuArrowRight className="text-base" />
+            </button>
+          )}
 
         </div>
 

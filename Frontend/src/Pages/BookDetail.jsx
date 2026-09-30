@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   HiArrowLeft,
@@ -8,17 +8,19 @@ import {
 import { FaStar } from "react-icons/fa";
 import { HiOutlineCheckCircle } from "react-icons/hi2";
 import axios from "axios";
+import BookDetailSkeleton from "../compontents/Loading/BookDetailSkeleton";
 
 // Vite environment variable with localhost fallback
-const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+const API_BASE =
+  import.meta.env.VITE_BASE_URL || "http://localhost:5000";
 
 function BookDetail() {
-  const location = useLocation();
   const navigate = useNavigate();
   const { bookId } = useParams();
 
   const [book, setBook] = useState(null);
   const [readBooks, setReadBooks] = useState([]);
+  const [readBooksLoading, setReadBooksLoading] = useState(true);
 
   // =========================
   // FETCH BOOK
@@ -29,9 +31,13 @@ function BookDetail() {
         const response = await axios.get(
           `${API_BASE}/api/book/${bookId}`
         );
+
         setBook(response.data);
       } catch (error) {
-        console.error("Error fetching book:", error);
+        console.error(
+          "Error fetching book:",
+          error
+        );
       }
     };
 
@@ -47,7 +53,9 @@ function BookDetail() {
         const token = localStorage.getItem("token");
 
         if (!token) {
-          console.error("Authentication token not found");
+          console.error(
+            "Authentication token not found"
+          );
           return;
         }
 
@@ -64,8 +72,11 @@ function BookDetail() {
       } catch (error) {
         console.error(
           "Error fetching read books:",
-          error.response?.data || error.message
+          error.response?.data ||
+            error.message
         );
+      } finally {
+        setReadBooksLoading(false);
       }
     };
 
@@ -80,7 +91,9 @@ function BookDetail() {
       const token = localStorage.getItem("token");
 
       if (!token) {
-        console.error("Authentication token not found");
+        console.error(
+          "Authentication token not found"
+        );
         return;
       }
 
@@ -97,11 +110,16 @@ function BookDetail() {
       );
 
       console.log("Marked as Read ✅");
-      setReadBooks((prev) => [...prev, book._id]);
+
+      setReadBooks((prev) => [
+        ...prev,
+        book._id,
+      ]);
     } catch (error) {
       console.error(
         "Error Marking Read:",
-        error.response?.data || error.message
+        error.response?.data ||
+          error.message
       );
     }
   };
@@ -114,7 +132,9 @@ function BookDetail() {
       const token = localStorage.getItem("token");
 
       if (!token) {
-        console.error("Authentication token not found");
+        console.error(
+          "Authentication token not found"
+        );
         return;
       }
 
@@ -130,12 +150,17 @@ function BookDetail() {
         }
       );
 
-      console.log("Recent book updated:", response.data);
+      console.log(
+        "Recent book updated:",
+        response.data
+      );
+
       navigate(`/reader/${book.identifier}`);
     } catch (error) {
       console.error(
         "Error adding recent book:",
-        error.response?.data || error.message
+        error.response?.data ||
+          error.message
       );
     }
   };
@@ -156,65 +181,66 @@ function BookDetail() {
   // LOADING
   // =========================
   if (!book) {
-    return (
-      <div className="h-64 w-full flex items-center justify-center">
-        Loading...
-      </div>
-    );
+    return <BookDetailSkeleton />;
   }
 
   // =========================
   // CHECK IF CURRENT BOOK IS READ
   // =========================
-  const isRead = readBooks.includes(book._id);
-  const coverUrl = `https://archive.org/services/img/${book.identifier}`;
+  const isRead =
+    !readBooksLoading &&
+    readBooks.includes(book._id);
+
+  const coverUrl =
+    `https://archive.org/services/img/${book.identifier}`;
 
   // =========================
   // UI
   // =========================
   return (
-    <div className="w-full px-6 md:px-12 lg:px-20 py-6 md:py-8">
-      <div className="w-full max-w-6xl mx-auto">
-        
+    <div className="w-full px-6 py-6 md:px-12 md:py-8 lg:px-20">
+      <div className="mx-auto w-full max-w-6xl">
+
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-sm text-text-secondary hover:text-text-primary transition mb-6 w-fit"
+          className="mb-6 flex w-fit items-center gap-2 text-sm text-text-secondary transition hover:text-text-primary"
         >
           <HiArrowLeft size={18} />
           Back
         </button>
 
         {/* ========================= */}
-        {/* SCALED DOWN BOOK HERO */}
+        {/* BOOK HERO */}
         {/* ========================= */}
-        <section className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8 lg:gap-12 items-start">
-          
-          {/* Book Cover Container (Strict Aspect Ratio) */}
+        <section className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[240px_1fr] lg:gap-12">
+
+          {/* Book Cover */}
           <div className="flex justify-center lg:justify-start">
-            <div className="w-[200px] lg:w-[240px] aspect-[2/3] flex items-center justify-center bg-background-card rounded-xl shadow-md p-2">
+            <div className="flex aspect-[2/3] w-[200px] items-center justify-center rounded-xl bg-background-card p-2 shadow-md lg:w-[240px]">
               <img
                 src={coverUrl}
                 alt={book.title}
-                className="w-full h-full object-contain drop-shadow-sm rounded"
+                className="h-full w-full rounded object-contain drop-shadow-sm"
               />
             </div>
           </div>
 
-          {/* Scaled Down Information */}
+          {/* Book Information */}
           <div className="flex flex-col justify-start pt-2">
+
             {/* Category */}
-            <span className="text-xs uppercase tracking-widest text-brand font-semibold mb-2">
+            <span className="mb-2 text-xs font-semibold uppercase tracking-widest text-brand">
               {book.category}
             </span>
 
             {/* Title */}
-            <h1 className="text-3xl md:text-4xl font-bold text-text-primary leading-tight mb-3">
+            <h1 className="mb-3 text-3xl font-bold leading-tight text-text-primary md:text-4xl">
               {book.title}
             </h1>
 
             {/* Author */}
-            <p className="text-base text-text-secondary mb-4">
+            <p className="mb-4 text-base text-text-secondary">
               By{" "}
               <span className="font-semibold text-text-primary">
                 {book.author}
@@ -222,31 +248,45 @@ function BookDetail() {
             </p>
 
             {/* Rating + Pages */}
-            <div className="flex items-center gap-4 mb-4 text-sm">
+            <div className="mb-4 flex items-center gap-4 text-sm">
+
               <div className="flex items-center gap-1.5">
-                <FaStar className="text-warning" size={14} />
+                <FaStar
+                  className="text-warning"
+                  size={14}
+                />
+
                 <span className="font-semibold text-text-primary">
                   {book.rating}
                 </span>
-                <span className="text-text-secondary">/ 5</span>
+
+                <span className="text-text-secondary">
+                  / 5
+                </span>
               </div>
-              <span className="text-border-light">|</span>
+
+              <span className="text-border-light">
+                |
+              </span>
+
               <span className="text-text-secondary">
                 {book.totalPages} Pages
               </span>
+
             </div>
 
             {/* Description */}
-            <p className="text-sm text-text-secondary leading-relaxed max-w-3xl mb-6 line-clamp-4">
+            <p className="mb-6 max-w-3xl line-clamp-4 text-sm leading-relaxed text-text-secondary">
               {book.description ||
                 "Discover this fascinating book and explore its ideas, stories, and insights. Start reading and immerse yourself in a world of knowledge and imagination."}
             </p>
 
             {/* Action Buttons */}
             <div className="flex flex-wrap gap-3">
+
               <button
                 onClick={handleReadNow}
-                className="flex items-center gap-2 px-6 py-2.5 bg-brand text-text-white text-sm rounded-full font-medium hover:bg-brand-hover transition"
+                className="flex items-center gap-2 rounded-full bg-brand px-6 py-2.5 text-sm font-medium text-text-white transition hover:bg-brand-hover"
               >
                 <HiOutlineBookOpen size={18} />
                 Read Now
@@ -254,7 +294,7 @@ function BookDetail() {
 
               <button
                 onClick={handleAddToCollection}
-                className="flex items-center gap-2 px-6 py-2.5 bg-background-card border border-border-light text-text-primary text-sm rounded-full font-medium hover:bg-brand-light transition"
+                className="flex items-center gap-2 rounded-full border border-border-light bg-background-card px-6 py-2.5 text-sm font-medium text-text-primary transition hover:bg-brand-light"
               >
                 <HiOutlineBookmark size={18} />
                 Add to Collection
@@ -263,7 +303,7 @@ function BookDetail() {
               {isRead ? (
                 <button
                   disabled
-                  className="flex items-center gap-2 px-6 py-2.5 bg-background-card border border-border-light text-text-primary text-sm rounded-full font-medium opacity-70 cursor-not-allowed"
+                  className="flex cursor-not-allowed items-center gap-2 rounded-full border border-border-light bg-background-card px-6 py-2.5 text-sm font-medium text-text-primary opacity-70"
                 >
                   <HiOutlineCheckCircle size={18} />
                   Read
@@ -271,50 +311,68 @@ function BookDetail() {
               ) : (
                 <button
                   onClick={markAsRead}
-                  className="flex items-center gap-2 px-6 py-2.5 bg-background-card border border-border-light text-text-primary text-sm rounded-full font-medium hover:bg-brand-light transition"
+                  className="flex items-center gap-2 rounded-full border border-border-light bg-background-card px-6 py-2.5 text-sm font-medium text-text-primary transition hover:bg-brand-light"
                 >
                   <HiOutlineCheckCircle size={18} />
                   Mark as Read
                 </button>
               )}
+
             </div>
           </div>
         </section>
 
         {/* ========================= */}
-        {/* COMPACT BOOK DETAILS GRID */}
+        {/* BOOK DETAILS GRID */}
         {/* ========================= */}
-        <section className="w-full mt-10">
-          <div className="bg-background-card border border-border-light rounded-xl overflow-hidden">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5">
+        <section className="mt-10 w-full">
+          <div className="overflow-hidden rounded-xl border border-border-light bg-background-card">
+            <div className="grid grid-cols-2 gap-4 p-5 md:grid-cols-4">
+
               <div>
-                <p className="text-xs text-text-secondary mb-1">Author</p>
-                <p className="text-sm font-semibold text-text-primary truncate">
+                <p className="mb-1 text-xs text-text-secondary">
+                  Author
+                </p>
+
+                <p className="truncate text-sm font-semibold text-text-primary">
                   {book.author}
                 </p>
               </div>
+
               <div>
-                <p className="text-xs text-text-secondary mb-1">Category</p>
-                <p className="text-sm font-semibold text-text-primary truncate">
+                <p className="mb-1 text-xs text-text-secondary">
+                  Category
+                </p>
+
+                <p className="truncate text-sm font-semibold text-text-primary">
                   {book.category}
                 </p>
               </div>
+
               <div>
-                <p className="text-xs text-text-secondary mb-1">Pages</p>
+                <p className="mb-1 text-xs text-text-secondary">
+                  Pages
+                </p>
+
                 <p className="text-sm font-semibold text-text-primary">
                   {book.totalPages}
                 </p>
               </div>
+
               <div>
-                <p className="text-xs text-text-secondary mb-1">Rating</p>
+                <p className="mb-1 text-xs text-text-secondary">
+                  Rating
+                </p>
+
                 <p className="text-sm font-semibold text-text-primary">
                   {book.rating} / 5
                 </p>
               </div>
+
             </div>
           </div>
         </section>
-        
+
       </div>
     </div>
   );
