@@ -54,12 +54,15 @@ const Home = () => {
       console.warn("📚 [BOOKS] BOOK DATA:", response.data);
 
       setBookData(response.data);
+      console.log("Books Recieved")
 
       console.warn("📚 [BOOKS] setBookData completed");
     } catch (err) {
       console.error("❌ [BOOKS] Error fetching books:", err);
     }
   };
+
+  
 
   useEffect(() => {
     console.warn("📚 [BOOKS] useEffect running");
