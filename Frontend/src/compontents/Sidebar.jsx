@@ -90,7 +90,7 @@ const Sidebar = ({ open, setOpen }) => {
           border-r
           border-border-light
           bg-gradient-to-b
-          from-brand-light/75
+          from-brand-light
           via-white
           to-white
           transition-all
