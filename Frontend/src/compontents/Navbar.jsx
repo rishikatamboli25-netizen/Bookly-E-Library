@@ -166,7 +166,6 @@ const Navbar = ({ openSidebar }) => {
                 text-sm
                 outline-none
                 placeholder:text-text-secondary
-                sm:placeholder:text-[6px]
               "
             />
 
