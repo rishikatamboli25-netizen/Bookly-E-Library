@@ -17,7 +17,7 @@ router.put("/collections/:collectionId/books",authMiddleware,addBookToCollection
 router.put("/createnotes",authMiddleware,createNote);
 router.get("/getnotes", authMiddleware,getNotes);
 router.put("/mark-as-read", authMiddleware,MarkAsRead);
-router.put("/checkReadBooks", authMiddleware,checkReadBooks);
+router.get("/checkReadBooks", authMiddleware,checkReadBooks);
 router.get("/get-user-progress",authMiddleware, getUserProgress);
 router.put("/updatenote/:noteId", authMiddleware, updateNote);
 router.delete("/deletenote/:noteId", authMiddleware, deleteNote);

@@ -1,7 +1,4 @@
 import {BrowserRouter, Routes, Route } from "react-router-dom";
-import ScrollToTop from "./compontents/ScrollToTop.jsx";
-
-
 import Layout from "./compontents/Layout";
 
 import Home from "./Pages/Home";

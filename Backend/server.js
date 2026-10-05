@@ -38,6 +38,8 @@ app.get("/api", (req, res) => {
   res.send("Hello Rishika");
 });
 
+
+
 console.log(process.env.MONGODB_URI);
 
 mongoose.connect(process.env.MONGODB_URI).then(() => {
