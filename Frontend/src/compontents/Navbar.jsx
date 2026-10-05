@@ -156,7 +156,7 @@ const Navbar = ({ openSidebar }) => {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search books, authors, categories..."
+              placeholder="Search books"
               autoComplete="off"
               className="
                 h-full
@@ -166,7 +166,7 @@ const Navbar = ({ openSidebar }) => {
                 text-sm
                 outline-none
                 placeholder:text-text-secondary
-                sm:placeholder:text-sm
+                sm:placeholder:text-[6px]
               "
             />
 
