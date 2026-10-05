@@ -84,7 +84,7 @@ const Sidebar = ({ open, setOpen }) => {
           left-0
           z-50
           flex
-          h-screen
+          h-[100dvh]
           flex-col
           overflow-hidden
           border-r
