@@ -12,16 +12,27 @@ const PORT = process.env.PORT || 5000;
 
 // CORS configuration using FRONTEND_URL with localhost fallback
 const allowedOrigins = (
-  process.env.FRONTEND_URLS || "http://localhost:5173"
-).split(",");
+  process.env.FRONTEND_URLS ||
+  "http://localhost:5173"
+)
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
 app.use(
   cors({
     origin(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (
+        !origin ||
+        allowedOrigins.includes(origin)
+      ) {
         callback(null, true);
       } else {
-        callback(new Error("Not allowed by CORS"));
+        callback(
+          new Error(
+            `Not allowed by CORS: ${origin}`
+          )
+        );
       }
     },
     credentials: true,
