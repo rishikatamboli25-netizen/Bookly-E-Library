@@ -2,6 +2,7 @@ import express from "express";
 
 import {
   getBooks,
+  getBookFilters,
   findBook,
   getBookForReading,
   streamBookFile,
@@ -9,13 +10,50 @@ import {
 
 const router = express.Router();
 
+// ============================================================
+// BOOK DISCOVERY
+// ============================================================
 
-router.get("/getBooks", getBooks);
+router.get(
+  "/getBooks",
+  getBooks
+);
 
-router.get("/:bookId/read", getBookForReading);
+router.get(
+  "/filters",
+  getBookFilters
+);
 
-router.get("/:bookId/file", streamBookFile);
+// ============================================================
+// READING
+// ============================================================
 
-router.get("/:bookId", findBook);
+// Get readable book information
+router.get(
+  "/:bookId/read",
+  getBookForReading
+);
+
+// EPUB endpoint
+router.get(
+  "/:bookId/file.epub",
+  streamBookFile
+);
+
+// Generic file endpoint
+// Used by PDFReader
+router.get(
+  "/:bookId/file",
+  streamBookFile
+);
+
+// ============================================================
+// BOOK DETAIL
+// ============================================================
+
+router.get(
+  "/:bookId",
+  findBook
+);
 
 export default router;

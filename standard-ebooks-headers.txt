@@ -1,0 +1,19 @@
+HTTP/1.1 200 OK
+Date: Tue, 06 Oct 2026 06:52:50 GMT
+Server: Apache
+Set-Cookie: download-count=1; expires=Tue, 20 Oct 2026 06:52:50 GMT; Max-Age=1209600; path=/; domain=standardebooks.org; secure; SameSite=Lax
+Strict-Transport-Security: max-age=15768000
+Upgrade: h2,h2c
+Connection: Upgrade
+Vary: Accept-Encoding
+X-Frame-Options: sameorigin
+X-Content-Type-Options: nosniff
+X-Xss-Protection: 1; mode=block
+Referrer-Policy: strict-origin-when-cross-origin
+Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline';
+Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=()
+Access-Control-Allow-Origin: *
+Cache-Control: no-store
+Transfer-Encoding: chunked
+Content-Type: application/xhtml+xml; charset=utf-8
+

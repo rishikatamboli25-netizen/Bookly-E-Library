@@ -20,6 +20,7 @@ const Layout = () => {
       "/Notedetail",
       "/Collection",
       "/Profile",
+      "/Discover",
     ].includes(location.pathname) || isReaderPage;
 
   // Render clean full-screen layout for the Reader page

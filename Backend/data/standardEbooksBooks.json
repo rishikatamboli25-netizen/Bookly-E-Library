@@ -1,0 +1,1868 @@
+[
+  {
+    "identifier": "jane-austen_pride-and-prejudice",
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "description": "<p><i>Pride and Prejudice</i> may today be one of <a href=\"https://standardebooks.org/ebooks/jane-austen\">Jane Austen’s</a> most enduring novels, having been widely adapted to stage, screen, and other media since its publication in 1813. The novel tells the tale of five unmarried sisters and how their lives change when a wealthy eligible bachelor moves in to their neighborhood.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/jane-austen_pride-and-prejudice/master/src/epub/images/cover.svg",
+    "category": "Fiction",
+    "subjects": [
+      "England--Fiction",
+      "Young women--Fiction",
+      "Love stories",
+      "Sisters--Fiction",
+      "Domestic fiction",
+      "Courtship--Fiction",
+      "Social classes--Fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2014,
+    "releaseDate": "2014-05-25T00:00:00.000Z",
+    "catalogRank": 1,
+    "catalogRankedAt": "2026-10-06T09:24:53.638Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "jane-austen_pride-and-prejudice.epub",
+        "url": "https://standardebooks.org/ebooks/jane-austen/pride-and-prejudice/downloads/jane-austen_pride-and-prejudice.epub?source=download",
+        "size": 831959,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/jane-austen/pride-and-prejudice"
+    }
+  },
+  {
+    "identifier": "mary-shelley_frankenstein",
+    "title": "Frankenstein",
+    "author": "Mary Shelley",
+    "description": "<p><a href=\"https://standardebooks.org/ebooks/mary-shelley\">Mary Shelley</a> (then Godwin) and Percy Bysshe Shelley were visiting their friend Lord Byron in Geneva one rainy summer. With the weather against them, they decided to spend their time writing ghost stories for each other. <i>Frankenstein</i> is Mary Shelley’s submission to their contest, later published anonymously in 1818.</p> <p>Victor Frankenstein, a strange but brilliant scientist, discovers a method of imparting life to inanimate matter. The Monster is thus born: a hideous, 8-foot-tall creature of muscle, speed, and intellect. Frankenstein’s rejection of his appalling creation sends it into a spiral of despair, and Frankenstein’s life is never the same.</p> <p>Considered by many to be the first science fiction novel, <i>Frankenstein</i> is a powerful narrative that explores complex themes of belonging, morality, and the consequences of the power over life and death. This edition is based on Shelley’s revised 1831 edition.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/mary-shelley_frankenstein/master/src/epub/images/cover.svg",
+    "category": "Science",
+    "subjects": [
+      "Science fiction",
+      "Horror tales",
+      "Gothic fiction (Literary genre)",
+      "Scientists--Fiction",
+      "Monsters--Fiction",
+      "Frankenstein, Victor (Fictitious character)--Fiction",
+      "Frankenstein's monster (Fictitious character)--Fiction"
+    ],
+    "genres": [
+      "Horror",
+      "Science Fiction"
+    ],
+    "language": "English",
+    "year": 2015,
+    "releaseDate": "2015-05-12T00:01:00.000Z",
+    "catalogRank": 2,
+    "catalogRankedAt": "2026-10-06T09:25:02.269Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "mary-shelley_frankenstein.epub",
+        "url": "https://standardebooks.org/ebooks/mary-shelley/frankenstein/downloads/mary-shelley_frankenstein.epub?source=download",
+        "size": 685797,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/mary-shelley/frankenstein"
+    }
+  },
+  {
+    "identifier": "edmund-burke_reflections-on-the-revolution-in-france",
+    "title": "Reflections on the Revolution in France",
+    "author": "Edmund Burke",
+    "description": "<p>Written in 1790 during the early stages of the French Revolution, <i>Reflections on the Revolution in France</i> is regarded as one of the foundational texts of conservative political theory. In it, the British philosopher and statesman <a href=\"https://standardebooks.org/ebooks/edmund-burke\">Edmund Burke</a> critiques the political program of the French Revolution, dismissing it as a political order founded on abstract principles. Instead, Burke advocates for constitutional rule based on received institutions, incremental reform, and sensitivity to the vagaries of human nature. Some of Burke’s predictions, such as the revolutionary government becoming a “mischievous and ignoble oligarchy” and the politicization of the military bringing about a “military republic,” proved to be prescient in the face of the Reign of Terror and Napoleon’s coup of 18 Brumaire.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/edmund-burke_reflections-on-the-revolution-in-france/master/src/epub/images/cover.svg",
+    "category": "Philosophy",
+    "subjects": [
+      "Great Britain--Politics and government--1760-1820",
+      "Political science--Early works to 1800"
+    ],
+    "genres": [
+      "Nonfiction",
+      "Philosophy"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-09-11T15:04:18.000Z",
+    "catalogRank": 3,
+    "catalogRankedAt": "2026-10-06T09:25:12.205Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "edmund-burke_reflections-on-the-revolution-in-france.epub",
+        "url": "https://standardebooks.org/ebooks/edmund-burke/reflections-on-the-revolution-in-france/downloads/edmund-burke_reflections-on-the-revolution-in-france.epub?source=download",
+        "size": 598801,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/edmund-burke/reflections-on-the-revolution-in-france"
+    }
+  },
+  {
+    "identifier": "bram-stoker_dracula",
+    "title": "Dracula",
+    "author": "Bram Stoker",
+    "description": "<p><i>Dracula</i> is one of the most famous horror novels, responsible not just for introducing the eponymous Count Dracula, but for laying the foundations for many of the common tropes we see in modern horror fiction.</p> <p>Count Dracula isn’t the first vampire to have graced the pages of Western literature—that honor belongs to Lord Ruthven in “<a href=\"https://standardebooks.org/ebooks/john-william-polidori/the-vampire\">The Vampire</a>,” a short story by <a href=\"https://standardebooks.org/ebooks/john-william-polidori\">John William Polidori</a>—but Dracula is the vampire on which the modern vampire trope is based.</p> <p><i>Dracula</i> wasn’t as famous in its day as it is today; readers of the time seemed to enjoy it as nothing more than a good story, and <a href=\"https://standardebooks.org/ebooks/bram-stoker\">Stoker</a> died nearly penniless. But its long-lasting influence is undeniable, and for all its age <i>Dracula</i> remains a gripping, fast-paced, and enjoyable read.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/bram-stoker_dracula/master/src/epub/images/cover.svg",
+    "category": "Fiction",
+    "subjects": [
+      "Dracula, Count (Fictitious character)--Fiction",
+      "Transylvania (Romania)--Fiction",
+      "Vampires--Fiction",
+      "Whitby (England)--Fiction"
+    ],
+    "genres": [
+      "Fiction",
+      "Horror"
+    ],
+    "language": "English",
+    "year": 2014,
+    "releaseDate": "2014-05-25T00:00:00.000Z",
+    "catalogRank": 4,
+    "catalogRankedAt": "2026-10-06T09:25:25.997Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "bram-stoker_dracula.epub",
+        "url": "https://standardebooks.org/ebooks/bram-stoker/dracula/downloads/bram-stoker_dracula.epub?source=download",
+        "size": 633860,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/bram-stoker/dracula"
+    }
+  },
+  {
+    "identifier": "c-h-spurgeon_the-art-of-illustration",
+    "title": "The Art of Illustration",
+    "author": "C. H. Spurgeon",
+    "description": "<p>Though most well-known as the “Prince of Preachers,” <a href=\"https://standardebooks.org/ebooks/c-h-spurgeon\">C. H. Spurgeon</a> was also the founder of and a lecturer at the Pastor’s College in London, later renamed “Spurgeon’s College” in his honor. <i>The Art of Illustration</i> is a posthumously published series of lectures given by Spurgeon late in his life to students at the college on the subject of improving their sermons through the use of metaphors, anecdotes, and other illustrations to strengthen the understanding and retention of the sermon by its listeners. Together, the lectures form a complete guide to the use of illustrations in preaching, from the introduction on how illustrations provide value, to demonstrating how to find or create illustrations, not only from mundane, everyday stories but also from the natural sciences. Being at the same time an academic, a voracious reader, and one of the most widely published Baptist preachers in history, Spurgeon brings a unique combination of expertise to the subject of illustration in public speech.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/c-h-spurgeon_the-art-of-illustration/master/src/epub/images/cover.svg",
+    "category": "Science",
+    "subjects": [
+      "Preaching",
+      "Homiletical illustrations"
+    ],
+    "genres": [
+      "Nonfiction",
+      "Spirituality"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-09-09T02:14:41.000Z",
+    "catalogRank": 5,
+    "catalogRankedAt": "2026-10-06T09:25:41.517Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "c-h-spurgeon_the-art-of-illustration.epub",
+        "url": "https://standardebooks.org/ebooks/c-h-spurgeon/the-art-of-illustration/downloads/c-h-spurgeon_the-art-of-illustration.epub?source=download",
+        "size": 624768,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/c-h-spurgeon/the-art-of-illustration"
+    }
+  },
+  {
+    "identifier": "theodore-roosevelt_a-book-lovers-holidays-in-the-open",
+    "title": "A Book-Lover’s Holidays in the Open",
+    "author": "Theodore Roosevelt",
+    "description": "<p><i>A Book-Lover’s Holidays in the Open</i> is a travelogue written by former U.S. president <a href=\"https://standardebooks.org/ebooks/theodore-roosevelt\">Theodore Roosevelt</a> about his expeditions through the Americas following his presidency in the early twentieth century. In it, Roosevelt takes readers on a cougar hunt in the Grand Canyon, through the Andes and Northern Patagonia, to a Mississippi River bird reserve, and to a Hopi snake dance, among other exotic and beautiful locations.</p> <p>Roosevelt blends his love for reading and literature with these adventures, giving readers a glimpse into the books he would have brought on his outdoor journeys.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/theodore-roosevelt_a-book-lovers-holidays-in-the-open/master/src/epub/images/cover.svg",
+    "category": "Non-fiction",
+    "subjects": [
+      "Hunting",
+      "South America--Description and travel",
+      "Books and reading--United States",
+      "Birds--Conservation",
+      "Southwest, New--Description and travel"
+    ],
+    "genres": [
+      "Nonfiction",
+      "Travel"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-09-04T20:20:13.000Z",
+    "catalogRank": 6,
+    "catalogRankedAt": "2026-10-06T09:25:48.714Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "theodore-roosevelt_a-book-lovers-holidays-in-the-open.epub",
+        "url": "https://standardebooks.org/ebooks/theodore-roosevelt/a-book-lovers-holidays-in-the-open/downloads/theodore-roosevelt_a-book-lovers-holidays-in-the-open.epub?source=download",
+        "size": 1943964,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/theodore-roosevelt/a-book-lovers-holidays-in-the-open"
+    }
+  },
+  {
+    "identifier": "herman-melville_moby-dick",
+    "title": "Moby Dick",
+    "author": "Herman Melville",
+    "description": "<p>“Call me Ishmael” says <i>Moby Dick</i>’s protagonist, and with this famous first line launches one of the acclaimed great American novels. Part adventure story, part quest for vengeance, part biological textbook, and part whaling manual, <i>Moby Dick</i> was first published in 1851. The story follows Ishmael as he abandons his humdrum life on shore for an adventure on the waves. Finding the whaler <i>Pequod</i> at harbor in Nantucket, he signs up for a three-year term without meeting the captain of the ship, a mysterious figure called Ahab. It’s only well into the voyage that Ahab’s thirst for vengeance against the eponymous white whale Moby Dick—and the consequences—become clear.</p> <p>The novel is semi-autobiographical: <a href=\"https://standardebooks.org/ebooks/herman-melville\">Herman Melville</a> had had his own experience of whaling, having spent a year and a half aboard a whaling ship and further years traveling the world in the early 1840s. Melville used the knowledge gained from his experiences and wide reading on the subject to furnish <i>Moby Dick</i> with an almost encyclopedic quality. The literary style varies widely, veering from soliloquies and staged scenes to dream sequences to comprehensive lists of ships’ provisions, but everything serves to further detail the world that’s being painted.</p> <p>Presented here is the New York edition, which was published later than the London edition and reverted numerous changes the original publishers had made, as well as including the initially omitted epilogue.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/herman-melville_moby-dick/master/src/epub/images/cover.svg",
+    "category": "Psychology",
+    "subjects": [
+      "Whaling--Fiction",
+      "Sea stories",
+      "Psychological fiction",
+      "Ship captains--Fiction",
+      "Adventure stories",
+      "Mentally ill--Fiction",
+      "Ahab, Captain (Fictitious character)--Fiction",
+      "Whales--Fiction",
+      "Whaling ships--Fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2018,
+    "releaseDate": "2018-03-27T22:02:30.000Z",
+    "catalogRank": 7,
+    "catalogRankedAt": "2026-10-06T09:25:51.738Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "herman-melville_moby-dick.epub",
+        "url": "https://standardebooks.org/ebooks/herman-melville/moby-dick/downloads/herman-melville_moby-dick.epub?source=download",
+        "size": 1165523,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/herman-melville/moby-dick"
+    }
+  },
+  {
+    "identifier": "h-c-mcneile_the-final-count",
+    "title": "The Final Count",
+    "author": "H. C. McNeile",
+    "description": "<p>Chemist Robin Gaunt believes he’s discovered the key to lasting world peace—in the form of the horrific poison gas he’s just perfected. Gaunt is certain that once the British government has the formula, no nation will ever dare start a war, for fear of the consequences. But Gaunt vanishes before can turn over the formula, and people start turning up dead—victims of some unknown poison.</p> <p>It doesn’t take long for Bulldog Drummond to be on the case—and it doesn’t take long for him to realize that the man behind the kidnapping and murders is his arch enemy Carl Peterson. This leads to a final confrontation worthy of a Bond movie, as the hero and the evil genius face off in a giant zeppelin loaded with deadly toxin.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/h-c-mcneile_the-final-count/master/src/epub/images/cover.svg",
+    "category": "History",
+    "subjects": [
+      "Detective and mystery stories",
+      "English fiction--20th century",
+      "World War, 1914-1918--Veterans--Fiction",
+      "Drummond, Bulldog (Fictitious character)--Fiction"
+    ],
+    "genres": [
+      "Adventure",
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-09-08T20:43:00.000Z",
+    "catalogRank": 8,
+    "catalogRankedAt": "2026-10-06T09:25:54.234Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "h-c-mcneile_the-final-count.epub",
+        "url": "https://standardebooks.org/ebooks/h-c-mcneile/the-final-count/downloads/h-c-mcneile_the-final-count.epub?source=download",
+        "size": 410653,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/h-c-mcneile/the-final-count"
+    }
+  },
+  {
+    "identifier": "arthur-conan-doyle_brigadier-gerard-stories",
+    "title": "Brigadier Gerard Stories",
+    "author": "Arthur Conan Doyle",
+    "description": "<p>When <a href=\"https://standardebooks.org/ebooks/arthur-conan-doyle\">Arthur Conan Doyle’s</a> gallant French cavalryman Brigadier Gerard first appeared in print, the reading public was still reeling from the “death” of Conan Doyle’s most famous creation, <a href=\"https://standardebooks.org/collections/sherlock-holmes\">Sherlock Holmes</a>, the previous year. What they found in Brigadier Gerard was someone very different from the intense, emotionless consulting detective: a courageous and skilled, but vain and emotional, soldier-adventurer in search of glory for himself and for France, devoted to his elderly mother and the Emperor Napoleon in the extreme, and witness to some of the greatest events in European history as he fought the men and wooed the women of countless countries during the Napoleonic Wars. The Gerard of these stories is aged and retired, but vividly recounts the grand adventures of his youth, weaving romance and adventure, conflict and cunning, and world-changing events of military and political history with the human drama of those caught up in a turbulent era of war. His tales are thrilling ones in which he—of course—plays the leading role.</p> <p>In writing the Brigadier’s tales of his adventures, Conan Doyle brought to bear his own knowledge of Napoleonic history, informed by the insights on warfare he gained in South Africa during the Boer War. His interest in sport is displayed in the tales which touch upon boxing, fox-hunting, and cricket. His keen eye as a social observer is evident in a number of stories where the Brigadier’s misperceptions of English society, prejudices from his own French viewpoint, and errors from his limited perspective of some events, highlight the idiosyncrasies of English life in both the upper and lower classes during the late Georgian and Regency eras.</p> <p>In the dozen and a half stories collected here, readers will experience the Napoleonic Era from a perspective very unlike that of <i><a href=\"https://standardebooks.org/ebooks/leo-tolstoy/war-and-peace/louise-maude_aylmer-maude\">War and Peace</a></i> or other Napoleonic memoirs, histories, or works of fiction.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/arthur-conan-doyle_brigadier-gerard-stories/master/src/epub/images/cover.svg",
+    "category": "History",
+    "subjects": [
+      "Napoleonic Wars, 1800-1815--Fiction",
+      "Adventure stories, English",
+      "War stories, English",
+      "France--History, Military--19th century--Fiction"
+    ],
+    "genres": [
+      "Adventure",
+      "Fiction",
+      "Shorts"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-09-03T20:55:01.000Z",
+    "catalogRank": 9,
+    "catalogRankedAt": "2026-10-06T09:25:57.423Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "arthur-conan-doyle_brigadier-gerard-stories.epub",
+        "url": "https://standardebooks.org/ebooks/arthur-conan-doyle/brigadier-gerard-stories/downloads/arthur-conan-doyle_brigadier-gerard-stories.epub?source=download",
+        "size": 887550,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/arthur-conan-doyle/brigadier-gerard-stories"
+    }
+  },
+  {
+    "identifier": "george-macdonald_within-and-without",
+    "title": "Within and Without",
+    "author": "George MacDonald",
+    "description": "<p>Brother Julian is far from an exemplary monk: he takes no joy in monastery life, feels no connection with God, and continuously dwells on the mysterious life he left behind. When he learns that a woman from his past needs his help, he must choose between his duty to the Church and his duty to his conscience.</p> <p><a href=\"https://standardebooks.org/ebooks/george-macdonald\">George MacDonald’s</a> earliest published work, and his only poetic drama, <i>Within and Without</i> chronicles a monk’s journey to know God as he experiences love, death, and joy. Notably, it contains one of MacDonald’s earliest works of fantasy prose: a passage read by Julian from the fictitious book, <i>The Singer</i>.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/george-macdonald_within-and-without/master/src/epub/images/cover.svg",
+    "category": "Science",
+    "subjects": [
+      "Christian poetry, Scottish",
+      "Scottish poetry--19th century",
+      "Verse drama, English"
+    ],
+    "genres": [
+      "Drama"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-09-08T21:53:41.000Z",
+    "catalogRank": 10,
+    "catalogRankedAt": "2026-10-06T09:26:00.076Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "george-macdonald_within-and-without.epub",
+        "url": "https://standardebooks.org/ebooks/george-macdonald/within-and-without/downloads/george-macdonald_within-and-without.epub?source=download",
+        "size": 690323,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/george-macdonald/within-and-without"
+    }
+  },
+  {
+    "identifier": "f-scott-fitzgerald_the-great-gatsby",
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "description": "<p><i>The Great Gatsby</i> is a novel that needs no introduction for a certain generation of American readers. Long taught as required reading in American schools, critics have consistently held it up alongside <i><a href=\"https://standardebooks.org/ebooks/herman-melville/moby-dick\">Moby Dick</a></i>, <i><a href=\"https://standardebooks.org/ebooks/mark-twain/the-adventures-of-huckleberry-finn\">Huck Finn</a></i>, and <i>To Kill a Mockingbird</i> as perhaps the quintessential Great American Novel.</p> <p>Nick Carraway is a young Midwestern man freshly arrived in New York to make his fortune. He rents a shabby apartment in Long Island next door to a sumptuous mansion: the home of the mysterious and wealthy Jay Gatsby. Carraway spends time catching up with his distant cousin Daisy and her industry-baron husband Tom before being invited to one of Gatsby’s wildly lavish weekend parties. There he meets Jordan, a flapper and a golf star, and an intricate web of romances and betrayals begins to unfold.</p> <p>The novel is a colorful study of America’s Jazz Age—a term said to be coined by <a href=\"https://standardebooks.org/ebooks/f-scott-fitzgerald\">Fitzgerald</a> himself—complete with wealthy socialites living in hedonistic abandon, libertine flappers, jazz bands, roaring roadsters, and greasy speakeasies populated with shady grifters. Contrasted against the glamorous lives of wealthy socialites is the entrenched lower class, who live in gray, dingy squalor among smoldering ash-heaps. Fitzgerald uses the setting to examine the American Dream: the idea that anyone in America can achieve success through hard work and dedication. Gatsby has spent his life reaching for his dream. Some say he’s already achieved it. But has he? Is the dream even real for the hard-working poor that Gatsby and Tom race past in their glittering cars on the way to the decadent city?</p> <p>Fitzgerald wrote much of his real life into the novel. Like Carraway, he was a Midwesterner educated at an Ivy-league school who went to live on Long Island. Despite his meager finances he hobnobbed with socialites, and spent his career struggling for money to maintain the grand style his romantic interests were accustomed to.</p> <p>The cover art, titled <i>Celestial Eyes</i>, was commissioned from Francis Cugat, who completed it before the novel was finished. The huge eyes gazing down on the blazing city so moved Fitzgerald that he wrote them into the story.</p> <p>Fitzgerald saw the novel as a purely artistic work, free of the pulp pandering required by his shorter commissions—but despite that, contemporary reviews were mixed, and it sold poorly. Fitzgerald thought it a failure, and died believing the novel to be fatally obscure. Only during World War II did it come back to the public consciousness, buoyed by the support of a ring of writers and critics and printed as an Armed Service Edition to be sent to soldiers on the front. Now it is an American classic.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/f-scott-fitzgerald_the-great-gatsby/master/src/epub/images/cover.svg",
+    "category": "Psychology",
+    "subjects": [
+      "Traffic accidents--Fiction",
+      "First loves--Fiction",
+      "Rich people--Fiction",
+      "Mistresses--Fiction",
+      "Revenge--Fiction",
+      "Long Island (N.Y.)--Fiction",
+      "Psychological fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2021,
+    "releaseDate": "2021-01-01T22:22:26.000Z",
+    "catalogRank": 11,
+    "catalogRankedAt": "2026-10-06T09:26:02.762Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "f-scott-fitzgerald_the-great-gatsby.epub",
+        "url": "https://standardebooks.org/ebooks/f-scott-fitzgerald/the-great-gatsby/downloads/f-scott-fitzgerald_the-great-gatsby.epub?source=download",
+        "size": 442470,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/f-scott-fitzgerald/the-great-gatsby"
+    }
+  },
+  {
+    "identifier": "oscar-wilde_the-picture-of-dorian-gray",
+    "title": "The Picture of Dorian Gray",
+    "author": "Oscar Wilde",
+    "description": "<p><i>The Picture of Dorian Gray</i> was first published as a serial in <i>Lippencott’s Monthly Magazine</i>, and the publishers thought it would so offend readers that they removed nearly 500 words without <a href=\"https://standardebooks.org/ebooks/oscar-wilde\">Wilde’s</a> approval. Wilde soon expanded it and republished it as a novel, including a short preface justifying his art. Even though his contemporaries considered it so offensive that some argued for his prosecution, <i>Dorian Gray</i> today survives as a classic philosophical novel that explores themes of aestheticism and double lives. Couched in Wilde’s trademark cutting wit, <i>Dorian Gray</i> is still being adapted today, with Dorian and his moldering portrait remaining cultural touchstones.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/oscar-wilde_the-picture-of-dorian-gray/master/src/epub/images/cover.svg",
+    "category": "Philosophy",
+    "subjects": [
+      "Appearance (Philosophy)--Fiction",
+      "Conduct of life--Fiction",
+      "Portraits--Fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2014,
+    "releaseDate": "2014-05-25T00:00:00.000Z",
+    "catalogRank": 12,
+    "catalogRankedAt": "2026-10-06T09:26:05.709Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "oscar-wilde_the-picture-of-dorian-gray.epub",
+        "url": "https://standardebooks.org/ebooks/oscar-wilde/the-picture-of-dorian-gray/downloads/oscar-wilde_the-picture-of-dorian-gray.epub?source=download",
+        "size": 634177,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/oscar-wilde/the-picture-of-dorian-gray"
+    }
+  },
+  {
+    "identifier": "charlotte-bronte_jane-eyre",
+    "title": "Jane Eyre",
+    "author": "Charlotte Brontë",
+    "description": "<p>Jane Eyre experienced abuse at a young age, not only from her aunt—who raised her after both her parents died—but also from the headmaster of Lowood Institution, where she is sent away to. After ten years of living and teaching at Lowood Jane decides she is ready to see more of the world and takes a position as a governess at Thornfield Hall. Jane later meets the mysterious master of Thornfield Hall, Mr. Rochester, and becomes drawn to him.</p> <p><a href=\"https://standardebooks.org/ebooks/charlotte-bronte\">Charlotte Brontë</a> published <i>Jane Eyre: An Autobiography</i> on October 16th 1847 using the pen name “Currer Bell.” The novel is known for revolutionizing prose fiction, and is considered to be ahead of its time because of how it deals with topics of class, religion, and feminism.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/charlotte-bronte_jane-eyre/master/src/epub/images/cover.svg",
+    "category": "Educational",
+    "subjects": [
+      "Orphans--Fiction",
+      "England--Fiction",
+      "Young women--Fiction",
+      "Love stories",
+      "Governesses--Fiction",
+      "Fathers and daughters--Fiction",
+      "Mentally ill women--Fiction",
+      "Charity-schools--Fiction",
+      "Married people--Fiction",
+      "Country homes--Fiction",
+      "Bildungsromans"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2019,
+    "releaseDate": "2019-11-10T19:43:54.000Z",
+    "catalogRank": 13,
+    "catalogRankedAt": "2026-10-06T09:26:09.591Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "charlotte-bronte_jane-eyre.epub",
+        "url": "https://standardebooks.org/ebooks/charlotte-bronte/jane-eyre/downloads/charlotte-bronte_jane-eyre.epub?source=download",
+        "size": 933471,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/charlotte-bronte/jane-eyre"
+    }
+  },
+  {
+    "identifier": "h-g-wells_the-wheels-of-chance",
+    "title": "The Wheels of Chance",
+    "author": "H. G. Wells",
+    "description": "<p><i>The Wheels of Chance</i> is one of <a href=\"https://standardebooks.org/ebooks/h-g-wells\">H. G. Wells’</a> comic novels, published in 1896. It satirizes the era’s craze for cycling in Britain, soon after bicycles became easily available and affordable, and before the rise of the automobile.</p> <p>The novel features the experiences of a humble draper’s assistant, Mr. Hoopdriver, who buys a second-hand bicycle and sets off on a touring holiday. Partway through his trip he encounters an attractive young woman dressed in cycling gear: that is, with pants rather than a skirt. When it appears that the young lady is in trouble, Hoopdriver comes to the rescue, and a series of amusing incidents ensue. As part of its comedy, the book makes some sharp observations about British class structure.</p> <p><i>The Wheels of Chance</i> was published shortly after Wells’ first venture into science fiction with <i><a href=\"https://standardebooks.org/ebooks/h-g-wells/the-time-machine\">The Time Machine</a></i>. Because they were both short works, some early editions paired the two books into one volume.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/h-g-wells_the-wheels-of-chance/master/src/epub/images/cover.svg",
+    "category": "Science",
+    "subjects": [
+      "England--Social conditions--19th century",
+      "Cycling in Literature"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-08-25T17:37:55.000Z",
+    "catalogRank": 14,
+    "catalogRankedAt": "2026-10-06T09:26:12.299Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "h-g-wells_the-wheels-of-chance.epub",
+        "url": "https://standardebooks.org/ebooks/h-g-wells/the-wheels-of-chance/downloads/h-g-wells_the-wheels-of-chance.epub?source=download",
+        "size": 847059,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/h-g-wells/the-wheels-of-chance"
+    }
+  },
+  {
+    "identifier": "w-h-davies_the-autobiography-of-a-super-tramp",
+    "title": "The Autobiography of a Super-Tramp",
+    "author": "W. H. Davies",
+    "description": "<p><i>The Autobiography of a Super-Tramp</i>, poet <a href=\"https://standardebooks.org/ebooks/w-h-davies\">W. H. Davies’</a> autobiography, recalls spurning a youth of subsistence and squalor in England to pursue a life of travel abroad. With quiet and understated prose, Davies recounts a tramp’s life: riding railroad boxcars and evading fare collectors, cadging free meals, working as a migrant field hand, and dealing with corrupt law enforcement and judges. Each encounter gives Davies a chance to share his observations on the state of America and England at the turn of the 20th century.</p> <p>Davies’ anti-authoritarianism inspired contemporaries like George Bernard Shaw—who both lobbied for the book’s publication and provided its preface—as well as future drifters like Christopher “Alexander Supertramp” McCandless.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/w-h-davies_the-autobiography-of-a-super-tramp/master/src/epub/images/cover.svg",
+    "category": "Non-fiction",
+    "subjects": [
+      "Poets, English--20th century--Biography",
+      "Davies, W. H. (William Henry), 1871-1940",
+      "Tramps--Biography"
+    ],
+    "genres": [
+      "Autobiography",
+      "Travel"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-09-22T15:40:20.000Z",
+    "catalogRank": 15,
+    "catalogRankedAt": "2026-10-06T09:26:14.852Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "w-h-davies_the-autobiography-of-a-super-tramp.epub",
+        "url": "https://standardebooks.org/ebooks/w-h-davies/the-autobiography-of-a-super-tramp/downloads/w-h-davies_the-autobiography-of-a-super-tramp.epub?source=download",
+        "size": 795863,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/w-h-davies/the-autobiography-of-a-super-tramp"
+    }
+  },
+  {
+    "identifier": "arthur-conan-doyle_the-adventures-of-sherlock-holmes",
+    "title": "The Adventures of Sherlock Holmes",
+    "author": "Arthur Conan Doyle",
+    "description": "<p><i>The Adventures of Sherlock Holmes</i> was the first collection of <a href=\"https://standardebooks.org/collections/sherlock-holmes\">Sherlock Holmes</a> short stories <a href=\"https://standardebooks.org/ebooks/arthur-conan-doyle\">Conan Doyle</a> published in book form, following the popular success of the novels <a href=\"https://standardebooks.org/ebooks/arthur-conan-doyle/a-study-in-scarlet\"><i>A Study in Scarlet</i></a> and <a href=\"https://standardebooks.org/ebooks/arthur-conan-doyle/the-sign-of-the-four\"><i>The Sign of the Four</i></a>, which introduced the characters of Dr. John Watson and the austere analytical detective Sherlock Holmes.</p> <p>The collection contains twelve stories, all originally published in <i>The Strand Magazine</i> between July 1891 and June 1892. Narrated by the first-person voice of Dr. Watson, they involve him and Holmes solving a series of mysterious cases.</p> <p>Some of the more well-known stories in this collection are “A Scandal in Bohemia,” in which Holmes comes up against a worthy opponent in the form of Irene Adler, whom Holmes forever after admiringly refers to as <em>the</em> woman; “The Redheaded League,” involving a bizarre scheme offering a well-paid sinecure to redheaded men; and “The Speckled Band,” in which Holmes and Watson save a young woman from a terrible death.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/arthur-conan-doyle_the-adventures-of-sherlock-holmes/master/src/epub/images/cover.svg",
+    "category": "Self-help",
+    "subjects": [
+      "Holmes, Sherlock (Fictitious character)--Fiction",
+      "Private investigators--England--Fiction",
+      "Detective and mystery stories, English"
+    ],
+    "genres": [
+      "Fiction",
+      "Mystery",
+      "Shorts"
+    ],
+    "language": "English",
+    "year": 2018,
+    "releaseDate": "2018-05-08T02:24:50.000Z",
+    "catalogRank": 16,
+    "catalogRankedAt": "2026-10-06T09:26:17.293Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "arthur-conan-doyle_the-adventures-of-sherlock-holmes.epub",
+        "url": "https://standardebooks.org/ebooks/arthur-conan-doyle/the-adventures-of-sherlock-holmes/downloads/arthur-conan-doyle_the-adventures-of-sherlock-holmes.epub?source=download",
+        "size": 742083,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/arthur-conan-doyle/the-adventures-of-sherlock-holmes"
+    }
+  },
+  {
+    "identifier": "jane-c-loudon_the-mummy",
+    "title": "The Mummy!",
+    "author": "Jane C. Loudon",
+    "description": "<p>In the twenty-second century, under a government headed by female sovereigns, England finds itself in an age of relative tranquility after three centuries of political volatility. Edric Montagu, the younger son of a baronet, finds himself the subject of a scheme to arrange his marriage to the niece of the Duke of Cornwall—a scheme in which he wants no part. Disillusioned and restless, Edric finds himself enticed by the strange theories proposed by Dr. Entwerfen, a scientist who believes that by using the power of electricity, it may be possible to reanimate a sufficiently well-preserved corpse. Defying his father, Edric sets off for Egypt to engage in a bold experiment to revive the mummy of King Cheops, utterly ignorant of exactly what he’s about to awaken—or the profound fate that it will soon unleash upon the English empire.</p> <p><i>The Mummy! A Tale of the Twenty-Second Century</i> was first published in 1827, with a second edition published in 1828 that made substantial changes. <a href=\"https://standardebooks.org/ebooks/jane-c-loudon\">Jane C. Loudon</a>, orphaned at age seventeen, wrote it as a means to an income. It was published anonymously, only later being publicly attributed to her.</p> <p><i>The Mummy!</i> is the first work of science fiction to feature a resurrected mummy. It was written in an era defined by Egyptomania spurred by Napoleon’s recent invasion of Egypt. The future society that Loudon imagines juxtaposes traditional 19th century British society with various technological advances, some conceptually familiar to a 21st century reader, and others both ambitious and fantastical. The modern reader will still find some of Louden’s imagined advancements remarkably forward-looking, like criminal trials argued by automaton lawyers that can speak every language, painting a picture of a future that still feels like science fiction two centuries later.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/jane-c-loudon_the-mummy/master/src/epub/images/cover.svg",
+    "category": "Philosophy",
+    "subjects": [
+      "Science fiction",
+      "Feminist fiction",
+      "Twenty-second century--Fiction"
+    ],
+    "genres": [
+      "Science Fiction"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-08-24T16:50:07.000Z",
+    "catalogRank": 17,
+    "catalogRankedAt": "2026-10-06T09:26:20.088Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "jane-c-loudon_the-mummy.epub",
+        "url": "https://standardebooks.org/ebooks/jane-c-loudon/the-mummy/downloads/jane-c-loudon_the-mummy.epub?source=download",
+        "size": 873684,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/jane-c-loudon/the-mummy"
+    }
+  },
+  {
+    "identifier": "h-g-wells_the-time-machine",
+    "title": "The Time Machine",
+    "author": "H. G. Wells",
+    "description": "<p><i>The Time Machine</i> is the novel that gave us the concept of—and even the word for—a “time machine.” While it’s not <a href=\"https://standardebooks.org/ebooks/h-g-wells\">Wells’</a> first story involving time travel, it <em>is</em> the one that most fully fleshes out the concept of a device that can send a person backwards and forwards in time with complete precision. Time machines have since become a staple of the science fiction and fantasy genres, making <i>The Time Machine</i> one of the most deeply influential science fiction novels of the era.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/h-g-wells_the-time-machine/master/src/epub/images/cover.svg",
+    "category": "Science",
+    "subjects": [
+      "Time travel--Fiction"
+    ],
+    "genres": [
+      "Science Fiction"
+    ],
+    "language": "English",
+    "year": 2014,
+    "releaseDate": "2014-05-25T00:00:00.000Z",
+    "catalogRank": 18,
+    "catalogRankedAt": "2026-10-06T09:26:22.257Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "h-g-wells_the-time-machine.epub",
+        "url": "https://standardebooks.org/ebooks/h-g-wells/the-time-machine/downloads/h-g-wells_the-time-machine.epub?source=download",
+        "size": 535571,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/h-g-wells/the-time-machine"
+    }
+  },
+  {
+    "identifier": "pauline-e-hopkins_contending-forces",
+    "title": "Contending Forces",
+    "author": "Pauline E. Hopkins",
+    "description": "<p>In response to the upcoming abolition of slavery in the British Empire, Charles Montfort, an English planter in Bermuda, decides to move his family (and his human chattel) to the southern United States in order to free his slaves on his own schedule. However, Montfort’s arrival arouses the jealousy and anger of his neighbors, who murder Montfort and capture his wife and sons as slaves.</p> <p>Several decades later, Charles Montfort’s lineage survives in the Smiths, a family of Black Bostonians headed by the matriarch Ma Smith, who keeps a boarding house alongside her daughter Dora and her son Will. When a beautiful but mysterious woman of color named Sappho Clark arrives at the boarding house, Dora’s fiancé John P. Langley becomes infatuated with her and begins vying for her attentions alongside Will Smith. The contest of suitors takes place against the backdrop of persistent racial violence in the United States, revealing the painful histories of all of the parties involved.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/pauline-e-hopkins_contending-forces/master/src/epub/images/cover.svg",
+    "category": "Fiction",
+    "subjects": [
+      "African American women",
+      "African Americans"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-09-20T22:34:09.000Z",
+    "catalogRank": 19,
+    "catalogRankedAt": "2026-10-06T09:26:25.662Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "pauline-e-hopkins_contending-forces.epub",
+        "url": "https://standardebooks.org/ebooks/pauline-e-hopkins/contending-forces/downloads/pauline-e-hopkins_contending-forces.epub?source=download",
+        "size": 529162,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/pauline-e-hopkins/contending-forces"
+    }
+  },
+  {
+    "identifier": "robert-louis-stevenson_the-strange-case-of-dr-jekyll-and-mr-hyde",
+    "title": "The Strange Case of Dr. Jekyll and Mr. Hyde",
+    "author": "Robert Louis Stevenson",
+    "description": "<p><i>The Strange Case of Dr. Jekyll and Mr. Hyde</i> is the classic novella of split personality. <a href=\"https://standardebooks.org/ebooks/robert-louis-stevenson\">Stevenson</a> wrote it in just a few days while sick and bedridden, and famously burned the first draft after his wife suggested it should be written as an allegory and not as a story. He re-wrote it in three to six days, and after a few weeks of editing and revision he published what would become one of his most famous and best-selling works.</p> <p>The story follows a London lawyer as he investigates the relationship between a brilliant scientist and a misshapen misanthrope. As the link between the two becomes clearer, <i>Jekyll and Hyde</i> develops into an allegory on the nature of good and evil.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/robert-louis-stevenson_the-strange-case-of-dr-jekyll-and-mr-hyde/master/src/epub/images/cover.svg",
+    "category": "Psychology",
+    "subjects": [
+      "Science fiction",
+      "Horror tales",
+      "London (England)--Fiction",
+      "Physicians--Fiction",
+      "Psychological fiction",
+      "Self-experimentation in medicine--Fiction",
+      "Multiple personality--Fiction"
+    ],
+    "genres": [
+      "Horror",
+      "Science Fiction"
+    ],
+    "language": "English",
+    "year": 2015,
+    "releaseDate": "2015-05-12T00:01:00.000Z",
+    "catalogRank": 20,
+    "catalogRankedAt": "2026-10-06T09:26:28.132Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "robert-louis-stevenson_the-strange-case-of-dr-jekyll-and-mr-hyde.epub",
+        "url": "https://standardebooks.org/ebooks/robert-louis-stevenson/the-strange-case-of-dr-jekyll-and-mr-hyde/downloads/robert-louis-stevenson_the-strange-case-of-dr-jekyll-and-mr-hyde.epub?source=download",
+        "size": 492233,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/robert-louis-stevenson/the-strange-case-of-dr-jekyll-and-mr-hyde"
+    }
+  },
+  {
+    "identifier": "dorothy-m-richardson_the-trap",
+    "title": "The Trap",
+    "author": "Dorothy M. Richardson",
+    "description": "<p><i>The Trap</i> is the eighth “chapter volume” of <a href=\"https://standardebooks.org/ebooks/dorothy-m-richardson\">Dorothy M. Richardson’s</a> pioneering semi-autobiographical series, <a href=\"https://standardebooks.org/collections/pilgrimage\">Pilgrimage</a>.</p> <p>Series protagonist Miriam Henderson impulsively takes a flat in Flaxman Court with the very prim Selina Holland. Miriam struggles to introduce a disapproving Miss Holland to her bohemian London. Their apartment is across the way from that of a famous poet, E. W. Sayce—and Miss Holland is not impressed. (In later editions, Sayce is instead identified by Richardson as <a href=\"https://standardebooks.org/ebooks/w-b-yeats\">W. B. Yeats</a>.)</p> <p>As is typical in the Pilgrimage volumes, this is a story in which nothing much “happens”—Richardson herself dismissed the notion of plot as “lollipops for children”—but which paints a vivid and intimate portrait of a young writer’s mind, and brings to life the world that shaped her.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/dorothy-m-richardson_the-trap/master/src/epub/images/cover.svg",
+    "category": "Fiction",
+    "subjects": [
+      "Autobiographical fiction",
+      "Women--England--Fiction",
+      "England--Social life and customs--20th century--Fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-08-31T21:31:29.000Z",
+    "catalogRank": 21,
+    "catalogRankedAt": "2026-10-06T09:26:30.988Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "dorothy-m-richardson_the-trap.epub",
+        "url": "https://standardebooks.org/ebooks/dorothy-m-richardson/the-trap/downloads/dorothy-m-richardson_the-trap.epub?source=download",
+        "size": 576298,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/dorothy-m-richardson/the-trap"
+    }
+  },
+  {
+    "identifier": "herbert-gorman_the-place-called-dagon",
+    "title": "The Place Called Dagon",
+    "author": "Herbert Gorman",
+    "description": "<p>Daniel Dreeme is a doctor who maintains a practice in the small and secluded community of Marlborough, Massachusetts. But his idyllic life takes a turn towards darkness when he discovers that the town is home to an ancient cult that worships Satan as its true god.</p> <p>A work of the “folk horror” genre, <i>The Place Called Dagon</i> derives its plot from the pseudo-historical “witch-cult hypothesis,” which posits that witchcraft was practiced in secret in the Early Modern period. The book was likely an inspiration for some of <a href=\"https://standardebooks.org/ebooks/h-p-lovecraft\">H. P. Lovecraft’s</a> later fiction, especially “<a href=\"https://standardebooks.org/ebooks/h-p-lovecraft/short-fiction\">The Shadow Over Innsmouth</a>,” which shares the overall geographical location and many plot points.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/herbert-gorman_the-place-called-dagon/master/src/epub/images/cover.svg",
+    "category": "History",
+    "subjects": [
+      "Witches--Fiction",
+      "Paranormal fiction",
+      "Massachusetts--Fiction"
+    ],
+    "genres": [
+      "Fiction",
+      "Horror"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-08-22T17:09:30.000Z",
+    "catalogRank": 22,
+    "catalogRankedAt": "2026-10-06T09:26:33.391Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "herbert-gorman_the-place-called-dagon.epub",
+        "url": "https://standardebooks.org/ebooks/herbert-gorman/the-place-called-dagon/downloads/herbert-gorman_the-place-called-dagon.epub?source=download",
+        "size": 655030,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/herbert-gorman/the-place-called-dagon"
+    }
+  },
+  {
+    "identifier": "arthur-conan-doyle_a-study-in-scarlet",
+    "title": "A Study in Scarlet",
+    "author": "Arthur Conan Doyle",
+    "description": "<p><i>A Study in Scarlet</i> is the novel which first introduced <a href=\"https://standardebooks.org/ebooks/arthur-conan-doyle\">Arthur Conan Doyle’s</a> iconic characters Sherlock Holmes and Dr. Watson. It was published in 1887 in a popular magazine, <i>Beeton’s Christmas Annual</i>. It attracted little public attention at the time, but interest in Holmes continued to build with the subsequent series of short stories Doyle wrote featuring the austere, analytical detective—now one of the most well-known characters in all of English literature.</p> <p><i>A Study in Scarlet</i> is told from the point of view of Dr. John Watson, a medical doctor who has recently returned to London after suffering serious injury and illness as part of the Army Medical Department deployed to Afghanistan. In precarious health and even more precarious financial straits, he’s looking for cheap lodgings when a friend introduces him to Sherlock Holmes. The pair agree to share the rent of a flat Holmes has found.</p> <p>Watson is baffled by his companion’s strange nature, his peculiar interests, his unusual breadth of knowledge in certain fields alongside his shocking ignorance in others, and his many strange visitors. Only eventually does Watson discover that Holmes has set himself up as the world’s first “consulting detective,” and it’s not long before Watson finds himself assisting Holmes in a mysterious case. The body of a man has been found in an abandoned house, without wounds or other marks of injury. But on the wall, scrawled in blood, is the word RACHE. The subsequent unravelling of the mystery takes many unexpected turns.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/arthur-conan-doyle_a-study-in-scarlet/master/src/epub/images/cover.svg",
+    "category": "Fiction",
+    "subjects": [
+      "Holmes, Sherlock (Fictitious character)--Fiction",
+      "Private investigators--England--Fiction",
+      "Detective and mystery stories",
+      "England--Fiction"
+    ],
+    "genres": [
+      "Fiction",
+      "Mystery"
+    ],
+    "language": "English",
+    "year": 2018,
+    "releaseDate": "2018-04-06T02:45:51.000Z",
+    "catalogRank": 23,
+    "catalogRankedAt": "2026-10-06T09:26:35.774Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "arthur-conan-doyle_a-study-in-scarlet.epub",
+        "url": "https://standardebooks.org/ebooks/arthur-conan-doyle/a-study-in-scarlet/downloads/arthur-conan-doyle_a-study-in-scarlet.epub?source=download",
+        "size": 616400,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/arthur-conan-doyle/a-study-in-scarlet"
+    }
+  },
+  {
+    "identifier": "emily-bronte_wuthering-heights",
+    "title": "Wuthering Heights",
+    "author": "Emily Brontë",
+    "description": "<p>Returning from Liverpool, Mr. Earnshaw brings with him a dirty, ragged, black-haired child called Heathcliff, and sets into motion a tale of destructive passions. The book’s two locations, the genteel Thrushcross Grange and the wild Wuthering Heights, serve as matching backgrounds to the characters of their occupants, as they struggle to gain the upper hand in marriage and power. All the while, the ghosts of the past seem to drive revenge more than inspire forgiveness.</p> <p><i>Wuthering Heights</i> was <a href=\"https://standardebooks.org/ebooks/emily-bronte\">Emily Brontë’s</a> sole published novel before her early death at the age of 30. Published under the pen name of Ellis Bell, a shared surname with the pen names of her sisters, many assumed that such a book could only have been written by a man. Reviewers of the time praised its emotional power but were also shocked at the actions of its characters, and most agreed that it was impossible to put down. After the novel’s original publication in 1847 it was revised into a single volume in 1850, and over time has become a classic of English literature. The story has been reworked into plays, operas, films, TV dramatisations and a ballet, and has inspired many further works of art, music and literature.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/emily-bronte_wuthering-heights/master/src/epub/images/cover.svg",
+    "category": "Psychology",
+    "subjects": [
+      "Revenge--Fiction",
+      "Psychological fiction",
+      "Rejection (Psychology)--Fiction",
+      "Love stories",
+      "Domestic fiction",
+      "Yorkshire (England)--Fiction",
+      "Foundlings--Fiction",
+      "Rural families--Fiction",
+      "Heathcliff (Fictitious character : Brontë)--Fiction",
+      "Triangles (Interpersonal relations)--Fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2018,
+    "releaseDate": "2018-07-18T22:49:37.000Z",
+    "catalogRank": 24,
+    "catalogRankedAt": "2026-10-06T09:26:38.403Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "emily-bronte_wuthering-heights.epub",
+        "url": "https://standardebooks.org/ebooks/emily-bronte/wuthering-heights/downloads/emily-bronte_wuthering-heights.epub?source=download",
+        "size": 820496,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/emily-bronte/wuthering-heights"
+    }
+  },
+  {
+    "identifier": "james-joyce_ulysses",
+    "title": "Ulysses",
+    "author": "James Joyce",
+    "description": "<p><a href=\"https://standardebooks.org/ebooks/james-joyce\">James Joyce’s</a> most celebrated novel, and one of the most highly regarded novels in the English language, records the events of one day—Thursday the 16th of June, 1904—in the city of Dublin.</p> <p>The reader is first reintroduced to Stephen Dedalus, the protagonist of Joyce’s previous novel <i><a href=\"https://standardebooks.org/ebooks/james-joyce/a-portrait-of-the-artist-as-a-young-man\">A Portrait of the Artist as a Young Man</a></i>. Stephen is now living in a rented Martello tower and working at a school, having completed his B.A. and a period of attempted further study in Paris. The focus then shifts to the book’s protagonist, Leopold Bloom, an advertising canvasser and social outsider. It is a work day, so both Bloom and Stephen depart their homes for their respective journeys around Dublin.</p> <p>While containing a richly detailed story and still being generally described as a novel, <i>Ulysses</i> breaks many of the bounds otherwise associated with the form. It consists of eighteen chapters, or “episodes,” each somehow echoing a scene in <a href=\"https://standardebooks.org/ebooks/homer\">Homer’s</a> <i><a href=\"https://standardebooks.org/ebooks/homer/the-odyssey/william-cullen-bryant\">Odyssey</a></i>. Each episode takes place in a different setting, and each is written in a different, and often unusual, style. The book’s chief innovation is commonly cited to be its expansion of the “free indirect discourse” or “interior monologue” technique that Joyce used in his previous two books.</p> <p><i>Ulysses</i> is known not only for its formal novelty and linguistic inventiveness, but for its storied publication history. The first fourteen episodes of the book were serialized between 1918 and 1920 in <i>The Little Review</i>, while several episodes were published in 1919 in <i>The Egoist</i>. In 1921, the New York Society for the Suppression of Vice won a trial regarding obscenity in the thirteenth episode, “Nausicaa.” <i>The Little Review</i>’s editors were enjoined against publishing any further installments; <i>Ulysses</i> would not appear again in America until 1934.</p> <p>The outcome of the 1921 trial worsened Joyce’s already-considerable difficulties in finding a publisher in England. After lamenting to Sylvia Beach, owner of the Parisian bookshop Shakespeare and Company, that it might never be published at all, Beach offered to publish it in Paris, and <i>Ulysses</i> first appeared in its entirety in February 1922.</p> <p>The first printing of the first edition was filled with printing errors. A corrected second edition was published in 1924. Stuart Gilbert’s 1932 edition benefited from correspondence with Joyce, and claimed in its front matter to be “the definitive standard edition,” but was later found to have introduced errors of its own.</p> <p>The novel’s initial reception was mixed. W. B. Yeats called it “mad,” but would later agree with the positive assessments of <a href=\"https://standardebooks.org/ebooks/t-s-eliot\">T. S. Eliot</a> and Ezra Pound, stating that it was “indubitably a work of genius.” Joyce’s second biographer Richard Ellmann reports that one doctor claimed to have seen writing of equal merit by his insane patients, and <a href=\"https://standardebooks.org/ebooks/virginia-woolf\">Virginia Woolf</a> derided it as “underbred.” Joyce’s aunt, Josephine Murray, rejected it as “unfit to read” on account of its purported obscenity, to which Joyce famously retorted that if that were so, then life was not fit to live.</p> <p>The sheer density of references in the text make <i>Ulysses</i> a book that virtually demands of the reader access to critical interpretation; but it also makes it a book that is easily obscured by the industry of scholarship it has generated over the last century. The dismissal of a serious interpretation is tempting, but would trivialize Joyce’s enormous project as an extended joke or an elaborate exercise in ego. Likewise dismissing it as uninterpretable would ignore the profusion of earnest critical analyses.</p> <p>Today <i>Ulysses</i> is considered by many to be the zenith of 20th century literature: both one of the richest, and also the most difficult, books to ever be written. To appreciate that is not to accept that it is unintelligible; rather, perhaps the best description of it is the one used of Ulysses himself in a 21st century translation of Homer’s epic—“complicated.”</p> <p>This Standard Ebooks edition is based on a transcription of the 1922 Shakespeare and Company first edition, with emendations from pre-1929 errata lists and the second edition in its 1927 ninth printing by Shakespeare and Company. It does not track any one particular edition, but rather is a blend of pre-1929 editions that aims to contain what scholars might consider to be the most accurate version of what was printed before 1929. Therefore, various probable misprints have been retained that were corrected in post-1929 editions.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/james-joyce_ulysses/master/src/epub/images/cover.svg",
+    "category": "Psychology",
+    "subjects": [
+      "City and town life--Fiction",
+      "Psychological fiction",
+      "Domestic fiction",
+      "Married people--Fiction",
+      "Male friendship--Fiction",
+      "Dublin (Ireland)--Fiction",
+      "Epic literature",
+      "Artists--Fiction",
+      "Jewish men--Fiction",
+      "Alienation (Social psychology)--Fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2024,
+    "releaseDate": "2024-05-28T04:49:30.000Z",
+    "catalogRank": 25,
+    "catalogRankedAt": "2026-10-06T09:26:41.985Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "james-joyce_ulysses.epub",
+        "url": "https://standardebooks.org/ebooks/james-joyce/ulysses/downloads/james-joyce_ulysses.epub?source=download",
+        "size": 1434052,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/james-joyce/ulysses"
+    }
+  },
+  {
+    "identifier": "george-eliot_middlemarch",
+    "title": "Middlemarch",
+    "author": "George Eliot",
+    "description": "<p>“<a href=\"https://standardebooks.org/ebooks/george-eliot\">George Eliot</a>” was the pen-name of Mary Ann Evans, one of the greatest of English novelists of the Victorian era. Her long novel <i>Middlemarch</i>, subtitled <i>A Study of Provincial Life</i>, is generally considered to be her finest work.</p> <p>Published in eight installments between 1871 and 1872, <i>Middlemarch</i> tells the intertwined stories of a variety of people living in the vicinity of the (fictional) midlands town of Middlemarch during the early 1830s, the time of the great Reform Act. The novel is remarkable for its realistic treatment of situation, character and relationships and also demonstrates its author’s accurate knowledge of political issues, medicine, politics, and rural economy. Yet it also includes several touches of humor.</p> <p>The novel’s main characters include: Dorothea Brooke, a religiously inclined and very intelligent young woman who marries a much older man believing that she can assist him in his scholarly studies; Dr. Tertius Lydgate, a doctor who comes to Middlemarch to further his medical research and implement his ideas for treatment, but whose plans are thrown into disarray by an unwise marriage; Fred Vincy, an idle young man, the son of the town’s Mayor, who gets into a mire of debt; and several others.</p> <p>The initial reception of the novel by critics was mixed, with a number of unfavorable reviews, but its reputation has grown through time and <i>Middlemarch</i> is now generally considered to be one of the best novels ever written in English.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/george-eliot_middlemarch/master/src/epub/images/cover.svg",
+    "category": "Fiction",
+    "subjects": [
+      "Didactic fiction",
+      "City and town life--Fiction",
+      "England--Fiction",
+      "Young women--Fiction",
+      "Love stories",
+      "Domestic fiction",
+      "Married people--Fiction",
+      "Bildungsromans"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2019,
+    "releaseDate": "2019-11-25T23:51:50.000Z",
+    "catalogRank": 26,
+    "catalogRankedAt": "2026-10-06T09:26:45.999Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "george-eliot_middlemarch.epub",
+        "url": "https://standardebooks.org/ebooks/george-eliot/middlemarch/downloads/george-eliot_middlemarch.epub?source=download",
+        "size": 1328604,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/george-eliot/middlemarch"
+    }
+  },
+  {
+    "identifier": "samuel-taylor-coleridge_robert-southey_the-fall-of-robespierre",
+    "title": "The Fall of Robespierre",
+    "author": "Samuel Taylor Coleridge, Robert Southey",
+    "description": "<p>The French revolutionary Maximilien Robespierre has risen to prominence within the new French National Convention. A radical Jacobin, he oversees the draconian planning and implementation of the Reign of Terror, including mass arrests and summary executions. But as his policies result in more and more bloodshed, he begins to fear that a conspiracy is afoot—one that will eventually turn the Convention, and the very policies he champions, against him.</p> <p><a href=\"https://standardebooks.org/ebooks/samuel-taylor-coleridge\">Samuel Taylor Coleridge</a> and <a href=\"https://standardebooks.org/ebooks/robert-southey\">Robert Southey</a> wrote this poetic drama less than three months after Robespierre was guillotined in the Place de la Révolution. Originally Coleridge was to write the first act, Southey the second, and Robert Lovell the third; but Southey was displeased with Lovell’s contribution, so Southey rewrote it himself.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/samuel-taylor-coleridge_robert-southey_the-fall-of-robespierre/master/src/epub/images/cover.svg",
+    "category": "Fiction",
+    "subjects": [
+      "English poetry--19th century"
+    ],
+    "genres": [
+      "Drama"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-08-26T16:02:59.000Z",
+    "catalogRank": 27,
+    "catalogRankedAt": "2026-10-06T09:26:48.712Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "samuel-taylor-coleridge_robert-southey_the-fall-of-robespierre.epub",
+        "url": "https://standardebooks.org/ebooks/samuel-taylor-coleridge_robert-southey/the-fall-of-robespierre/downloads/samuel-taylor-coleridge-robert-southey_the-fall-of-robespierre.epub?source=download",
+        "size": 587708,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/samuel-taylor-coleridge_robert-southey/the-fall-of-robespierre"
+    }
+  },
+  {
+    "identifier": "robert-louis-stevenson_treasure-island",
+    "title": "Treasure Island",
+    "author": "Robert Louis Stevenson",
+    "description": "<p><i>Treasure Island</i> isn’t just one of the most famous coming-of-age tales in modern storytelling, it’s also the book that invented everything you know about pirates: Peg legs, parrots, treasure chests, tropical islands, Long John Silver, maps marked with an “X,” swashbuckling adventure, and “Yo-ho-ho and a bottle of rum.”</p> <p>Its brisk pace and easy tone have stood the test of the time—<i>Treasure Island</i> is as readable, enjoyable, and memorable today as it ever was.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/robert-louis-stevenson_treasure-island/master/src/epub/images/cover.svg",
+    "category": "Fiction",
+    "subjects": [
+      "Buried treasure--Fiction",
+      "Pirates--Fiction",
+      "Adventure and adventurers--Fiction"
+    ],
+    "genres": [
+      "Adventure",
+      "Children’s",
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2015,
+    "releaseDate": "2015-04-15T11:09:00.000Z",
+    "catalogRank": 28,
+    "catalogRankedAt": "2026-10-06T09:26:51.605Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "robert-louis-stevenson_treasure-island.epub",
+        "url": "https://standardebooks.org/ebooks/robert-louis-stevenson/treasure-island/downloads/robert-louis-stevenson_treasure-island.epub?source=download",
+        "size": 720634,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/robert-louis-stevenson/treasure-island"
+    }
+  },
+  {
+    "identifier": "jane-austen_sense-and-sensibility",
+    "title": "Sense and Sensibility",
+    "author": "Jane Austen",
+    "description": "<p>When her husband dies and leaves his estate to his son from a former marriage, Mrs. Dashwood and her three daughters are offered a cottage on the estate of a distant relative. The two oldest daughters fall in love, only to find that the objects of their affection have secrets that throw their lives into an uproar. The reserved oldest daughter and impetuous, fiery middle daughter will take very different journeys to discovering the true worth of their respective beaus.</p> <p>Published in 1811, <i>Sense and Sensibility</i>, was largely written fifteen years earlier, when <a href=\"https://standardebooks.org/ebooks/jane-austen\">Austen</a> was approximately the same age as her older protagonist Elinor. It was published anonymously (“By A Lady”), possibly due to propriety, or perhaps because she wanted to avoid any negative publicity if the book was not well-received. She needn’t have worried; it sold out its first printing of a modest 750 copies. She used well-defined characters, humor, and satire to paint a vivid picture of life in the England of George III, with all of its manners, class issues, and unwritten rules of behavior. That it’s still being read over two hundred years later is a testimony to her brilliance.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/jane-austen_sense-and-sensibility/master/src/epub/images/cover.svg",
+    "category": "Self-help",
+    "subjects": [
+      "England--Social life and customs--19th century--Fiction",
+      "Inheritance and succession--Fiction",
+      "England--Fiction",
+      "Young women--Fiction",
+      "Love stories",
+      "Sisters--Fiction",
+      "Domestic fiction",
+      "Mate selection--Fiction",
+      "Social classes--Fiction",
+      "Gentry--England--Fiction",
+      "Regency fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2019,
+    "releaseDate": "2019-10-20T21:46:09.000Z",
+    "catalogRank": 29,
+    "catalogRankedAt": "2026-10-06T09:26:54.704Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "jane-austen_sense-and-sensibility.epub",
+        "url": "https://standardebooks.org/ebooks/jane-austen/sense-and-sensibility/downloads/jane-austen_sense-and-sensibility.epub?source=download",
+        "size": 793296,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/jane-austen/sense-and-sensibility"
+    }
+  },
+  {
+    "identifier": "henry-seton-merriman_barlasch-of-the-guard",
+    "title": "Barlasch of the Guard",
+    "author": "Henry Seton Merriman",
+    "description": "<p>One of <a href=\"https://standardebooks.org/ebooks/henry-seton-merriman\">Henry Seton Merriman’s</a> most popular and acclaimed novels, <i>Barlasch of the Guard</i> explores the ideals and imperfections of people, great and small alike, under the incomprehensible strains of life under siege, beset by the destructive forces of both man and nature.</p> <p>The events are those of the months before, during, and after the Grande Armée’s 1812 invasion of and catastrophic retreat from Russia, during which approximately one million soldiers and civilians died, and which marked the end of Napoleon’s campaign to conquer Europe and the beginning of his eventual downfall. The focus of the story is the unlikely friendship between Désirée Sebastian, a poor but cultured young woman raised in Danzig (modern-day Gdansk, Poland), a strategically important “free city” occupied by Napoleon’s army, and “Papa” Barlasch, an earthy, low-born, veteran sergeant in Napoleon’s Old Guard, who finds himself quartered in the Sebastian home on Désirée’s wedding day. They’re surrounded by a vividly drawn supporting characters: Désirée’s new husband, a French officer; his cousin, a captain who sails under the English flag; his patron, an officer in Napoleon’s secret service; her father, an enigmatic French expatriate; and her sister, whose calculating nature contrasts with Désirée’s free-spirited outlook.</p> <p><i>Barlasch</i> shares with other Merriman novels his intricate plotting and attention to detail informed by his own extensive travels, but differs from some of his other works in its use of often brutal historic and military detail in service of the underlying romanticism. Ultimately though, this is a very human drama focused not on the movements of armies, but on the changes wrought in their wake on soldiers and civilians caught up in epic events.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/henry-seton-merriman_barlasch-of-the-guard/master/src/epub/images/cover.svg",
+    "category": "History",
+    "subjects": [
+      "Napoleonic Wars, 1800-1815--Campaigns--Russia--Fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-09-28T19:22:22.000Z",
+    "catalogRank": 30,
+    "catalogRankedAt": "2026-10-06T09:26:57.967Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "henry-seton-merriman_barlasch-of-the-guard.epub",
+        "url": "https://standardebooks.org/ebooks/henry-seton-merriman/barlasch-of-the-guard/downloads/henry-seton-merriman_barlasch-of-the-guard.epub?source=download",
+        "size": 620432,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/henry-seton-merriman/barlasch-of-the-guard"
+    }
+  },
+  {
+    "identifier": "charles-dickens_great-expectations",
+    "title": "Great Expectations",
+    "author": "Charles Dickens",
+    "description": "<p><a href=\"https://standardebooks.org/ebooks/charles-dickens\">Charles Dickens</a> was a British author, journalist, and editor whose work brought attention to the struggles of Victorian England’s lower classes. His writings provided a candid portrait of the era’s poor and served as inspiration for social change.</p> <p><i>Great Expectations</i>, Dickens’ thirteenth novel, was first published in serial form between 1860 and 1861 and is widely praised as the author’s greatest literary accomplishment.</p> <p>The novel follows the life, relationships, and moral development of an orphan boy named Pip. The novel begins when Pip encounters an escaped convict whom he helps and fears in equal measure. Pip’s actions that day set off a sequence of events and interactions that shape Pip’s character as he matures into adulthood.</p> <p>The vivid characters, engaging narrative style, and universal themes of <i>Great Expectations</i> establish this novel as a timeless literary classic, and an engaging portrait of Victorian life.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/charles-dickens_great-expectations/master/src/epub/images/cover.svg",
+    "category": "Fiction",
+    "subjects": [
+      "Orphans--Fiction",
+      "England--Fiction",
+      "Revenge--Fiction",
+      "Bildungsromans",
+      "Young men--Fiction",
+      "Man-woman relationships--Fiction",
+      "Ex-convicts--Fiction",
+      "Benefactors--Fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2019,
+    "releaseDate": "2019-12-23T22:06:14.000Z",
+    "catalogRank": 31,
+    "catalogRankedAt": "2026-10-06T09:27:01.738Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "charles-dickens_great-expectations.epub",
+        "url": "https://standardebooks.org/ebooks/charles-dickens/great-expectations/downloads/charles-dickens_great-expectations.epub?source=download",
+        "size": 1002522,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/charles-dickens/great-expectations"
+    }
+  },
+  {
+    "identifier": "edgar-allan-poe_short-fiction",
+    "title": "Short Fiction",
+    "author": "Edgar Allan Poe",
+    "description": "<p><a href=\"https://standardebooks.org/ebooks/edgar-allan-poe\">Edgar Allan Poe</a> is one of the primary figures of American nineteenth-century literature. His writing was heavily influenced by Romanticism ideals of emotion and feeling, and although mostly known for his Gothic-tinged horror, his tales jump between many different genres, including science-fiction, satire, humor, mystery, and even early detective fiction.</p> <p>Poe mostly wrote short stories and <a href=\"https://standardebooks.org/ebooks/edgar-allan-poe/poetry\">poems</a>, published in magazines and periodicals like the <i>Southern Literary Messenger</i> and <i>Graham’s Magazine</i>, although he also turned his hand to essays and novels (including <a href=\"https://standardebooks.org/ebooks/edgar-allan-poe/the-narrative-of-arthur-gordon-pym-of-nantucket\"><i>The Narrative of Arthur Gordon Pym of Nantucket</i></a>). He was one of the first American writers to pursue writing as a career, but was better received in France than in his native country. He struggled to make ends meet and resorted to work as a literary critic. His reputation suffered a further blow after his unfortunately early death in 1849 at the age of 40, when a rival not only wrote an extremely unflattering obituary, but bought the rights to his work and published a compilation with a hit piece for an introduction. This undeserved reputation took many decades to fade, but didn’t hinder praise from other notable authors including <a href=\"https://standardebooks.org/ebooks/arthur-conan-doyle\">Arthur Conan Doyle</a> and <a href=\"https://standardebooks.org/ebooks/h-p-lovecraft\">H. P. Lovecraft</a>.</p> <p>Collected here are all of Poe’s short fiction stories, in order of their original magazine publication. Notable stories include “The Gold-Bug,” “The Black Cat,” “The Fall of the House of Usher,” “The Masque of the Red Death,” “The Pit and the Pendulum,” “The Murders in the Rue Morgue,” and many more.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/edgar-allan-poe_short-fiction/master/src/epub/images/cover.svg",
+    "category": "Science",
+    "subjects": [
+      "Short stories",
+      "Fantasy fiction",
+      "Horror tales, American",
+      "American fiction--19th century",
+      "Poe, Edgar Allan, 1809-1849",
+      "Indexes"
+    ],
+    "genres": [
+      "Adventure",
+      "Comedy",
+      "Horror",
+      "Mystery",
+      "Satire",
+      "Science Fiction",
+      "Shorts"
+    ],
+    "language": "English",
+    "year": 2020,
+    "releaseDate": "2020-11-18T00:18:28.000Z",
+    "catalogRank": 32,
+    "catalogRankedAt": "2026-10-06T09:27:07.903Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "edgar-allan-poe_short-fiction.epub",
+        "url": "https://standardebooks.org/ebooks/edgar-allan-poe/short-fiction/downloads/edgar-allan-poe_short-fiction.epub?source=download",
+        "size": 1279674,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/edgar-allan-poe/short-fiction"
+    }
+  },
+  {
+    "identifier": "virginia-woolf_to-the-lighthouse",
+    "title": "To the Lighthouse",
+    "author": "Virginia Woolf",
+    "description": "<p>Set on an island off the Scottish coast, <i>To the Lighthouse</i> minutely examines the fleeting impressions of a large cast of family, friends, lovers, and hangers-on. Who can we be, <a href=\"https://standardebooks.org/ebooks/virginia-woolf\">Virginia Woolf</a> invites us to ask, if no one can ever know our hearts—if they’re unknowable even to ourselves? <i>To the Lighthouse</i> remains one of the most important Modernist novels, exquisitely composed by one of the most gifted writers of the Modernist movement.</p> <p>The opening section follows the passage of a day with a thwarted objective: to go to the nearby lighthouse. The concluding section revisits this expedition a decade later, when so much is irrevocably changed, as a chance to glimpse interpersonal understandings and connections. The novel provides a brilliant example of stream-of-consciousness writing, and raises questions that provoke us still: questions about whether children are the fullest realization of one’s posterity, how women artists are regarded socially, and how money and status enable—or close off—networks, relationships, and the dreams we hold most dear.</p> <p>As masterful as its technique is, however, the lasting value of this novel for twenty-first-century readers may be its sharp representation of the emotional labor that people—particularly women—perform in order to manage the needs and expectations of others. Woolf wrote in an age when women’s participation in society was tightly restricted by class norms and stultifying domesticity. Nearly a century later, scholars still have a great deal to say about Mrs. Ramsay, Lily Briscoe, and the tension between Mr. Ramsay and his son James.</p> <p>Woolf’s fifth novel, and one of her most successful books both critically and commercially, <i>To the Lighthouse</i> was originally published in 1927, simultaneously in England and the United States. Due to a quirk in the management and correction of the proofs, according to scholar Hans Walter Gabler, the two editions were “not identical, since in a significant number of instances Virginia Woolf marked up the first proofs differently” for her two publishers. The Standard Ebooks edition is based primarily on the Hogarth UK edition.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/virginia-woolf_to-the-lighthouse/master/src/epub/images/cover.svg",
+    "category": "Psychology",
+    "subjects": [
+      "English--Scotland--Fiction",
+      "Loss (Psychology)--Fiction",
+      "Mothers--Death--Fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2023,
+    "releaseDate": "2023-01-01T20:42:05.000Z",
+    "catalogRank": 33,
+    "catalogRankedAt": "2026-10-06T09:27:11.338Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "virginia-woolf_to-the-lighthouse.epub",
+        "url": "https://standardebooks.org/ebooks/virginia-woolf/to-the-lighthouse/downloads/virginia-woolf_to-the-lighthouse.epub?source=download",
+        "size": 1116110,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/virginia-woolf/to-the-lighthouse"
+    }
+  },
+  {
+    "identifier": "arthur-conan-doyle_the-hound-of-the-baskervilles",
+    "title": "The Hound of the Baskervilles",
+    "author": "Arthur Conan Doyle",
+    "description": "<p>It would be hard to nominate a more well-known character in English literature than that of the austere analytical detective <a href=\"https://standardebooks.org/collections/sherlock-holmes\">Sherlock Holmes</a>, created by <a href=\"https://standardebooks.org/ebooks/arthur-conan-doyle\">Arthur Conan Doyle</a> in the late 1880s. Holmes, alongside his friend and biographer Dr. John Watson, appeared in two initial novels and dozens of short stories serialized in popular magazines, attracting a devoted, almost fanatical following which continues to this day.</p> <p><i>The Hound of the Baskervilles</i>, serialized in 1901–1902, was the third novel featuring Holmes and Watson. Sherlock Holmes is consulted in his Baker Street apartment by Dr. Mortimer, a physician now living on the fringes of Dartmoor. He gives Holmes and Watson an account of a centuries-old legend, in which a hell-hound slaughtered the debauched heir of the Baskerville family who had been in lecherous pursuit of an innocent maiden across the moor. The same hound is reputed to have harrowed several of the subsequent heirs to the estate.</p> <p>This ancient story might be dismissed as mere fancy, but for the fact that the elderly Sir Charles Baskerville recently died in very mysterious circumstances, apparently fleeing in terror from something which came from the moor. Dr. Mortimer is concerned that the new heir, Sir Henry, just returned from Canada, may be at risk from this supernatural beast. Holmes is intrigued, but being too busy to go himself, sends Dr. Watson to accompany Sir Henry to the ancestral home on Dartmoor and to report anything suspicious.</p> <p><i>The Hound of the Baskervilles</i> is arguably the best, and certainly the most popular, of Doyle’s novels featuring his iconic detective. It has been translated into almost every language in the world and been the basis of dozens of movies (starting as early as 1914), radio plays and comic books.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/arthur-conan-doyle_the-hound-of-the-baskervilles/master/src/epub/images/cover.svg",
+    "category": "History",
+    "subjects": [
+      "Holmes, Sherlock (Fictitious character)--Fiction",
+      "Private investigators--England--Fiction",
+      "Dogs--Fiction",
+      "Detective and mystery stories",
+      "Blessing and cursing--Fiction",
+      "Dartmoor (England)--Fiction"
+    ],
+    "genres": [
+      "Fiction",
+      "Mystery"
+    ],
+    "language": "English",
+    "year": 2017,
+    "releaseDate": "2017-12-26T23:14:09.000Z",
+    "catalogRank": 34,
+    "catalogRankedAt": "2026-10-06T09:27:13.797Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "arthur-conan-doyle_the-hound-of-the-baskervilles.epub",
+        "url": "https://standardebooks.org/ebooks/arthur-conan-doyle/the-hound-of-the-baskervilles/downloads/arthur-conan-doyle_the-hound-of-the-baskervilles.epub?source=download",
+        "size": 539642,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/arthur-conan-doyle/the-hound-of-the-baskervilles"
+    }
+  },
+  {
+    "identifier": "robert-w-chambers_the-king-in-yellow",
+    "title": "The King in Yellow",
+    "author": "Robert W. Chambers",
+    "description": "<p><i>The King in Yellow</i> is a fascinating, almost two-faced work. The first half consists of five legendary weird tales, loosely tied together by a fictional play—the eponymous <i>King in Yellow</i>—that drives those who read it mad. Celebrated by authors like <a href=\"https://standardebooks.org/ebooks/h-p-lovecraft\">H. P. Lovecraft</a> and Lin Carter, these stories are classic tales of madness, despair, and strange happenings.</p> <p>With the fifth tale the reader finds a sort of palate-cleansing collection of short prose-poems leading into the last four stories, which take a sharp turn away from the weird and into the romantic. The concluding tales are set in the Parisian art world.</p> <p>In modern times <i>The King in Yellow</i> enjoys a reputation largely due to the strength of its first half of macabre tales, but by no means does that make the second half less enjoyable. Both halves are written in a quick, light prose style that demonstrates why <a href=\"https://standardebooks.org/ebooks/robert-w-chambers\">Chambers</a> was a best-seller in his day.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/robert-w-chambers_the-king-in-yellow/master/src/epub/images/cover.svg",
+    "category": "Fiction",
+    "subjects": [
+      "Short stories, American",
+      "Horror tales, American",
+      "United States--Social life and customs--19th century--Fiction"
+    ],
+    "genres": [
+      "Horror",
+      "Shorts"
+    ],
+    "language": "English",
+    "year": 2017,
+    "releaseDate": "2017-01-19T01:04:23.000Z",
+    "catalogRank": 35,
+    "catalogRankedAt": "2026-10-06T09:27:16.133Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "robert-w-chambers_the-king-in-yellow.epub",
+        "url": "https://standardebooks.org/ebooks/robert-w-chambers/the-king-in-yellow/downloads/robert-w-chambers_the-king-in-yellow.epub?source=download",
+        "size": 740441,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/robert-w-chambers/the-king-in-yellow"
+    }
+  },
+  {
+    "identifier": "jane-austen_emma",
+    "title": "Emma",
+    "author": "Jane Austen",
+    "description": "<p><i>Emma</i> is one of <a href=\"https://standardebooks.org/ebooks/jane-austen\">Jane Austen’s</a> best-loved novels. Its eponymous heroine, Emma Woodhouse, has lived a pampered, protected life and consequently is somewhat unrealistic when she sets her sights on becoming a matchmaker for a young friend.</p> <p>The novel provides a light-hearted insight into the distinctions of the rigid class structure of England in the Regency period, and the social barriers to marriage between persons considered to be of superior and inferior rank.</p> <p><i>Emma</i> was published in 1815, the last of Austen’s novels to be published while she still lived. It received a generally very positive reception, and was well reviewed (though anonymously) by Sir Walter Scott. Criticisms of the novel, such as they were, centered around its supposed lack of plot, though its treatment of character was recognized and applauded. Today it is regarded as one of Austen’s best works. The novel has been adapted many times for theater, movies and television.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/jane-austen_emma/master/src/epub/images/cover.svg",
+    "category": "Fiction",
+    "subjects": [
+      "Humorous stories",
+      "England--Fiction",
+      "Young women--Fiction",
+      "Love stories",
+      "Fathers and daughters--Fiction",
+      "Bildungsromans",
+      "Mate selection--Fiction",
+      "Female friendship--Fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2018,
+    "releaseDate": "2018-03-21T00:17:13.000Z",
+    "catalogRank": 36,
+    "catalogRankedAt": "2026-10-06T09:27:18.642Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "jane-austen_emma.epub",
+        "url": "https://standardebooks.org/ebooks/jane-austen/emma/downloads/jane-austen_emma.epub?source=download",
+        "size": 798869,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/jane-austen/emma"
+    }
+  },
+  {
+    "identifier": "agatha-christie_the-murder-of-roger-ackroyd",
+    "title": "The Murder of Roger Ackroyd",
+    "author": "Agatha Christie",
+    "description": "<p>Hercule Poirot has retired to the English village of King’s Abbot, determined to use his little grey cells in the growing of vegetable marrows. But when Roger Ackroyd, a local businessman and former acquaintance of Poirot’s, is murdered, the man’s niece begs Poirot to investigate in order to clear her fiancé. With Hastings having married and moved to Argentina, Poirot enlists the local doctor to be his assistant and scribe, and the two of them sift through clues to try to discern the ones that will lead them to the killer.</p> <p><a href=\"https://standardebooks.org/ebooks/agatha-christie\">Agatha Christie’s</a> two previous Poirot novels had been generally well-received, but <i>The Murder of Roger Ackroyd</i> made her a household name. Consistently ranked among Christie’s best works, in 2013 it was voted as the best crime novel ever written by the 600-member Crime Writers’ Association of the United Kingdom.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/agatha-christie_the-murder-of-roger-ackroyd/master/src/epub/images/cover.svg",
+    "category": "Fiction",
+    "subjects": [
+      "Private investigators--England--Fiction",
+      "Detective and mystery stories, English",
+      "Belgians--England--Fiction",
+      "Poirot, Hercule (Fictitious character)--Fiction"
+    ],
+    "genres": [
+      "Mystery"
+    ],
+    "language": "English",
+    "year": 2022,
+    "releaseDate": "2022-01-06T17:06:18.000Z",
+    "catalogRank": 37,
+    "catalogRankedAt": "2026-10-06T09:27:21.404Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "agatha-christie_the-murder-of-roger-ackroyd.epub",
+        "url": "https://standardebooks.org/ebooks/agatha-christie/the-murder-of-roger-ackroyd/downloads/agatha-christie_the-murder-of-roger-ackroyd.epub?source=download",
+        "size": 916979,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/agatha-christie/the-murder-of-roger-ackroyd"
+    }
+  },
+  {
+    "identifier": "henry-david-thoreau_walden",
+    "title": "Walden",
+    "author": "Henry David Thoreau",
+    "description": "<p><i>Walden</i> is one of the more famous transcendentalist tracts in modern American literature. First published in 1854, <i>Walden</i> is an account of <a href=\"https://standardebooks.org/ebooks/henry-david-thoreau\">Thoreau’s</a> famous experiment in solitude: spending over two years alone in a cabin near the wilderness.</p> <p><i>Walden</i> is broken into sections that meditate on single themes: economy, reading, sounds, solitude, visitors, and so on. The style is complex, weaving back and forth between simple, home-spun prose and complex allegory, metaphor, and allusion. This makes <i>Walden</i> an interesting read because while it may seem accessible on the surface, it’s a book that requires deep and repeated reading to fully appreciate its many complexities.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/henry-david-thoreau_walden/master/src/epub/images/cover.svg",
+    "category": "Philosophy",
+    "subjects": [
+      "Authors, American--19th century--Biography",
+      "Thoreau, Henry David, 1817-1862--Homes and haunts--Massachusetts--Walden Woods",
+      "Wilderness areas--Massachusetts--Walden Woods",
+      "Natural history--Massachusetts--Walden Woods",
+      "Solitude",
+      "Walden Woods (Mass.)--Social life and customs"
+    ],
+    "genres": [
+      "Nonfiction",
+      "Philosophy"
+    ],
+    "language": "English",
+    "year": 2014,
+    "releaseDate": "2014-05-25T00:00:00.000Z",
+    "catalogRank": 38,
+    "catalogRankedAt": "2026-10-06T09:27:24.607Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "henry-david-thoreau_walden.epub",
+        "url": "https://standardebooks.org/ebooks/henry-david-thoreau/walden/downloads/henry-david-thoreau_walden.epub?source=download",
+        "size": 997147,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/henry-david-thoreau/walden"
+    }
+  },
+  {
+    "identifier": "h-g-wells_the-war-of-the-worlds",
+    "title": "The War of the Worlds",
+    "author": "H. G. Wells",
+    "description": "<p><a href=\"https://standardebooks.org/ebooks/h-g-wells\">H. G. Wells’</a> classic tale of alien invasion has to this day never been out of print. Like many works of the era, it was originally published as a serial—though the publisher, <i>Pearson’s Magazine</i>, demanded to know the ending before committing to publication.</p> <p><i>The War of the Worlds</i>, with its matter-of-fact narrative style and deft mixture of contemporary science and fictionalized interstellar war machines, became an instant hit. Its themes of colonialism, social Darwinism, good and evil, and total war still resonate with modern-day readers, so much so that it’s been continuously adapted for screen, radio, television, comics, and print.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/h-g-wells_the-war-of-the-worlds/master/src/epub/images/cover.svg",
+    "category": "Science",
+    "subjects": [
+      "Science fiction",
+      "War stories",
+      "Martians--Fiction",
+      "Mars (Planet)--Fiction",
+      "Space warfare--Fiction",
+      "Imaginary wars and battles--Fiction",
+      "Life on other planets--Fiction"
+    ],
+    "genres": [
+      "Science Fiction"
+    ],
+    "language": "English",
+    "year": 2016,
+    "releaseDate": "2016-03-29T23:15:11.000Z",
+    "catalogRank": 39,
+    "catalogRankedAt": "2026-10-06T09:27:34.005Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "h-g-wells_the-war-of-the-worlds.epub",
+        "url": "https://standardebooks.org/ebooks/h-g-wells/the-war-of-the-worlds/downloads/h-g-wells_the-war-of-the-worlds.epub?source=download",
+        "size": 800674,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/h-g-wells/the-war-of-the-worlds"
+    }
+  },
+  {
+    "identifier": "louisa-may-alcott_little-women",
+    "title": "Little Women",
+    "author": "Louisa May Alcott",
+    "description": "<p><i>Little Women</i> is the classic coming-of-age tale of four sisters on their journey to adulthood. Though today it’s considered a classic, <i>Little Women</i> almost wasn’t written: <a href=\"https://standardebooks.org/ebooks/louisa-may-alcott\">Alcott</a> wanted to publish a collection of short stories instead, but her publisher and her father pressed her to write a book that would appeal to a wide audience of young girls.</p> <p>The first volume was written quickly and published in 1868; it was a huge success, and Alcott composed the second volume just as quickly and published it in 1869. By her own account she didn’t enjoy writing them, and both she and her publisher agreed the first few chapters were dull—so it almost goes without saying she was pleasantly shocked at the positive reception the volumes received.</p> <p>By 1927 it had been acknowledged as one of the most widely read novels of the era, and remains widely read today.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/louisa-may-alcott_little-women/master/src/epub/images/cover.svg",
+    "category": "Self-help",
+    "subjects": [
+      "New England--Fiction",
+      "March family (Fictitious characters)--Fiction",
+      "Sisters--Fiction",
+      "Family life--New England--Fiction",
+      "Mothers and daughters--Fiction",
+      "Young women--Fiction",
+      "Domestic fiction",
+      "Autobiographical fiction",
+      "Bildungsromans"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2016,
+    "releaseDate": "2016-05-06T04:48:51.000Z",
+    "catalogRank": 40,
+    "catalogRankedAt": "2026-10-06T09:27:38.251Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "louisa-may-alcott_little-women.epub",
+        "url": "https://standardebooks.org/ebooks/louisa-may-alcott/little-women/downloads/louisa-may-alcott_little-women.epub?source=download",
+        "size": 998915,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/louisa-may-alcott/little-women"
+    }
+  },
+  {
+    "identifier": "joseph-conrad_heart-of-darkness",
+    "title": "Heart of Darkness",
+    "author": "Joseph Conrad",
+    "description": "<p>Originally published serially as a three-part story, <i>Heart of Darkness</i> is a short but thematically complex novel exploring colonialism, humanity, and what constitutes a savage society. Set in the Congo in Central Africa, the tale is told in the frame of the recollections of one Charles Marlow, a captain of an ivory steamer. Marlow’s search for the mysterious and powerful “first-class agent” Kurtz gives way to a nuanced and powerful commentary on the horrors of colonialism, called by some the most analyzed work at university-level instruction.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/joseph-conrad_heart-of-darkness/master/src/epub/images/cover.svg",
+    "category": "Fiction",
+    "subjects": [
+      "Europeans--Africa--Fiction",
+      "Trading posts--Fiction",
+      "Degeneration--Fiction",
+      "Imperialism--Fiction",
+      "Africa--Fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2014,
+    "releaseDate": "2014-05-25T00:00:00.000Z",
+    "catalogRank": 41,
+    "catalogRankedAt": "2026-10-06T09:27:41.195Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "joseph-conrad_heart-of-darkness.epub",
+        "url": "https://standardebooks.org/ebooks/joseph-conrad/heart-of-darkness/downloads/joseph-conrad_heart-of-darkness.epub?source=download",
+        "size": 742229,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/joseph-conrad/heart-of-darkness"
+    }
+  },
+  {
+    "identifier": "charles-dickens_a-tale-of-two-cities",
+    "title": "A Tale of Two Cities",
+    "author": "Charles Dickens",
+    "description": "<p>A doctor is released from the Bastille after being falsely imprisoned for almost eighteen years. A young woman discovers the father she’s never known is not dead but alive, if not entirely well. A young man is acquitted of being a traitor, due in part to the efforts of a rather selfish lout who is assisting the young man’s attorney. A man has a wine shop in Paris with a wife who knits at the bar. These disparate elements are tied together as only <a href=\"https://standardebooks.org/ebooks/charles-dickens\">Dickens</a> can, and in the process he tells the story of the French Revolution.</p> <p>Charles Dickens was fascinated by <a href=\"https://standardebooks.org/ebooks/thomas-carlyle\">Thomas Carlyle’s</a> magnum opus <i>The French Revolution</i>; according to Dickens’ letters, he read it “500 times” and carried it with him everywhere while he was working on this novel. When he wrote to Carlyle asking him for books to read on background, Carlyle sent him two cartloads full. Dickens mimicked Carlyle’s style, his chronology, and his overall characterization of the revolution; although <i>A Tale of Two Cities</i> is fiction, the historical events described are largely accurate, sometimes exactly so. Even so, Dickens made his name and reputation on telling stories full of characters one could be invested in, care about, and despise, and this novel has all of those and more. It also, in its first and last lines, has two of the most famous lines in literature. With the possible exception of <a href=\"https://standardebooks.org/ebooks/charles-dickens/a-christmas-carol\"><i>A Christmas Carol</i></a>, it is his most popular novel, and according to many, his best.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/charles-dickens_a-tale-of-two-cities/master/src/epub/images/cover.svg",
+    "category": "History",
+    "subjects": [
+      "Historical fiction",
+      "France--History--Revolution, 1789-1799--Fiction",
+      "London (England)--History--18th century--Fiction",
+      "War stories",
+      "Executions and executioners--Fiction",
+      "French--England--London--Fiction",
+      "Lookalikes--Fiction",
+      "British--France--Paris--Fiction",
+      "Paris (France)--History--1789-1799--Fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2019,
+    "releaseDate": "2019-08-14T18:12:49.000Z",
+    "catalogRank": 42,
+    "catalogRankedAt": "2026-10-06T09:27:44.125Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "charles-dickens_a-tale-of-two-cities.epub",
+        "url": "https://standardebooks.org/ebooks/charles-dickens/a-tale-of-two-cities/downloads/charles-dickens_a-tale-of-two-cities.epub?source=download",
+        "size": 815013,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/charles-dickens/a-tale-of-two-cities"
+    }
+  },
+  {
+    "identifier": "agatha-christie_the-mysterious-affair-at-styles",
+    "title": "The Mysterious Affair at Styles",
+    "author": "Agatha Christie",
+    "description": "<p><i>The Mysterious Affair at Styles</i> isn’t just <a href=\"https://standardebooks.org/ebooks/agatha-christie\">Agatha Christie’s</a> first <a href=\"https://standardebooks.org/collections/poirot\">Poirot</a> novel, it was the only Poirot novel in the public domain until 2019. It was written on a bet that Christie couldn’t write a detective novel in which the reader couldn’t deduce the criminal. Her attempt laid the foundation for one of literature’s most famous detectives.</p> <p>In this novel we’re introduced to Poirot as he’s settling in to a new life in England. After a woman is murdered at the country estate he’s visiting, he has to use his detective skills to catch the criminal. <i>The Mysterious Affair at Styles</i> sets the stage for the Golden Age of Detective Fiction, and has everything you’d expect from a story rich in those classic detective fiction tropes.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/agatha-christie_the-mysterious-affair-at-styles/master/src/epub/images/cover.svg",
+    "category": "Fiction",
+    "subjects": [
+      "Poirot, Hercule (Fictitious character)--Fiction",
+      "Private investigators--England--Fiction"
+    ],
+    "genres": [
+      "Fiction",
+      "Mystery"
+    ],
+    "language": "English",
+    "year": 2014,
+    "releaseDate": "2014-05-25T00:00:00.000Z",
+    "catalogRank": 43,
+    "catalogRankedAt": "2026-10-06T09:27:46.985Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "agatha-christie_the-mysterious-affair-at-styles.epub",
+        "url": "https://standardebooks.org/ebooks/agatha-christie/the-mysterious-affair-at-styles/downloads/agatha-christie_the-mysterious-affair-at-styles.epub?source=download",
+        "size": 768938,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/agatha-christie/the-mysterious-affair-at-styles"
+    }
+  },
+  {
+    "identifier": "l-frank-baum_the-wonderful-wizard-of-oz",
+    "title": "The Wonderful Wizard of Oz",
+    "author": "L. Frank Baum",
+    "description": "<p><i>The Wonderful Wizard of Oz</i> is the classic American children’s novel about the adventures of Dorothy, a young girl who along with her dog Toto is swept away by a cyclone to the magical Land of Oz. It was written by <a href=\"https://standardebooks.org/ebooks/l-frank-baum\">L. Frank Baum</a> and published in May 1900.</p> <p>Dorothy lives with her Aunt Em, Uncle Henry, and Toto on a farm in the Kansas prairie. One day, Dorothy and Toto are caught up in a cyclone that deposits her farmhouse into Munchkin Country in the magical Land of Oz. The falling house has killed the Wicked Witch of the East, the evil ruler of the Munchkins. The Good Witch of the North arrives with three grateful Munchkins and gives Dorothy the magical Silver Shoes that once belonged to the Wicked Witch. The Good Witch tells Dorothy that the only way she can return home is to go to the Emerald City and ask the great and powerful Wizard of Oz to help her.</p> <p>The Library of Congress has declared it “America’s greatest and best-loved homegrown fairy-tale.” Its groundbreaking success and the success of the Broadway musical adaptation led Baum to write thirteen additional Oz books which serve as sequels to the first story. The 1939 film musical adaptation starring Judy Garland is considered by many to be one of the greatest films in cinema history.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/l-frank-baum_the-wonderful-wizard-of-oz/master/src/epub/images/cover.svg",
+    "category": "History",
+    "subjects": [
+      "Oz (Imaginary place)--Juvenile fiction",
+      "Fantasy literature",
+      "Courage--Juvenile fiction",
+      "Home--Juvenile fiction",
+      "Good and evil--Juvenile fiction",
+      "Dreams--Juvenile fiction",
+      "Gale, Dorothy (Fictitious character)--Juvenile fiction",
+      "Cowardly Lion (Fictitious character)--Juvenile fiction",
+      "Cyclones--Juvenile fiction",
+      "Scarecrow (Fictitious character from Baum)--Juvenile fiction",
+      "Toto (Fictitious character)--Juvenile fiction",
+      "Witches--Juvenile fiction",
+      "Wizard of Oz (Fictitious character)--Juvenile fiction",
+      "Tin Woodman (Fictitious character)--Juvenile fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2018,
+    "releaseDate": "2018-12-12T23:08:06.000Z",
+    "catalogRank": 44,
+    "catalogRankedAt": "2026-10-06T09:27:49.848Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "l-frank-baum_the-wonderful-wizard-of-oz.epub",
+        "url": "https://standardebooks.org/ebooks/l-frank-baum/the-wonderful-wizard-of-oz/downloads/l-frank-baum_the-wonderful-wizard-of-oz.epub?source=download",
+        "size": 681182,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/l-frank-baum/the-wonderful-wizard-of-oz"
+    }
+  },
+  {
+    "identifier": "jane-austen_persuasion",
+    "title": "Persuasion",
+    "author": "Jane Austen",
+    "description": "<p>Anne Elliot is the under-valued daughter of a vain and improvident English baronet, Sir Walter Elliot. Some years previously, at the urging of a family friend, Anne had rejected a marriage proposal from a young but impoverished naval captain. When she unexpectedly encounters him again, she is filled with regrets.</p> <p><i>Persuasion</i> was published in 1817, six months after <a href=\"https://standardebooks.org/ebooks/jane-austen\">Jane Austen’s</a> death, and is the last novel she completed in full. It was well-regarded on publication and has been turned into several television series and movies.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/jane-austen_persuasion/master/src/epub/images/cover.svg",
+    "category": "Psychology",
+    "subjects": [
+      "England--Social life and customs--19th century--Fiction",
+      "Psychological fiction",
+      "Young women--Fiction",
+      "Motherless families--Fiction",
+      "Rejection (Psychology)--Fiction",
+      "First loves--Fiction",
+      "Dysfunctional families--Fiction",
+      "Ship captains--Fiction",
+      "Love stories",
+      "Regency fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2018,
+    "releaseDate": "2018-12-05T00:19:55.000Z",
+    "catalogRank": 45,
+    "catalogRankedAt": "2026-10-06T09:27:52.341Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "jane-austen_persuasion.epub",
+        "url": "https://standardebooks.org/ebooks/jane-austen/persuasion/downloads/jane-austen_persuasion.epub?source=download",
+        "size": 640519,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/jane-austen/persuasion"
+    }
+  },
+  {
+    "identifier": "winnifred-eaton-reeve_his-royal-nibs",
+    "title": "His Royal Nibs",
+    "author": "Winnifred Eaton Reeve",
+    "description": "<p>A young man dubbed “Cheerio” for his English background, clean appearance, and well-kept suit, unexpectedly arrives at the highly regarded O Bar O ranch with one goal in mind: to offer his services as a hired hand, and thus find a new start in life in a foreign land. The ranch’s foreman, Bully Bill, surprised and irritated by the unwelcome stranger, decides to give Cheerio the job after witnessing his cool composure in the presence of a startled herd, preventing the ranch owner’s son from getting injured.</p> <p>Cheerio proves his worth at every opportunity and earns the respect, both honest and begrudging, from riders and cowpunchers alike. His hard working day-to-day routine is balanced by his developing friendship with the boy he saved, Sandy McPherson, and the boy’s sister Hilda, for whom Cheerio develops a liking and who has become the subject of Cheerio’s artistic endeavors.</p> <p>Everything seems to be going well for Cheerio until an incident at the branding corral brings back uncomfortable memories of his past life. Being deemed a coward and a weak man by his boss and peers, Cheerio grasps at one final chance to redeem himself and achieve his dream: to play a nightly game of chess with Canadian champion and famous rancher P. D. McPherson.</p> <p><i>His Royal Nibs</i> is a story of resilience, newfound love, and fresh beginnings inspired by <a href=\"https://standardebooks.org/ebooks/winnifred-eaton-reeve\">Winnifred Eaton Reeve’s</a> desire to write fiction set in Alberta, Canada after a career spent writing Japanese-themed works under a variety of pseudonyms, the most famous of which being “Onoto Watanna.” <i>His Royal Nibs</i> would turn out to be her last published novel.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/winnifred-eaton-reeve_his-royal-nibs/master/src/epub/images/cover.svg",
+    "category": "History",
+    "subjects": [
+      "Ranch life--Fiction",
+      "Canada--Fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-09-27T20:41:54.000Z",
+    "catalogRank": 46,
+    "catalogRankedAt": "2026-10-06T09:27:54.402Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "winnifred-eaton-reeve_his-royal-nibs.epub",
+        "url": "https://standardebooks.org/ebooks/winnifred-eaton-reeve/his-royal-nibs/downloads/winnifred-eaton-reeve_his-royal-nibs.epub?source=download",
+        "size": 659043,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/winnifred-eaton-reeve/his-royal-nibs"
+    }
+  },
+  {
+    "identifier": "john-milton_paradise-lost",
+    "title": "Paradise Lost",
+    "author": "John Milton",
+    "description": "<p><i>Paradise Lost</i> is an epic poem written by the Puritan English poet <a href=\"https://standardebooks.org/ebooks/john-milton\">John Milton</a> between 1658 and 1663, and published in 1667. This is a period of English history which encompasses the end of Oliver Cromwell’s Commonwealth and the restoration of the monarchy in 1660.</p> <p>Perhaps reflecting some of his country’s turmoil during Milton’s life, <i>Paradise Lost</i> deals with revolution in Heaven by Satan and his followers against God, their defeat and banishment to Hell, and their subsequent plotting of revenge, leading ultimately to Satan beguiling Eve in Paradise to taste the fruit of the Tree of Knowledge against the explicit command of God. Milton’s vivid and poetic description of these events is both dramatic and compelling. The work gained swift acceptance and has always remained a popular and important part of English literature.</p> <p>Originally published in ten books, a second edition was published in 1674 arranged into twelve books, the form in which it appears here. This Standard Ebooks edition is based on a 1910 edition edited by A. W. Verity.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/john-milton_paradise-lost/master/src/epub/images/cover.svg",
+    "category": "History",
+    "subjects": [
+      "Fall of man--Poetry",
+      "Adam (Biblical figure)--Poetry",
+      "Eve (Biblical figure)--Poetry",
+      "Bible. Genesis--History of Biblical events--Poetry"
+    ],
+    "genres": [
+      "Fiction",
+      "Poetry",
+      "Spirituality"
+    ],
+    "language": "English",
+    "year": 2019,
+    "releaseDate": "2019-08-26T21:08:27.000Z",
+    "catalogRank": 47,
+    "catalogRankedAt": "2026-10-06T09:27:57.759Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "john-milton_paradise-lost.epub",
+        "url": "https://standardebooks.org/ebooks/john-milton/paradise-lost/downloads/john-milton_paradise-lost.epub?source=download",
+        "size": 793333,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/john-milton/paradise-lost"
+    }
+  },
+  {
+    "identifier": "adam-smith_the-wealth-of-nations",
+    "title": "The Wealth of Nations",
+    "author": "Adam Smith",
+    "description": "<p><i>The Wealth of Nations</i> is economist <a href=\"https://standardebooks.org/ebooks/adam-smith\">Adam Smith’s</a> magnum opus and the foundational text of what today we call classical economics. Its publication ushered in a new era of thinking and discussion about how economies function, a sea change away from the older, increasingly irrelevant mercantilist and physiocratic views of economics towards a new practical application of economics for the birth of the industrial era. Its scope is vast, touching on concepts like free markets, supply and demand, division of labor, war, and public debt. Its fundamental message is that the wealth of a nation is measured not by the gold in the monarch’s treasury, but by its national income, which in turn is produced by labor, land, and capital.</p> <p>Some ten years in the writing, <i>The Wealth of Nations</i> is the product of almost two decades of notes, study, and discussion. It was released to glowing praise, selling out its first print run in just six months and going through five subsequent editions and countless reprintings in Smith’s lifetime. It began inspiring legislators almost immediately and continued to do so well into the 1800s, and influenced thinkers ranging from <a href=\"https://standardebooks.org/ebooks/alexander-hamilton_john-jay_james-madison\">Alexander Hamilton</a> to <a href=\"https://standardebooks.org/ebooks/karl-marx_friedrich-engels\">Karl Marx</a>.</p> <p>Today, it is the second-most-cited book in the social sciences that was published before 1950, and its legacy as a foundational text places it in the stratosphere of civilization-changing books like <i>Principia Mathematica</i> and <i><a href=\"https://standardebooks.org/ebooks/charles-darwin/the-origin-of-species\">The Origin of Species</a></i>.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/adam-smith_the-wealth-of-nations/master/src/epub/images/cover.svg",
+    "category": "Philosophy",
+    "subjects": [
+      "Economics"
+    ],
+    "genres": [
+      "Philosophy"
+    ],
+    "language": "English",
+    "year": 2021,
+    "releaseDate": "2021-10-05T23:09:21.000Z",
+    "catalogRank": 48,
+    "catalogRankedAt": "2026-10-06T09:28:01.995Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "adam-smith_the-wealth-of-nations.epub",
+        "url": "https://standardebooks.org/ebooks/adam-smith/the-wealth-of-nations/downloads/adam-smith_the-wealth-of-nations.epub?source=download",
+        "size": 1354544,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/adam-smith/the-wealth-of-nations"
+    }
+  },
+  {
+    "identifier": "david-hume_a-treatise-of-human-nature",
+    "title": "A Treatise of Human Nature",
+    "author": "David Hume",
+    "description": "<p>In the <i>Treatise of Human Nature</i>, written in 1739, <a href=\"https://standardebooks.org/ebooks/david-hume\">David Hume</a> lays out his initial vision of our knowledge and understanding of the world, of the nature of our psychology and motivation, and, building on these, of moral and political philosophy.</p> <p>In Book I, Hume considers our understanding of the world. With a keen critical perspective that is ever skeptical about abstract metaphysical claims, he follows other empiricists (such as <a href=\"https://standardebooks.org/ebooks/john-locke\">Locke</a>) in grounding our understanding in experience as the source of all our ideas and of their relations to each other. In one important line of argument, he raises what has come to be known as his “problem of induction” at the heart of our understanding of causation and of science, arguing that we have no reason to think that the future will be like the past, since our only evidence for that claim could be past experience—a problem that has plagued philosophers ever since.</p> <p>In Book II, Hume turns from belief and reason to desire and the passions, famously arguing that “it is not contrary to reason to prefer the destruction of the whole world to the scratching of my finger”—that questions of what we <em>ought</em> to desire or value are not questions we can settle by appealing to beliefs and arguments. Rather, our desires and passions can be independent of our beliefs, so that values aren’t a <em>part of</em> the world, but are <em>projected</em> by us <em>onto</em> the world.</p> <p>In Book III, Hume spells out the implications this view has for morality, and so for moral values and moral taste. In doing so, he emphasizes our sympathy for others and the need for us to use that sympathy so as to adopt “steady and general points of view” as the proper vantage point for engaging in moral criticism.</p> <p>The <i>Treatise</i> was poorly received, with Hume himself writing that it fell “deadborn from the press.” He thought it an immature work, written as it was before he was 25 years old, and he later reworked his account from Book I in his <a href=\"https://standardebooks.org/ebooks/david-hume/an-enquiry-concerning-human-understanding\"><i>Enquiry Concerning Human Understanding</i></a> and from Book III in his <i>Enquiry Concerning the Principles of Morals</i>. Nonetheless, much of Hume’s dissatisfaction seems to be stylistic rather than substantive; philosophical scholarship has tended to focus on the <i>Treatise</i> over his other works, and it has remained highly influential to this day, shaping important strands of thought in philosophy and psychology.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/david-hume_a-treatise-of-human-nature/master/src/epub/images/cover.svg",
+    "category": "Psychology",
+    "subjects": [
+      "Knowledge, Theory of"
+    ],
+    "genres": [
+      "Nonfiction",
+      "Philosophy"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-08-17T20:44:59.000Z",
+    "catalogRank": 49,
+    "catalogRankedAt": "2026-10-06T09:28:04.487Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "david-hume_a-treatise-of-human-nature.epub",
+        "url": "https://standardebooks.org/ebooks/david-hume/a-treatise-of-human-nature/downloads/david-hume_a-treatise-of-human-nature.epub?source=download",
+        "size": 974503,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/david-hume/a-treatise-of-human-nature"
+    }
+  },
+  {
+    "identifier": "john-meade-falkner_the-lost-stradivarius",
+    "title": "The Lost Stradivarius",
+    "author": "John Meade Falkner",
+    "description": "<p><a href=\"https://standardebooks.org/ebooks/john-meade-falkner\">John Meade Falkner</a> published his first novel, <i>The Lost Stradivarius</i>, in 1896. Set in the aristocratic milieu similar to the one Falkner grew up in, the story at first closely mirrors his own—that of a young man studying at Oxford—before taking a turn for the uncanny. From there it delves progressively deeper into old blasphemy and new madness.</p> <p><i>The Lost Stradivarius</i> proved to be the debut of a solid figure in the turn-of-the-century British literary milieu, influencing figures like <a href=\"https://standardebooks.org/ebooks/m-r-james\">M. R. James</a> and <a href=\"https://standardebooks.org/ebooks/dorothy-l-sayers\">Dorothy L. Sayers</a>.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/john-meade-falkner_the-lost-stradivarius/master/src/epub/images/cover.svg",
+    "category": "Fiction",
+    "subjects": [
+      "Musical fiction"
+    ],
+    "genres": [
+      "Fiction",
+      "Horror"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-08-21T15:57:42.000Z",
+    "catalogRank": 50,
+    "catalogRankedAt": "2026-10-06T09:28:06.886Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "john-meade-falkner_the-lost-stradivarius.epub",
+        "url": "https://standardebooks.org/ebooks/john-meade-falkner/the-lost-stradivarius/downloads/john-meade-falkner_the-lost-stradivarius.epub?source=download",
+        "size": 513043,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/john-meade-falkner/the-lost-stradivarius"
+    }
+  },
+  {
+    "identifier": "dorothy-m-richardson_oberland",
+    "title": "Oberland",
+    "author": "Dorothy M. Richardson",
+    "description": "<p><i>Oberland</i> is the ninth “chapter volume” of <a href=\"https://standardebooks.org/ebooks/dorothy-m-richardson\">Dorothy M. Richardson’s</a> pioneering semi-autobiographical series, <a href=\"https://standardebooks.org/collections/pilgrimage\">Pilgrimage</a>.</p> <p>Series protagonist Miriam Henderson spends two weeks at the Hotel Alpenstock, a resort in the the Bernese Oberland region of Switzerland, mainly in the company of other English guests. In the evenings she watches how the relationships of these temporary groups emerge. During the day she explores the crisp beauty of the Alpine landscape and flings herself into winter sport, with the daily sunrise on the Alps becoming a character in its own right.</p> <p>The book was inspired by a 1904 trip Richardson made to Adelboden, Switzerland, as a treat from her employer, Dr. J. H. Badcock.</p>",
+    "coverUrl": "https://raw.githubusercontent.com/standardebooks/dorothy-m-richardson_oberland/master/src/epub/images/cover.svg",
+    "category": "Fiction",
+    "subjects": [
+      "Autobiographical fiction",
+      "Women--England--Fiction",
+      "England--Social life and customs--20th century--Fiction"
+    ],
+    "genres": [
+      "Fiction"
+    ],
+    "language": "English",
+    "year": 2026,
+    "releaseDate": "2026-10-01T21:12:31.000Z",
+    "catalogRank": 51,
+    "catalogRankedAt": "2026-10-06T09:28:09.061Z",
+    "files": {
+      "pdf": null,
+      "epub": {
+        "name": "dorothy-m-richardson_oberland.epub",
+        "url": "https://standardebooks.org/ebooks/dorothy-m-richardson/oberland/downloads/dorothy-m-richardson_oberland.epub?source=download",
+        "size": 556087,
+        "contentType": "application/epub+zip"
+      }
+    },
+    "source": {
+      "name": "Standard Ebooks",
+      "itemUrl": "https://standardebooks.org/ebooks/dorothy-m-richardson/oberland"
+    }
+  }
+]

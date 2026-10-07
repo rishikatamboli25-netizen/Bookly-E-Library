@@ -5,7 +5,9 @@ import axios from "axios";
 import PDFReader from "./PDFReader";
 import EPUBReader from "./EPUBReader";
 
-const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+const API_BASE =
+  import.meta.env.VITE_BASE_URL ||
+  "http://localhost:5000";
 
 const Reader = () => {
   const { bookId } = useParams();
@@ -36,7 +38,8 @@ const Reader = () => {
       } catch (err) {
         if (isMounted) {
           setError(
-            err.response?.data?.message || "Unable to load this book."
+            err.response?.data?.message ||
+              "Unable to load this book."
           );
         }
       } finally {
@@ -55,18 +58,35 @@ const Reader = () => {
     };
   }, [bookId]);
 
-  const fileType = book?.fileType?.toLowerCase();
-  const readerFileUrl = book ? `${API_BASE}/api/book/${book.identifier}/file` : "";
+  const fileType =
+    book?.fileType?.toLowerCase();
+
+  // ==========================================
+  // READER FILE URL
+  // ==========================================
+  //
+  // EPUB:
+  // /api/book/:identifier/file.epub
+  //
+  // PDF:
+  // /api/book/:identifier/file
+  //
+  const readerFileUrl = book
+    ? fileType === "epub"
+      ? `${API_BASE}/api/book/${book.identifier}/file.epub`
+      : `${API_BASE}/api/book/${book.identifier}/file`
+    : "";
 
   // ==========================================
   // LOADING STATE
   // ==========================================
   if (loading) {
     return (
-      <main className="fixed inset-0 h-dvh w-full bg-background-dark flex items-center justify-center px-4 sm:px-6 z-50">
+      <main className="fixed inset-0 z-50 flex h-dvh w-full items-center justify-center bg-background-dark px-4 sm:px-6">
         <div className="flex flex-col items-center gap-4 text-center">
-          <div className="w-10 h-10 border-4 border-text-white/20 border-t-brand rounded-full animate-spin" />
-          <p className="text-sm sm:text-base text-text-secondary font-medium">
+          <div className="h-10 w-10 animate-spin rounded-full border-4 border-text-white/20 border-t-brand" />
+
+          <p className="text-sm font-medium text-text-secondary sm:text-base">
             Preparing your book...
           </p>
         </div>
@@ -79,20 +99,20 @@ const Reader = () => {
   // ==========================================
   if (error) {
     return (
-      <main className="fixed inset-0 h-dvh w-full bg-background-main flex items-center justify-center px-4 sm:px-6 z-50">
-        <div className="max-w-md w-full bg-background-card border border-border-light rounded-2xl p-6 sm:p-8 text-center shadow-sm">
-          <h1 className="text-xl sm:text-2xl font-bold text-text-primary mb-2.5">
+      <main className="fixed inset-0 z-50 flex h-dvh w-full items-center justify-center bg-background-main px-4 sm:px-6">
+        <div className="w-full max-w-md rounded-2xl border border-border-light bg-background-card p-6 text-center shadow-sm sm:p-8">
+          <h1 className="mb-2.5 text-xl font-bold text-text-primary sm:text-2xl">
             Unable to open book
           </h1>
 
-          <p className="text-sm sm:text-base text-text-secondary mb-6 leading-relaxed">
+          <p className="mb-6 text-sm leading-relaxed text-text-secondary sm:text-base">
             {error}
           </p>
 
           <button
             type="button"
             onClick={() => navigate(-1)}
-            className="w-full sm:w-auto px-6 py-3 min-h-[44px] bg-brand text-text-white rounded-full font-medium hover:bg-brand-hover transition active:scale-[0.98]"
+            className="min-h-[44px] w-full rounded-full bg-brand px-6 py-3 font-medium text-text-white transition hover:bg-brand-hover active:scale-[0.98] sm:w-auto"
           >
             Go Back
           </button>
@@ -106,9 +126,14 @@ const Reader = () => {
   }
 
   return (
-    <main className="fixed inset-0 h-dvh w-full bg-background-main flex flex-col overflow-hidden overscroll-none select-none z-50">
-      {/* READING VIEW */}
-      <section className="flex-1 min-w-0 min-h-0 flex flex-col relative overflow-hidden">
+    <main className="fixed inset-0 z-50 flex h-dvh w-full select-none flex-col overflow-hidden overscroll-none bg-background-main">
+      {/* ==========================================
+          READING VIEW
+      ========================================== */}
+      <section className="relative flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
+        {/* ========================================
+            PDF
+        ======================================== */}
         {fileType === "pdf" && (
           <PDFReader
             fileUrl={readerFileUrl}
@@ -117,6 +142,9 @@ const Reader = () => {
           />
         )}
 
+        {/* ========================================
+            EPUB
+        ======================================== */}
         {fileType === "epub" && (
           <EPUBReader
             fileUrl={readerFileUrl}
@@ -125,27 +153,34 @@ const Reader = () => {
           />
         )}
 
-        {fileType !== "pdf" && fileType !== "epub" && (
-          <div className="h-full flex items-center justify-center px-4 sm:px-6">
-            <div className="max-w-md text-center bg-background-card border border-border-light rounded-2xl p-6 sm:p-8 shadow-sm">
-              <h2 className="text-lg sm:text-xl font-semibold text-text-primary mb-2">
-                Unsupported file format
-              </h2>
+        {/* ========================================
+            UNSUPPORTED FORMAT
+        ======================================== */}
+        {fileType !== "pdf" &&
+          fileType !== "epub" && (
+            <div className="flex h-full items-center justify-center px-4 sm:px-6">
+              <div className="w-full max-w-md rounded-2xl border border-border-light bg-background-card p-6 text-center shadow-sm sm:p-8">
+                <h2 className="mb-2 text-lg font-semibold text-text-primary sm:text-xl">
+                  Unsupported file format
+                </h2>
 
-              <p className="text-sm text-text-secondary mb-6">
-                This book format (.{book.fileType || "unknown"}) cannot be opened in the web reader.
-              </p>
+                <p className="mb-6 text-sm text-text-secondary">
+                  This book format (.
+                  {book.fileType ||
+                    "unknown"}) cannot be
+                  opened in the web reader.
+                </p>
 
-              <button
-                type="button"
-                onClick={() => navigate(-1)}
-                className="px-5 py-2.5 text-sm font-medium bg-background-main border border-border-light text-text-primary rounded-full hover:bg-border-light/20 transition"
-              >
-                Back to Library
-              </button>
+                <button
+                  type="button"
+                  onClick={() => navigate(-1)}
+                  className="rounded-full border border-border-light bg-background-main px-5 py-2.5 text-sm font-medium text-text-primary transition hover:bg-border-light/20"
+                >
+                  Back to Library
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </section>
     </main>
   );
