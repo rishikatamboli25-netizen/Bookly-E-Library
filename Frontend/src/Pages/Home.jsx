@@ -19,26 +19,20 @@ import {
 } from "react-icons/lu";
 
 import Login from "../compontents/Login";
-import axios from "axios";
+import {
+  api,
+  getCatalog,
+  refreshCatalog,
+  getFriendlyError,
+} from "../utils/api";
+import BookCover from "../compontents/BookCover";
 import HomeHero from "../compontents/HomeHero";
 import HomeHeroSkeleton from "../compontents/Loading/HomeHeroSkeleton";
 import { useNavigate } from "react-router-dom";
 
-const API_BASE =
-  import.meta.env.VITE_BASE_URL ||
-  "http://localhost:5000";
-
 // ============================================================
 // HELPERS
 // ============================================================
-
-const getCoverUrl = (identifier) => {
-  if (!identifier) {
-    return "";
-  }
-
-  return `${API_BASE}/api/images/cover/${identifier}`;
-};
 
 // ============================================================
 // DYNAMIC GREETINGS
@@ -434,6 +428,9 @@ const Home = () => {
   const [bookLoading, setBookLoading] =
     useState(true);
 
+  const [bookError, setBookError] =
+    useState("");
+
   const [
     userProgress,
     setUserProgress,
@@ -446,6 +443,9 @@ const Home = () => {
     progressLoading,
     setProgressLoading,
   ] = useState(true);
+
+  const [progressError, setProgressError] =
+    useState("");
 
   const [
     recentReadPercent,
@@ -530,135 +530,155 @@ const Home = () => {
   // ==========================================================
 
   useEffect(() => {
-    const getBook = async () => {
-      try {
-        const response =
-          await axios.get(
-            `${API_BASE}/api/book/getBooks`
-          );
+    let active = true;
 
-        setBookData(
-          Array.isArray(
-            response.data
-          )
-            ? response.data
-            : []
-        );
+    const loadBooks = async () => {
+      try {
+        setBookLoading(true);
+        setBookError("");
+
+        const data = await getCatalog();
+
+        if (active) {
+          setBookData(
+            Array.isArray(data) ? data : []
+          );
+        }
       } catch (error) {
-        console.error(
-          "Error fetching books:",
-          error
+        if (!active) return;
+
+        setBookError(
+          getFriendlyError(
+            error,
+            "We couldn't load the library right now."
+          )
         );
+        setBookData([]);
       } finally {
-        setBookLoading(false);
+        if (active) {
+          setBookLoading(false);
+        }
       }
     };
 
-    getBook();
+    loadBooks();
+
+    return () => {
+      active = false;
+    };
   }, []);
+
+  const handleRetryBooks = async () => {
+    try {
+      setBookLoading(true);
+      setBookError("");
+
+      const data = await refreshCatalog();
+      setBookData(
+        Array.isArray(data) ? data : []
+      );
+    } catch (error) {
+      setBookError(
+        getFriendlyError(
+          error,
+          "We couldn't load the library right now."
+        )
+      );
+    } finally {
+      setBookLoading(false);
+    }
+  };
 
   // ==========================================================
   // USER PROGRESS
   // ==========================================================
 
   useEffect(() => {
-    const getUserProgress =
-      async () => {
-        const storedToken =
-          localStorage.getItem(
-            "token"
-          );
+    let active = true;
 
-        if (!storedToken) {
-          setUserProgress({
-            recentReadBooks: [],
-            totalReadBooks: 0,
-          });
+    const getUserProgress = async () => {
+      const storedToken = localStorage.getItem("token");
 
-          setUserGoal(0);
-          setProgressLoading(
-            false
-          );
+      if (!storedToken) {
+        if (!active) return;
 
-          return;
-        }
+        setUserProgress({
+          recentReadBooks: [],
+          totalReadBooks: 0,
+        });
+        setUserGoal(0);
+        setProgressError("");
+        setProgressLoading(false);
+        return;
+      }
 
-        try {
-          const response =
-            await axios.get(
-              `${API_BASE}/api/users/get-user-progress`,
-              {
-                headers: {
-                  Authorization:
-                    `Bearer ${storedToken}`,
-                },
+      try {
+        setProgressLoading(true);
+        setProgressError("");
 
-                validateStatus:
-                  (status) =>
-                    status >= 200 &&
-                    status < 400,
-              }
-            );
-
-          if (
-            response.data &&
-            response.data.progress
-          ) {
-            const progress =
-              response.data
-                .progress || {};
-
-            const recentReadBooks =
-              Array.isArray(
-                progress.recentReadBooks
-              )
-                ? progress.recentReadBooks
-                : [];
-
-            const totalReadBooks =
-              progress.totalReadBooks ??
-              0;
-
-            setUserProgress({
-              ...progress,
-              recentReadBooks,
-              totalReadBooks,
-            });
-
-            setUserGoal(
-              response.data.goal ??
-                0
-            );
-
-            return;
+        const response = await api.get(
+          "/api/users/get-user-progress",
+          {
+            headers: {
+              Authorization: `Bearer ${storedToken}`,
+            },
           }
+        );
 
+        if (!active) return;
+
+        if (response.data?.progress) {
+          const progress = response.data.progress || {};
+          const recentReadBooks = Array.isArray(
+            progress.recentReadBooks
+          )
+            ? progress.recentReadBooks
+            : [];
+
+          setUserProgress({
+            ...progress,
+            recentReadBooks,
+            totalReadBooks:
+              progress.totalReadBooks ?? 0,
+          });
+
+          setUserGoal(
+            response.data.goal ?? 0
+          );
+        } else {
           setUserProgress({
             recentReadBooks: [],
             totalReadBooks: 0,
           });
-
           setUserGoal(0);
-        } catch (error) {
-          console.error(
-            "Error fetching user progress:",
-            error
-          );
-
-          setUserProgress({
-            recentReadBooks: [],
-            totalReadBooks: 0,
-          });
-
-          setUserGoal(0);
-        } finally {
-          setProgressLoading(
-            false
-          );
         }
-      };
+      } catch (error) {
+        if (!active) return;
+
+        setProgressError(
+          getFriendlyError(
+            error,
+            "Your reading progress could not be synced."
+          )
+        );
+
+        setUserProgress({
+          recentReadBooks: [],
+          totalReadBooks: 0,
+        });
+        setUserGoal(0);
+      } finally {
+        if (active) {
+          setProgressLoading(false);
+        }
+      }
+    };
 
     getUserProgress();
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   // ==========================================================
@@ -1380,25 +1400,21 @@ const Home = () => {
                       sm:w-36
                     "
                   >
-                    <img
-                      loading="lazy"
-                      src={getCoverUrl(
+                    <BookCover
+                      book={
                         userProgress
                           ?.recentReadBooks?.[0]
                           ?.book
-                          ?.identifier
-                      )}
+                      }
                       alt={
                         userProgress
                           ?.recentReadBooks?.[0]
                           ?.book?.title ||
                         "Book Cover"
                       }
-                      className="
-                        h-full
-                        w-full
-                        object-cover
-                      "
+                      loading="lazy"
+                      sizes="(max-width: 640px) 112px, 144px"
+                      className="h-full w-full object-cover"
                     />
                   </div>
 
@@ -1799,11 +1815,43 @@ const Home = () => {
         )}
       </section>
 
+      {progressError && (
+        <section className="mx-auto max-w-[1600px] px-4 pb-2 sm:px-8 md:px-12 lg:px-20">
+          <div className="rounded-xl border border-border-light bg-background-card px-4 py-3 text-sm text-text-secondary shadow-sm">
+            {progressError}
+          </div>
+        </section>
+      )}
+
+      {/* ======================================================
+          LIBRARY LOAD ERROR
+      ====================================================== */}
+
+      {bookError && !bookLoading && (
+        <section className="mx-auto max-w-[1600px] px-4 sm:px-8 md:px-12 lg:px-20">
+          <div className="rounded-2xl border border-border-light bg-background-card p-5 shadow-sm sm:p-6">
+            <p className="text-sm font-semibold text-text-primary">
+              We couldn't load the library
+            </p>
+            <p className="mt-1 max-w-xl text-sm leading-6 text-text-secondary">
+              {bookError}
+            </p>
+            <button
+              type="button"
+              onClick={handleRetryBooks}
+              className="mt-4 rounded-full bg-brand px-4 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
+            >
+              Try again
+            </button>
+          </div>
+        </section>
+      )}
+
       {/* ======================================================
           RECOMMENDED FOR YOU
       ====================================================== */}
 
-      <section
+      {!bookError && <section
         className="
           mx-auto
           mb-16
@@ -1921,13 +1969,14 @@ const Home = () => {
                 )
               )}
         </div>
-      </section>
+      </section>}
+
 
       {/* ======================================================
           FEATURED READ
       ====================================================== */}
 
-      {!bookLoading &&
+      {!bookError && !bookLoading &&
         featuredBook && (
           <section
             className="
@@ -1971,23 +2020,12 @@ const Home = () => {
                     lg:min-h-[390px]
                   "
                 >
-                  <img
-                    src={getCoverUrl(
-                      featuredBook.identifier
-                    )}
-                    alt={
-                      featuredBook.title
-                    }
+                  <BookCover
+                    book={featuredBook}
+                    alt={featuredBook.title}
                     loading="lazy"
-                    className="
-                      h-[270px]
-                      w-auto
-                      max-w-[190px]
-                      rounded-xl
-                      object-cover
-                      shadow-xl
-                      sm:h-[310px]
-                    "
+                    sizes="(max-width: 1024px) 190px, 260px"
+                    className="h-[270px] w-auto max-w-[190px] rounded-xl object-cover shadow-xl sm:h-[310px]"
                   />
                 </div>
 
@@ -2165,7 +2203,7 @@ const Home = () => {
           BECAUSE YOU READ
       ====================================================== */}
 
-      {!bookLoading &&
+      {!bookError && !bookLoading &&
         topInterest &&
         interestBooks.length > 0 && (
           <section
@@ -2246,7 +2284,7 @@ const Home = () => {
           EXPLORE BY INTEREST
       ====================================================== */}
 
-      {!bookLoading &&
+      {!bookError && !bookLoading &&
         categories.length > 0 && (
           <section
             className="

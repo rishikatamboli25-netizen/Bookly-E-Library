@@ -1,66 +1,43 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import BookCover from "./BookCover";
 
 const Cardtwo = ({ book }) => {
-  const BASE_URL = import.meta.env.VITE_BASE_URL
-  const coverUrl = `${BASE_URL}/api/images/cover/${book.identifier}`;
-
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate(`/BookDetail/${book.identifier}`);
   };
 
-  const handleImageLoad = (e) => {
-    const url = e.currentTarget.currentSrc || e.currentTarget.src;
-    const entry = performance.getEntriesByName(url)[0];
-
-    if (entry) {
-      const loadTime = entry.responseEnd - entry.startTime;
-
-      console.log(
-        `NORMAL | ${book.title} | ${loadTime.toFixed(2)} ms | ${(
-          entry.transferSize / 1024
-        ).toFixed(2)} KB`
-      );
-    }
-  };
-
   return (
     <div
       onClick={handleClick}
-      className="group relative flex flex-col w-36 sm:w-44 md:w-48 h-64 sm:h-72 md:h-80 mt-2 sm:mt-4 overflow-hidden shrink-0 rounded-2xl cursor-pointer
-        border border-white/60 bg-white/50 backdrop-blur-xl
-        shadow-[0_1px_0_rgba(255,255,255,0.8)_inset,0_8px_20px_rgba(124,58,237,0.08)]
-        transition-all duration-300
-        hover:-translate-y-1 hover:bg-white/70 hover:border-white/80
-        hover:shadow-[0_1px_0_rgba(255,255,255,0.9)_inset,0_16px_32px_rgba(124,58,237,0.16)]"
+      className="group relative flex h-64 w-36 shrink-0 cursor-pointer flex-col overflow-hidden rounded-2xl border border-white/60 bg-white/50 backdrop-blur-xl shadow-[0_1px_0_rgba(255,255,255,0.8)_inset,0_8px_20px_rgba(124,58,237,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-white/80 hover:bg-white/70 hover:shadow-[0_1px_0_rgba(255,255,255,0.9)_inset,0_16px_32px_rgba(124,58,237,0.16)] mt-2 sm:mt-4 sm:h-72 sm:w-44 md:h-80 md:w-48"
     >
-      {/* top sheen — glass rim highlight */}
-      <span className="pointer-events-none absolute inset-x-4 top-0 h-px bg-white/80 z-10" />
+      <span className="pointer-events-none absolute inset-x-4 top-0 z-10 h-px bg-white/80" />
 
-      <div className="h-[60%] relative border-b border-white/50 bg-gray-50 bg-contain bg-no-repeat bg-center transition-transform duration-300 group-hover:scale-[1.02]">
-        <img
-          loading="lazy"
-          onLoad={handleImageLoad}
-          src={coverUrl}
+      <div className="relative h-[60%] border-b border-white/50 bg-gray-50 bg-center bg-contain bg-no-repeat transition-transform duration-300 group-hover:scale-[1.02]">
+        <BookCover
+          book={book}
           alt={book?.title || "Book Cover"}
-          className="absolute h-[100%] left-1/2 -translate-x-1/2 top-0 object-cover"
+          loading="lazy"
+          sizes="(max-width: 640px) 144px, (max-width: 768px) 176px, 192px"
+          className="absolute left-1/2 top-0 h-full -translate-x-1/2 object-cover"
         />
       </div>
 
-      <div className="flex flex-col flex-1 p-2.5 sm:p-3.5 justify-between">
+      <div className="flex flex-1 flex-col justify-between p-2.5 sm:p-3.5">
         <div>
-          <div className="text-xs sm:text-sm md:text-base font-medium text-text-primary line-clamp-2 leading-tight">
+          <div className="line-clamp-2 text-xs font-medium leading-tight text-text-primary sm:text-sm md:text-base">
             {book?.title || "Book Name"}
           </div>
 
-          <div className="text-[11px] sm:text-xs md:text-sm text-text-secondary truncate mt-1">
+          <div className="mt-1 truncate text-[11px] text-text-secondary sm:text-xs md:text-sm">
             {book?.author || "Author"}
           </div>
         </div>
 
-        <div className="text-xs sm:text-sm text-brand truncate tracking-wide mt-1">
+        <div className="mt-1 truncate text-xs tracking-wide text-brand sm:text-sm">
           ⭐⭐⭐⭐
         </div>
       </div>

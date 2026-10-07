@@ -19,16 +19,12 @@ import {
 import Cardtwo from "../compontents/Cardtwo";
 import CardtwoSkeleton from "../compontents/Loading/CardtwoSkeleton";
 
-import axios from "axios";
+import {
+  getCatalog,
+  refreshCatalog,
+  getFriendlyError,
+} from "../utils/api";
 import "../App.css";
-
-// ============================================================
-// CONFIG
-// ============================================================
-
-const API_BASE =
-  import.meta.env.VITE_BASE_URL ||
-  "http://localhost:5000";
 
 // ============================================================
 // HELPERS
@@ -184,6 +180,9 @@ const Discover = () => {
   const [loading, setLoading] =
     useState(true);
 
+  const [loadError, setLoadError] =
+    useState("");
+
   const [searchParams, setSearchParams] =
     useSearchParams();
 
@@ -226,32 +225,59 @@ const Discover = () => {
   // ==========================================================
 
   useEffect(() => {
-    const getBook = async () => {
-      try {
-        const response =
-          await axios.get(
-            `${API_BASE}/api/book/getBooks`
-          );
+    let active = true;
 
-        setBooks(
-          Array.isArray(
-            response.data
-          )
-            ? response.data
-            : []
-        );
+    const loadBooks = async () => {
+      try {
+        setLoading(true);
+        setLoadError("");
+
+        const data = await getCatalog();
+
+        if (active) {
+          setBooks(Array.isArray(data) ? data : []);
+        }
       } catch (error) {
-        console.error(
-          "Error fetching books:",
-          error
+        if (!active) return;
+
+        setBooks([]);
+        setLoadError(
+          getFriendlyError(
+            error,
+            "We couldn't load the library right now."
+          )
         );
       } finally {
-        setLoading(false);
+        if (active) setLoading(false);
       }
     };
 
-    getBook();
+    loadBooks();
+
+    return () => {
+      active = false;
+    };
   }, []);
+
+  const handleRetryBooks = async () => {
+    try {
+      setLoading(true);
+      setLoadError("");
+
+      const data = await refreshCatalog();
+      setBooks(Array.isArray(data) ? data : []);
+    } catch (error) {
+      setBooks([]);
+      setLoadError(
+        getFriendlyError(
+          error,
+          "We couldn't load the library right now."
+        )
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // ==========================================================
   // SYNC URL → STATE
@@ -1130,11 +1156,31 @@ const Discover = () => {
         )}
       </section>
 
+      {loadError && !loading && (
+        <section className="mx-auto max-w-[1600px] px-4 pt-10 sm:px-8 md:px-12 lg:px-20">
+          <div className="rounded-2xl border border-border-light bg-background-card p-6 shadow-sm">
+            <p className="text-sm font-semibold text-text-primary">
+              We couldn't load the library
+            </p>
+            <p className="mt-1 max-w-xl text-sm leading-6 text-text-secondary">
+              {loadError}
+            </p>
+            <button
+              type="button"
+              onClick={handleRetryBooks}
+              className="mt-4 rounded-full bg-brand px-4 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
+            >
+              Try again
+            </button>
+          </div>
+        </section>
+      )}
+
       {/* ======================================================
           EDITORIAL DISCOVER
       ====================================================== */}
 
-      {!loading &&
+      {!loading && !loadError &&
         !isResultMode && (
           <>
             {/* ==================================================
@@ -1492,7 +1538,7 @@ const Discover = () => {
           SEARCH / FILTER RESULTS
       ====================================================== */}
 
-      {!loading &&
+      {!loading && !loadError &&
         isResultMode && (
           <section
             className="

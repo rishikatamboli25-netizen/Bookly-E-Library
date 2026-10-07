@@ -24,17 +24,15 @@ import {
   LuChevronUp,
 } from "react-icons/lu";
 
-import axios from "axios";
+import BookCover from "../compontents/BookCover";
+import {
+  api,
+  getCatalog,
+  getBookByIdentifier,
+  getFriendlyError,
+} from "../utils/api";
 
 import BookDetailSkeleton from "../compontents/Loading/BookDetailSkeleton";
-
-// ============================================================
-// CONFIG
-// ============================================================
-
-const API_BASE =
-  import.meta.env.VITE_BASE_URL ||
-  "http://localhost:5000";
 
 // ============================================================
 // HELPERS
@@ -44,14 +42,6 @@ const normalize = (value) =>
   String(value || "")
     .trim()
     .toLowerCase();
-
-const getCoverUrl = (identifier) => {
-  if (!identifier) {
-    return "";
-  }
-
-  return `${API_BASE}/api/images/cover/${identifier}`;
-};
 
 const formatReleaseDate = (date) => {
   if (!date) {
@@ -167,6 +157,18 @@ function BookDetail() {
   const [book, setBook] =
     useState(null);
 
+  const [bookLoading, setBookLoading] =
+    useState(true);
+
+  const [bookError, setBookError] =
+    useState("");
+
+  const [actionError, setActionError] =
+    useState("");
+
+  const [actionLoading, setActionLoading] =
+    useState("");
+
   const [readBooks, setReadBooks] =
     useState([]);
 
@@ -196,313 +198,266 @@ function BookDetail() {
   ] = useState(false);
 
   // ==========================================================
-  // FETCH BOOK
+  // LOAD BOOK + USER DATA + RELATED BOOKS
   // ==========================================================
 
   useEffect(() => {
-    const findBook = async () => {
-      try {
-        const response =
-          await axios.get(
-            `${API_BASE}/api/book/${bookId}`
+    let active = true;
+
+    const loadPage = async () => {
+      setBookLoading(true);
+      setBookError("");
+      setActionError("");
+      setRelatedLoading(true);
+      setReadBooksLoading(true);
+
+      const token = localStorage.getItem("token");
+
+      const bookRequest = getBookByIdentifier(bookId);
+
+      const progressRequest = token
+        ? api.get("/api/users/get-user-progress", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+        : Promise.resolve(null);
+
+      const readBooksRequest = token
+        ? api.get("/api/users/checkReadBooks", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+        : Promise.resolve(null);
+
+      const [bookResult, progressResult, readResult] =
+        await Promise.allSettled([
+          bookRequest,
+          progressRequest,
+          readBooksRequest,
+        ]);
+
+      if (!active) return;
+
+      if (bookResult.status === "fulfilled" && bookResult.value) {
+        const loadedBook = bookResult.value;
+        setBook(loadedBook);
+        setBookLoading(false);
+
+        if (
+          progressResult.status === "fulfilled" &&
+          progressResult.value?.data?.progress
+        ) {
+          setUserProgress(
+            progressResult.value.data.progress
           );
-
-        setBook(
-          response.data
-        );
-      } catch (error) {
-        console.error(
-          "Error fetching book:",
-          error
-        );
-      }
-    };
-
-    findBook();
-  }, [bookId]);
-
-  // ==========================================================
-  // FETCH USER PROGRESS
-  // ==========================================================
-
-  useEffect(() => {
-    const getUserProgress =
-      async () => {
-        const token =
-          localStorage.getItem(
-            "token"
-          );
-
-        if (!token) {
+        } else if (!token) {
           setUserProgress(null);
-          return;
         }
 
-        try {
-          const response =
-            await axios.get(
-              `${API_BASE}/api/users/get-user-progress`,
-              {
-                headers: {
-                  Authorization:
-                    `Bearer ${token}`,
-                },
-              }
-            );
-
-          if (
-            response.data?.progress
-          ) {
-            setUserProgress(
-              response.data.progress
-            );
-          }
-        } catch (error) {
-          console.error(
-            "Error fetching progress:",
-            error
-          );
-        }
-      };
-
-    getUserProgress();
-  }, [bookId]);
-
-  // ==========================================================
-  // CHECK READ BOOKS
-  // ==========================================================
-
-  useEffect(() => {
-    const checkAsRead =
-      async () => {
-        const token =
-          localStorage.getItem(
-            "token"
-          );
-
-        if (!token) {
-          setReadBooks([]);
-          setReadBooksLoading(
-            false
-          );
-          return;
-        }
-
-        try {
-          const response =
-            await axios.get(
-              `${API_BASE}/api/users/checkReadBooks`,
-              {
-                headers: {
-                  Authorization:
-                    `Bearer ${token}`,
-                },
-              }
-            );
-
+        if (
+          readResult.status === "fulfilled" &&
+          Array.isArray(readResult.value?.data?.data)
+        ) {
           setReadBooks(
-            Array.isArray(
-              response.data?.data
-            )
-              ? response.data.data
-              : []
+            readResult.value.data.data.map(String)
           );
-        } catch (error) {
-          console.error(
-            "Error fetching read books:",
-            error.response
-              ?.data ||
-              error.message
-          );
-
+        } else if (!token) {
           setReadBooks([]);
-        } finally {
-          setReadBooksLoading(
-            false
-          );
         }
-      };
 
-    checkAsRead();
-  }, []);
-
-  // ==========================================================
-  // FETCH RELATED BOOKS
-  // ==========================================================
-
-  useEffect(() => {
-    if (!book?.category) {
-      return;
-    }
-
-    const getRelatedBooks =
-      async () => {
         try {
-          setRelatedLoading(
-            true
-          );
+          const catalog = await getCatalog();
 
-          const response =
-            await axios.get(
-              `${API_BASE}/api/book/getBooks`,
-              {
-                params: {
-                  category:
-                    book.category,
-                  limit: 20,
-                },
-              }
-            );
+          if (!active) return;
 
-          const books =
-            Array.isArray(
-              response.data
+          const scored = catalog
+            .filter(
+              (item) =>
+                item?.identifier &&
+                item.identifier !== loadedBook.identifier
             )
-              ? response.data
-              : [];
+            .map((item) => ({
+              ...item,
+              similarity: getSimilarityScore(
+                loadedBook,
+                item
+              ),
+            }))
+            .sort(
+              (a, b) =>
+                b.similarity - a.similarity
+            )
+            .filter((item) => item.similarity > 0)
+            .slice(0, 6);
 
-          const scored =
-            books
-              .filter(
-                (item) =>
-                  item.identifier !==
-                  book.identifier
-              )
-              .map(
-                (item) => ({
-                  ...item,
-                  similarity:
-                    getSimilarityScore(
-                      book,
-                      item
-                    ),
-                })
-              )
-              .sort(
-                (a, b) =>
-                  b.similarity -
-                  a.similarity
-              )
-              .slice(0, 6);
-
-          setRelatedBooks(
-            scored
-          );
-        } catch (error) {
-          console.error(
-            "Error fetching related books:",
-            error
-          );
-
+          setRelatedBooks(scored);
+        } catch {
           setRelatedBooks([]);
         } finally {
-          setRelatedLoading(
-            false
-          );
+          if (active) setRelatedLoading(false);
         }
-      };
+      } else {
+        setBook(null);
+        setBookLoading(false);
+        setBookError(
+          getFriendlyError(
+            bookResult.reason,
+            "We couldn't open this book right now."
+          )
+        );
+        setRelatedBooks([]);
+        setRelatedLoading(false);
+      }
 
-    getRelatedBooks();
-  }, [book]);
+      if (
+        token &&
+        progressResult.status === "rejected"
+      ) {
+        setActionError(
+          getFriendlyError(
+            progressResult.reason,
+            "Your reading progress could not be synced."
+          )
+        );
+      }
+
+      if (
+        token &&
+        readResult.status === "rejected"
+      ) {
+        setReadBooks([]);
+      }
+
+      setReadBooksLoading(false);
+    };
+
+    loadPage();
+
+    return () => {
+      active = false;
+    };
+  }, [bookId]);
+
+  const retryBook = async () => {
+    try {
+      setBookLoading(true);
+      setBookError("");
+
+      const loadedBook = await getBookByIdentifier(bookId);
+      setBook(loadedBook);
+
+      const catalog = await getCatalog();
+      const scored = catalog
+        .filter(
+          (item) =>
+            item?.identifier &&
+            item.identifier !== loadedBook.identifier
+        )
+        .map((item) => ({
+          ...item,
+          similarity: getSimilarityScore(loadedBook, item),
+        }))
+        .sort((a, b) => b.similarity - a.similarity)
+        .filter((item) => item.similarity > 0)
+        .slice(0, 6);
+
+      setRelatedBooks(scored);
+    } catch (error) {
+      setBookError(
+        getFriendlyError(
+          error,
+          "We couldn't open this book right now."
+        )
+      );
+    } finally {
+      setBookLoading(false);
+      setRelatedLoading(false);
+    }
+  };
 
   // ==========================================================
   // MARK AS READ
   // ==========================================================
 
-  const markAsRead =
-    async () => {
-      try {
-        const token =
-          localStorage.getItem(
-            "token"
-          );
+  const markAsRead = async () => {
+    const token = localStorage.getItem("token");
 
-        if (!token) {
-          console.error(
-            "Authentication token not found"
-          );
-          return;
-        }
+    if (!token) {
+      setActionError("Please sign in to mark books as read.");
+      return;
+    }
 
-        await axios.put(
-          `${API_BASE}/api/users/mark-as-read`,
-          {
-            bookId:
-              book?._id,
+    try {
+      setActionLoading("read");
+      setActionError("");
+
+      await api.put(
+        "/api/users/mark-as-read",
+        { bookId: book?._id },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-          {
-            headers: {
-              Authorization:
-                `Bearer ${token}`,
-            },
-          }
-        );
+        }
+      );
 
-        console.log(
-          "Marked as Read ✅"
-        );
-
-        setReadBooks(
-          (prev) => [
-            ...prev,
-            book._id,
-          ]
-        );
-      } catch (error) {
-        console.error(
-          "Error Marking Read:",
-          error.response
-            ?.data ||
-            error.message
-        );
-      }
-    };
+      setReadBooks((prev) => [
+        ...new Set([
+          ...prev.map(String),
+          String(book?._id),
+        ]),
+      ]);
+    } catch (error) {
+      setActionError(
+        getFriendlyError(
+          error,
+          "We couldn't update the read status. Please try again."
+        )
+      );
+    } finally {
+      setActionLoading("");
+    }
+  };
 
   // ==========================================================
   // READ NOW
   // ==========================================================
 
-  const handleReadNow =
-    async () => {
-      try {
-        const token =
-          localStorage.getItem(
-            "token"
-          );
+  const handleReadNow = async () => {
+    const token = localStorage.getItem("token");
 
-        if (!token) {
-          console.error(
-            "Authentication token not found"
-          );
-          return;
-        }
+    if (!token) {
+      setActionError("Please sign in to start reading.");
+      return;
+    }
 
-        await axios.put(
-          `${API_BASE}/api/users/recent-books`,
-          {
-            bookId:
-              book._id,
+    try {
+      setActionLoading("reading");
+      setActionError("");
+
+      await api.put(
+        "/api/users/recent-books",
+        { bookId: book?._id },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-          {
-            headers: {
-              Authorization:
-                `Bearer ${token}`,
-            },
-          }
-        );
+        }
+      );
 
-        navigate(
-          `/reader/${book.identifier}`
-        );
-      } catch (error) {
-        console.error(
-          "Error adding recent book:",
-          error.response
-            ?.data ||
-            error.message
-        );
-      }
-    };
+      navigate(`/reader/${book.identifier}`);
+    } catch (error) {
+      setActionError(
+        getFriendlyError(
+          error,
+          "We couldn't start this book right now. Please try again."
+        )
+      );
+      setActionLoading("");
+    }
+  };
 
   // ==========================================================
   // ADD TO COLLECTION
@@ -599,13 +554,46 @@ function BookDetail() {
     );
 
   // ==========================================================
-  // LOADING
+  // LOADING / ERROR
   // ==========================================================
 
-  if (!book) {
+  if (bookLoading && !book) {
+    return <BookDetailSkeleton />;
+  }
+
+  if (!book && bookError) {
     return (
-      <BookDetailSkeleton />
+      <div className="flex min-h-[60vh] items-center justify-center px-5 py-10">
+        <div className="w-full max-w-md rounded-2xl border border-border-light bg-background-card p-6 text-center shadow-sm sm:p-8">
+          <h1 className="text-xl font-semibold text-text-primary">
+            We couldn't open this book
+          </h1>
+          <p className="mt-2 text-sm leading-6 text-text-secondary">
+            {bookError}
+          </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <button
+              type="button"
+              onClick={retryBook}
+              className="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
+            >
+              Try again
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate(-1)}
+              className="rounded-full border border-border-light bg-background-card px-5 py-2.5 text-sm font-semibold text-text-primary transition hover:bg-brand-light"
+            >
+              Go back
+            </button>
+          </div>
+        </div>
+      </div>
     );
+  }
+
+  if (!book) {
+    return null;
   }
 
   // ==========================================================
@@ -657,6 +645,12 @@ function BookDetail() {
           Back
         </button>
 
+        {actionError && (
+          <div className="mb-5 rounded-xl border border-border-light bg-background-card px-4 py-3 text-sm text-text-secondary shadow-sm">
+            {actionError}
+          </div>
+        )}
+
         {/* ==================================================
             BOOK HERO
         ================================================== */}
@@ -694,19 +688,13 @@ function BookDetail() {
                 sm:w-[200px]
               "
             >
-              <img
-                src={getCoverUrl(
-                  book.identifier
-                )}
-                alt={
-                  book.title
-                }
-                className="
-                  h-full
-                  w-full
-                  rounded
-                  object-cover
-                "
+              <BookCover
+                book={book}
+                alt={book.title}
+                loading="eager"
+                priority
+                sizes="(max-width: 640px) 175px, 200px"
+                className="h-full w-full rounded object-cover"
               />
             </div>
           </div>
@@ -940,12 +928,15 @@ function BookDetail() {
                   transition
                   hover:bg-brand-hover
                 "
+              disabled={actionLoading === "reading"}
               >
                 <HiOutlineBookOpen
                   size={18}
                 />
 
-                {currentProgress
+                {actionLoading === "reading"
+                  ? "Opening..."
+                  : currentProgress
                   ? "Continue Reading"
                   : "Read Now"}
               </button>
@@ -1025,12 +1016,15 @@ function BookDetail() {
                     transition
                     hover:bg-brand-light
                   "
+                disabled={actionLoading === "read"}
                 >
                   <HiOutlineCheckCircle
                     size={18}
                   />
 
-                  Mark as Read
+                  {actionLoading === "read"
+                    ? "Saving..."
+                    : "Mark as Read"}
                 </button>
               )}
             </div>
@@ -1267,22 +1261,12 @@ function BookDetail() {
                             group-hover:shadow-md
                           "
                         >
-                          <img
-                            src={getCoverUrl(
-                              item.identifier
-                            )}
-                            alt={
-                              item.title
-                            }
+                          <BookCover
+                            book={item}
+                            alt={item.title}
                             loading="lazy"
-                            className="
-                              h-full
-                              w-full
-                              object-cover
-                              transition-transform
-                              duration-300
-                              group-hover:scale-[1.02]
-                            "
+                            sizes="144px"
+                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                           />
                         </div>
 
