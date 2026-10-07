@@ -3,10 +3,31 @@ import { IoArrowBack } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
 
-// Vite environment variable with localhost fallback
-const API_BASE = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
+import BookCover from "../compontents/BookCover";
+import { api, getFriendlyError } from "../utils/api";
+import { clearCachedUserData } from "../utils/userData";
+
+const NOTES_RESOURCE = "notes";
+
+const getOriginalCoverBook = (book) => {
+  if (!book) {
+    return null;
+  }
+
+  if (book.coverUrl) {
+    return book;
+  }
+
+  if (!book.identifier) {
+    return book;
+  }
+
+  return {
+    ...book,
+    coverUrl: `https://raw.githubusercontent.com/standardebooks/${book.identifier}/master/src/epub/images/cover.svg`,
+  };
+};
 
 const NoteDetail = () => {
   const location = useLocation();
@@ -15,35 +36,41 @@ const NoteDetail = () => {
   const initialNote = location.state?.note;
 
   const [note, setNote] = useState(initialNote);
-
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(initialNote?.text || "");
   const [editedPage, setEditedPage] = useState(initialNote?.page || "");
-
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [feedback, setFeedback] = useState("");
+  const [feedbackType, setFeedbackType] = useState("error");
 
-  // ==========================================
-  // If note doesn't exist
-  // ==========================================
   if (!note) {
     return (
-      <section className="h-screen flex flex-col items-center justify-center gap-4">
-        <p className="text-text-secondary">Note not found.</p>
+      <section className="flex min-h-[calc(100dvh+2rem)] w-full items-center justify-center px-3 py-8 sm:px-5 lg:px-6">
+        <div className="w-full max-w-md text-center">
+          <h2 className="text-xl font-semibold text-text-primary">
+            Note not found
+          </h2>
 
-        <button
-          onClick={() => navigate("/Notes")}
-          className="bg-brand text-white px-5 py-2 rounded-full"
-        >
-          Back to Notes
-        </button>
+          <p className="mt-2 text-sm leading-6 text-text-secondary">
+            This note is no longer available here. Return to Notes and open it
+            again.
+          </p>
+
+          <button
+            type="button"
+            onClick={() => navigate("/Notes")}
+            className="mt-6 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
+          >
+            Back to Notes
+          </button>
+        </div>
       </section>
     );
   }
 
-  // ==========================================
-  // Format date
-  // ==========================================
+  const coverBook = getOriginalCoverBook(note.book);
+
   const formattedDate = note.createdAt
     ? new Date(note.createdAt).toLocaleString("en-IN", {
         day: "2-digit",
@@ -55,42 +82,46 @@ const NoteDetail = () => {
       })
     : "Unknown";
 
-  // ==========================================
-  // EDIT NOTE
-  // ==========================================
+  const showFeedback = (message, type = "error") => {
+    setFeedback(message);
+    setFeedbackType(type);
+  };
+
   const handleEdit = () => {
     setEditedText(note.text || "");
     setEditedPage(note.page || "");
+    setFeedback("");
     setIsEditing(true);
   };
 
-  // ==========================================
-  // CANCEL EDIT
-  // ==========================================
   const handleCancelEdit = () => {
     setEditedText(note.text || "");
     setEditedPage(note.page || "");
+    setFeedback("");
     setIsEditing(false);
   };
 
-  // ==========================================
-  // SAVE NOTE
-  // ==========================================
   const handleSave = async () => {
-    if (!editedText.trim()) {
-      alert("Note cannot be empty.");
+    if (!editedText.trim() || saving) {
+      showFeedback("A note cannot be empty.");
       return;
     }
 
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      showFeedback("Please sign in again before updating this note.");
+      return;
+    }
+
+    setSaving(true);
+    setFeedback("");
+
     try {
-      setSaving(true);
-
-      const token = localStorage.getItem("token");
-
-      const response = await axios.put(
-        `${API_BASE}/api/users/updatenote/${note._id}`,
+      const response = await api.put(
+        `/api/users/updatenote/${note._id}`,
         {
-          text: editedText,
+          text: editedText.trim(),
           page: editedPage,
         },
         {
@@ -100,34 +131,37 @@ const NoteDetail = () => {
         }
       );
 
-      console.log("Note updated successfully:", response.data);
+      const updatedNote = response.data?.note;
 
-      // Update frontend note
-      setNote((prev) => ({
-        ...prev,
-        ...response.data.note,
+      setNote((previous) => ({
+        ...previous,
+        ...(updatedNote || {}),
       }));
 
-      setIsEditing(false);
-    } catch (error) {
-      console.error(
-        "Failed to update note:",
-        error.response?.data || error
-      );
+      clearCachedUserData({
+        token,
+        resource: NOTES_RESOURCE,
+      });
 
-      alert(
-        error.response?.data?.message ||
-          "Failed to update note."
+      setIsEditing(false);
+      showFeedback("Note updated successfully.", "success");
+    } catch (error) {
+      showFeedback(
+        getFriendlyError(
+          error,
+          "We couldn't update this note right now. Please try again."
+        )
       );
     } finally {
       setSaving(false);
     }
   };
 
-  // ==========================================
-  // DELETE NOTE
-  // ==========================================
   const handleDelete = async () => {
+    if (deleting) {
+      return;
+    }
+
     const confirmed = window.confirm(
       "Are you sure you want to delete this note?"
     );
@@ -136,32 +170,37 @@ const NoteDetail = () => {
       return;
     }
 
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      showFeedback("Please sign in again before deleting this note.");
+      return;
+    }
+
+    setDeleting(true);
+    setFeedback("");
+
     try {
-      setDeleting(true);
+      await api.delete(`/api/users/deletenote/${note._id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-      const token = localStorage.getItem("token");
+      clearCachedUserData({
+        token,
+        resource: NOTES_RESOURCE,
+      });
 
-      const response = await axios.delete(
-        `${API_BASE}/api/users/deletenote/${note._id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      console.log("Note deleted successfully:", response.data);
-
-      navigate("/Notes");
+      navigate("/Notes", {
+        replace: true,
+      });
     } catch (error) {
-      console.error(
-        "Failed to delete note:",
-        error.response?.data || error
-      );
-
-      alert(
-        error.response?.data?.message ||
-          "Failed to delete note."
+      showFeedback(
+        getFriendlyError(
+          error,
+          "We couldn't delete this note right now. Please try again."
+        )
       );
     } finally {
       setDeleting(false);
@@ -169,269 +208,188 @@ const NoteDetail = () => {
   };
 
   return (
-    <>
-      <section className="p-7 pt-0">
+    <section className="min-h-[calc(100dvh+2rem)] w-full px-3 py-4 sm:px-5 sm:py-6 lg:px-6">
+      <div className="mx-auto w-full max-w-6xl">
+        {/* Header */}
+        <div className="sticky top-0 z-20 flex min-h-[64px] items-center justify-between gap-4 bg-background-main/95 py-2 backdrop-blur-sm sm:min-h-[72px]">
+          <button
+            type="button"
+            onClick={() => navigate("/Notes")}
+            className="flex min-w-0 items-center gap-2 rounded-lg text-text-primary transition hover:opacity-75"
+            aria-label="Back to notes"
+          >
+            <IoArrowBack className="shrink-0 text-lg sm:text-xl" />
 
-        {/* ==========================================
-            HEADER
-        ========================================== */}
-        <div
-          className="
-            h-[10vh]
-            flex
-            items-center
-            justify-between
-            text-[clamp(12px,5vw,22px)]
-            font-semibold
-            sticky
-            top-0
-            z-10
-            bg-background-main
-          "
-        >
-          {/* Back */}
-          <div className="flex items-center gap-2 text-text-primary">
-            <button
-              onClick={() => navigate("/Notes")}
-              className="
-                p-2
-                rounded-full
-                hover:bg-gray-100
-                transition
-              "
-            >
-              <IoArrowBack />
-            </button>
+            <span className="truncate text-lg font-semibold sm:text-2xl">
+              Note Detail
+            </span>
+          </button>
 
-            <div>Notes Detail</div>
-          </div>
-
-          {/* Actions */}
           {!isEditing && (
-            <div className="flex items-center gap-6 text-text-secondary">
-
-              {/* Edit */}
+            <div className="flex shrink-0 items-center gap-1 text-text-secondary sm:gap-2">
               <button
+                type="button"
                 onClick={handleEdit}
-                className="
-                  hover:text-brand
-                  transition
-                "
+                className="rounded-full p-2.5 transition hover:bg-brand-light hover:text-brand"
                 title="Edit note"
+                aria-label="Edit note"
               >
-                <FiEdit />
+                <FiEdit size={18} />
               </button>
 
-              {/* Delete */}
               <button
+                type="button"
                 onClick={handleDelete}
                 disabled={deleting}
-                className="
-                  hover:text-red-500
-                  transition
-                  disabled:opacity-50
-                "
+                className="rounded-full p-2.5 transition hover:bg-red-50 hover:text-red-500 disabled:cursor-not-allowed disabled:opacity-50"
                 title="Delete note"
+                aria-label="Delete note"
               >
-                <RiDeleteBin6Line />
+                <RiDeleteBin6Line size={18} />
               </button>
-
             </div>
           )}
         </div>
 
+        {/* Feedback */}
+        {feedback && (
+          <div
+            className={`mt-3 rounded-xl border px-4 py-3 text-sm leading-6 ${
+              feedbackType === "success"
+                ? "border-green-200 bg-green-50 text-green-700"
+                : "border-border-light bg-background-card text-text-secondary"
+            }`}
+            role="status"
+          >
+            {feedback}
+          </div>
+        )}
 
-        {/* ==========================================
-            BOOK CARD
-        ========================================== */}
-        <div className="py-10 flex gap-4">
-
-          <img
-            className="w-[8vw] min-w-[70px] object-cover rounded-md"
-            src={`https://archive.org/services/img/${note.book?.identifier}`}
-            alt={note.book?.title || "Book"}
-          />
-
-          <div>
-
-            <div
-              className="
-                font-semibold
-                text-[clamp(18px,4vw,26px)]
-                text-text-primary
-              "
-            >
-              {note.book?.title}
+        {/* Book Header */}
+        <div className="mt-6 flex flex-col gap-5 sm:mt-8 sm:flex-row sm:items-start sm:gap-7 lg:gap-8">
+          <div className="w-24 shrink-0 sm:w-28 lg:w-32">
+            <div className="aspect-[2/3] overflow-hidden rounded-lg bg-gray-100 shadow-sm">
+              <BookCover
+                book={coverBook}
+                alt={note.book?.title || "Book cover"}
+                loading="eager"
+                priority
+                sizes="128px"
+                className="h-full w-full object-cover"
+              />
             </div>
+          </div>
 
-            {/* PAGE */}
-            {!isEditing ? (
-              <p
-                className="
-                  text-text-secondary
-                  text-[clamp(10px,2vw,20px)]
-                  py-2
-                "
-              >
-                Page No: {note.page}
+          <div className="min-w-0 flex-1">
+            <h1 className="text-xl font-semibold leading-tight text-text-primary sm:text-2xl lg:text-3xl">
+              {note.book?.title || "Untitled Book"}
+            </h1>
+
+            {note.book?.author && (
+              <p className="mt-1.5 text-sm text-text-secondary sm:text-base">
+                {note.book.author}
               </p>
-            ) : (
-              <div className="mt-3">
+            )}
 
-                <label className="text-sm text-text-secondary">
+            {/* Metadata */}
+            {!isEditing ? (
+              <div className="mt-5 space-y-2 text-sm sm:text-base">
+                <p className="text-text-secondary">
+                  <span className="font-medium text-text-primary">
+                    Page No:
+                  </span>{" "}
+                  {note.page ?? "N/A"}
+                </p>
+
+                <p className="text-text-secondary">
+                  <span className="font-medium text-text-primary">
+                    Created at:
+                  </span>{" "}
+                  {formattedDate}
+                </p>
+              </div>
+            ) : (
+              <div className="mt-5">
+                <label
+                  htmlFor="note-page"
+                  className="text-sm font-medium text-text-primary"
+                >
                   Page No.
                 </label>
 
                 <input
+                  id="note-page"
                   type="number"
                   value={editedPage}
-                  onChange={(e) => setEditedPage(e.target.value)}
-                  className="
-                    block
-                    mt-1
-                    w-32
-                    px-3
-                    py-2
-                    rounded-lg
-                    border
-                    border-gray-300
-                    outline-none
-                    focus:border-brand
-                  "
+                  onChange={(event) => setEditedPage(event.target.value)}
+                  className="mt-2 block w-28 rounded-lg border border-border-light bg-white px-3 py-2 text-sm text-text-primary outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/10"
                 />
-
               </div>
             )}
-
           </div>
         </div>
 
+        {/* Divider */}
+        <div className="my-7 border-t border-border-light sm:my-9" />
 
-        {/* ==========================================
-            NOTE
-        ========================================== */}
-        <div className="max-w-5xl">
-
+        {/* Note */}
+        <div className="max-w-4xl pb-24">
           {!isEditing ? (
-            <div
-              className="
-                text-text-primary
-                text-[clamp(14px,2vw,18px)]
-                leading-8
-                whitespace-pre-wrap
-              "
-            >
-              {note.text}
-            </div>
+            <article>
+              <div className="mb-4 flex items-center gap-3">
+                <span className="h-px w-6 bg-brand" />
+
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-text-secondary">
+                  Your Note
+                </p>
+              </div>
+
+              <div className="whitespace-pre-wrap text-[15px] leading-8 text-text-primary sm:text-base sm:leading-8">
+                {note.text || "No note text saved."}
+              </div>
+            </article>
           ) : (
             <div>
-
-              <label className="block mb-2 font-medium text-text-primary">
+              <label
+                htmlFor="note-content"
+                className="mb-3 block text-sm font-semibold text-text-primary"
+              >
                 Edit Note
               </label>
 
               <textarea
+                id="note-content"
                 value={editedText}
-                onChange={(e) => setEditedText(e.target.value)}
+                onChange={(event) => setEditedText(event.target.value)}
                 rows={10}
-                className="
-                  w-full
-                  resize-y
-                  rounded-xl
-                  border
-                  border-gray-300
-                  bg-white
-                  p-4
-                  text-text-primary
-                  outline-none
-                  focus:border-brand
-                  focus:ring-2
-                  focus:ring-brand/20
-                "
+                className="w-full resize-y rounded-xl border border-border-light bg-white p-4 text-sm leading-7 text-text-primary outline-none transition placeholder:text-text-secondary focus:border-brand focus:ring-2 focus:ring-brand/10 sm:text-base"
                 placeholder="Write your note..."
               />
 
-              {/* Edit buttons */}
-              <div className="flex justify-end gap-3 mt-4">
-
+              <div className="mt-4 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
                 <button
+                  type="button"
                   onClick={handleCancelEdit}
                   disabled={saving}
-                  className="
-                    px-5
-                    py-2
-                    rounded-full
-                    border
-                    border-gray-300
-                    text-text-secondary
-                    hover:bg-gray-100
-                    transition
-                  "
+                  className="w-full rounded-full border border-border-light px-5 py-2.5 text-sm font-medium text-text-secondary transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                 >
                   Cancel
                 </button>
 
                 <button
+                  type="button"
                   onClick={handleSave}
                   disabled={saving}
-                  className="
-                    px-5
-                    py-2
-                    rounded-full
-                    bg-brand
-                    text-white
-                    hover:opacity-90
-                    transition
-                    disabled:opacity-50
-                  "
+                  className="w-full rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                 >
                   {saving ? "Saving..." : "Save Changes"}
                 </button>
-
               </div>
-
             </div>
           )}
-
         </div>
-
-
-        {/* ==========================================
-            FOOTER / CREATED AT
-        ========================================== */}
-        {!isEditing && (
-          <div
-            className="
-              w-fit
-              fixed
-              bottom-3
-              right-2
-              flex
-              py-1
-              border
-              border-gray-300
-              bg-slate-200
-              px-3
-              rounded-lg
-            "
-          >
-            <p
-              className="
-                text-[clamp(6px,2vw,12px)]
-                text-text-primary
-              "
-            >
-              Created at{" "}
-
-              <span className="font-medium">
-                {formattedDate}
-              </span>
-            </p>
-          </div>
-        )}
-
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
